@@ -8,7 +8,7 @@ public interface PropertyService {
 
     List<Property> findAll();
 
-    Property findBId(int id);
+    Property findById(int id);
 
     Property save(Property property);
 

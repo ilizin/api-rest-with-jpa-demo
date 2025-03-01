@@ -22,8 +22,8 @@ public class PropertyServiceImpl implements PropertyService {
     }
 
     @Override
-    public Property findBId(int id) {
-        return propertyDao.findBId(id);
+    public Property findById(int id) {
+        return propertyDao.findById(id);
     }
 
     @Transactional

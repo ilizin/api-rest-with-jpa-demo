@@ -23,7 +23,7 @@ public class PropertyDaoJpaImpl implements PropertyDao {
     }
 
     @Override
-    public Property findBId(int id) {
+    public Property findById(int id) {
         return entityManager.find(Property.class, id);
     }
 
@@ -39,7 +39,7 @@ public class PropertyDaoJpaImpl implements PropertyDao {
 
     @Override
     public void deleteById(int id) {
-        Property property = findBId(id);
+        Property property = findById(id);
         entityManager.remove(property);
     }
 }
