@@ -21,7 +21,7 @@ public class AdvertiserRestController {
         return advertiserService.findAll();
     }
 
-    @GetMapping("/advertiser/{advertiserId}")
+    @GetMapping("/advertisers/{advertiserId}")
     public Advertiser getAdvertiser(@PathVariable int advertiserId) {
         Advertiser advertiser = advertiserService.findById(advertiserId);
         if (advertiser == null) {
@@ -30,19 +30,19 @@ public class AdvertiserRestController {
         return advertiser;
     }
 
-    @PostMapping("/advertiser")
+    @PostMapping("/advertisers")
     public Advertiser addAdvertiser(@RequestBody Advertiser advertiser) {
         // Just in case they pass an id in JSON, set the id to 0, to force a save of new item instead of update.
         advertiser.setId(0);
         return advertiserService.save(advertiser);
     }
 
-    @PutMapping("/advertiser")
+    @PutMapping("/advertisers")
     public Advertiser updateAdvertiser(@RequestBody Advertiser advertiser) {
         return advertiserService.save(advertiser);
     }
 
-    @DeleteMapping("/advertiser/{advertiserId}")
+    @DeleteMapping("/advertisers/{advertiserId}")
     public void deleteAdvertiser(@PathVariable int advertiserId) {
         Advertiser advertiser = advertiserService.findById(advertiserId);
         if (advertiser == null) {

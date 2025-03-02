@@ -3,8 +3,8 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name="property")
-public class Property {
+@Table(name="advertisement")
+public class Advertisement {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,9 +29,9 @@ public class Property {
     @Column(name="description")
     private String description;
 
-    public Property() {}
+    public Advertisement() {}
 
-    public Property(String title, String city, String country, String address, long price, String description) {
+    public Advertisement(String title, String city, String country, String address, long price, String description) {
         this.title = title;
         this.city = city;
         this.country = country;
@@ -98,7 +98,7 @@ public class Property {
 
     @Override
     public String toString() {
-        return "Property{" +
+        return "Advertisement{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", city='" + city + '\'' +
