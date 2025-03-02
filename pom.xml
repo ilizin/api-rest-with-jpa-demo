@@ -3,16 +3,15 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<groupId>org.springframework.boot</groupId>
-		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>3.4.3</version>
+		<groupId>me.ilizin.spring-demo.springboot-demo</groupId>
+		<artifactId>springboot-demos</artifactId>
+		<version>0.0.1-SNAPSHOT</version>
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>me.ilizin.spring-demo.springboot-demo</groupId>
 	<artifactId>api-rest-with-jpa-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-rest-with-jpa-demo</name>
-	<description>Demo project for Spring Boot</description>
+	<description>Demo project for setting up an api rest for for CRUD operations with Spring Boot</description>
 	<url/>
 	<licenses>
 		<license/>
