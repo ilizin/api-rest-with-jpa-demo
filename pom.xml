@@ -11,7 +11,7 @@
 	<artifactId>api-rest-with-jpa-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-rest-with-jpa-demo</name>
-	<description>Demo project for setting up an api rest for for CRUD operations with Spring Boot</description>
+	<description>A CRUD API rest with Jpa/hibernate (h2) demo project</description>
 	<url/>
 	<licenses>
 		<license/>
