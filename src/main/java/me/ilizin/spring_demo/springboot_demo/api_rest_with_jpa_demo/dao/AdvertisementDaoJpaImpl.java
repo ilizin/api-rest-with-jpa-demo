@@ -18,7 +18,7 @@ public class AdvertisementDaoJpaImpl implements AdvertisementDao {
 
     @Override
     public List<Advertisement> findAll() {
-        TypedQuery<Advertisement> query = entityManager.createQuery("from Property", Advertisement.class);
+        TypedQuery<Advertisement> query = entityManager.createQuery("from Advertisement", Advertisement.class);
         return query.getResultList();
     }
 

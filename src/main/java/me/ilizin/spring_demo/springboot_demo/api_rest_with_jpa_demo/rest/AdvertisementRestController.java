@@ -25,7 +25,7 @@ public class AdvertisementRestController {
     public Advertisement getProperty(@PathVariable int advertisementId) {
         Advertisement advertisement = advertisementService.findById(advertisementId);
         if (advertisement == null) {
-            throw new RuntimeException("Property id not found '" + advertisementId + "'");
+            throw new RuntimeException("Advertisement id not found '" + advertisementId + "'");
         }
         return advertisement;
     }
@@ -46,7 +46,7 @@ public class AdvertisementRestController {
     public void deleteProperty(@PathVariable int advertisementId) {
         Advertisement advertisement = advertisementService.findById(advertisementId);
         if (advertisement == null) {
-            throw new RuntimeException("Property id not found '" + advertisementId + "'");
+            throw new RuntimeException("Advertisement id not found '" + advertisementId + "'");
         }
         advertisementService.deleteById(advertisementId);
     }
