@@ -52,12 +52,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-actuator</artifactId>
 		</dependency>
-		<!-- To enable spring security just add the following dependency, by default spring boot will automatically secure all
-		     the endpoints for the application -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-security</artifactId>
-		</dependency>
 		<!-- Dependency for the Spring data rest
 		     Spring data rest will scan for the JpaRepository and gets REST endpoints for CRUD operations for free.
 		     It means no code for rest controllers and for the service layer is required.
