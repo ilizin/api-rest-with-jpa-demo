@@ -25,5 +25,3 @@ GitHub: [ilizin](https://github.com/ilizin)
 ## 🙌 Acknowledgments
 
 ## ℹ️ Additional information
-
-https://docs.spring.io/spring-boot/how-to/data-initialization.html
