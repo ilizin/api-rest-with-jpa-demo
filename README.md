@@ -25,3 +25,5 @@ GitHub: [ilizin](https://github.com/ilizin)
 ## 🙌 Acknowledgments
 
 ## ℹ️ Additional information
+
+https://spring.io/guides/gs/testing-web
