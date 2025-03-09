@@ -22,7 +22,7 @@ public class AdvertisementRestController {
     }
 
     @GetMapping("/advertisements/{advertisementId}")
-    public Advertisement getProperty(@PathVariable int advertisementId) {
+    public Advertisement getAdvertisement(@PathVariable int advertisementId) {
         Advertisement advertisement = advertisementService.findById(advertisementId);
         if (advertisement == null) {
             throw new RuntimeException("Advertisement id not found '" + advertisementId + "'");
@@ -31,19 +31,19 @@ public class AdvertisementRestController {
     }
 
     @PostMapping("/advertisements")
-    public Advertisement addProperty(@RequestBody Advertisement advertisement) {
+    public Advertisement addAdvertisement(@RequestBody Advertisement advertisement) {
         // Just in case they pass an id in JSON, set the id to 0, to force a save of new item instead of update.
         advertisement.setId(0);
         return advertisementService.save(advertisement);
     }
 
     @PutMapping("/advertisements")
-    public Advertisement updateProperty(@RequestBody Advertisement property) {
+    public Advertisement updateAdvertisement(@RequestBody Advertisement property) {
         return advertisementService.save(property);
     }
 
     @DeleteMapping("/advertisements/{advertisementId}")
-    public void deleteProperty(@PathVariable int advertisementId) {
+    public void deleteAdvertisement(@PathVariable int advertisementId) {
         Advertisement advertisement = advertisementService.findById(advertisementId);
         if (advertisement == null) {
             throw new RuntimeException("Advertisement id not found '" + advertisementId + "'");
