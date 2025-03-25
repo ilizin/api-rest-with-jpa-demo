@@ -4,8 +4,9 @@ CREATE TABLE IF NOT EXISTS advertisement(
     city varchar(255),
     country varchar(255),
     address varchar(255),
-    price bigint,
-    description varchar(255)
+    price real,
+    description varchar(255),
+    size integer
 );
 
 CREATE TABLE IF NOT EXISTS advertiser(

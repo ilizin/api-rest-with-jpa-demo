@@ -18,26 +18,16 @@ import org.springframework.http.HttpMethod;
 public class AdvertisementRestControllerTest {
 
     private static final String EXPECTED_ONE_ADVERTISEMENT = "{\"id\":1,\"title\":\"Studio in Culture Thonglor\",\"city\":\"Bangkok\"," +
-            "\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700,\"description\":" +
-            "\"A studio apartment available for Sale\"}";
+            "\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700.0,\"description\":" +
+            "\"A studio apartment available for Sale\",\"size\":120}";
 
-    private static final String EXPECTED_LIST_OF_ONE_ADVERTISEMENT = "[{\"id\":1,\"title\":\"Studio in Culture Thonglor\",\"city\":\"Bangkok\"," +
-            "\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700,\"description\":" +
-            "\"A studio apartment available for Sale\"}]";
+    private static final String EXPECTED_LIST_OF_ONE_ADVERTISEMENT = "[" + EXPECTED_ONE_ADVERTISEMENT + "]";
 
     private static final String EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT = "[]";
 
     private static final String EXPECTED_ONE_ADVERTISEMENT_WITH_UPDATED_PRICE = "{\"id\":1,\"title\":\"Studio in Culture Thonglor\",\"city\":\"Bangkok\"," +
-            "\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550000,\"description\":" +
-            "\"A studio apartment available for Sale\"}";
-
-    private String getUrl(int port) {
-        return "http://localhost:" + port + "/api/advertisements";
-    }
-
-    private String getUrl(int port,  int advertisementId) {
-        return "http://localhost:" + port + "/api/advertisements/" + advertisementId;
-    }
+            "\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550000.0,\"description\":" +
+            "\"A studio apartment available for Sale\",\"size\":120}";
 
     @LocalServerPort
     private int port;
@@ -52,7 +42,7 @@ public class AdvertisementRestControllerTest {
 
         Advertisement advertisement
                 = new Advertisement("Studio in Culture Thonglor", "Bangkok", "Thailand", "Soi Yanat",
-                8550700, "A studio apartment available for Sale");
+                8550700, "A studio apartment available for Sale", 120);
         HttpEntity<Advertisement> request = new HttpEntity<>(advertisement);
 
         assertThat(this.restTemplate.postForEntity(getUrl(port), request, String.class))
@@ -79,5 +69,13 @@ public class AdvertisementRestControllerTest {
 
         assertThat(this.restTemplate.getForObject(getUrl(port), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
+    }
+
+    private String getUrl(int port) {
+        return "http://localhost:" + port + "/api/advertisements";
+    }
+
+    private String getUrl(int port,  int advertisementId) {
+        return "http://localhost:" + port + "/api/advertisements/" + advertisementId;
     }
 }

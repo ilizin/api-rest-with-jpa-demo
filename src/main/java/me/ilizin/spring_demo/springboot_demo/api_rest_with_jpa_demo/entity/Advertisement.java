@@ -24,20 +24,25 @@ public class Advertisement {
     private String address;
 
     @Column(name="price")
-    private long price;
+    private double price;
 
     @Column(name="description")
     private String description;
 
+    @Column(name="size")
+    private int size;
+
     public Advertisement() {}
 
-    public Advertisement(String title, String city, String country, String address, long price, String description) {
+    public Advertisement(String title, String city, String country, String address, double price, String description,
+                         int size) {
         this.title = title;
         this.city = city;
         this.country = country;
         this.address = address;
         this.price = price;
         this.description = description;
+        this.size = size;
     }
 
     public int getId() {
@@ -80,11 +85,11 @@ public class Advertisement {
         this.address = address;
     }
 
-    public long getPrice() {
+    public double getPrice() {
         return price;
     }
 
-    public void setPrice(long price) {
+    public void setPrice(double price) {
         this.price = price;
     }
 
@@ -94,6 +99,14 @@ public class Advertisement {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public void setSize(int size) {
+        this.size = size;
     }
 
     @Override
@@ -106,6 +119,7 @@ public class Advertisement {
                 ", address='" + address + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
+                ", size='" + size + '\'' +
                 '}';
     }
 }

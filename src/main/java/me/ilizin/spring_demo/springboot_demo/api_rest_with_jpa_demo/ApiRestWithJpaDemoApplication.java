@@ -9,5 +9,4 @@ public class ApiRestWithJpaDemoApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ApiRestWithJpaDemoApplication.class, args);
 	}
-
 }
