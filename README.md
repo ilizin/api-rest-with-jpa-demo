@@ -1,14 +1,16 @@
 # api-rest-with-jpa-demo
 
-## 📘 Description
+## Description
 
-## 💾 Installation
+## Installation
 
 ## Usage
 
-## 📂 Structure
+## Structure
 
-## 🤝 Contributing
+It's a maven based project, therefore the structure is standard, more details about the maven project director layout  [here](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
+
+## Contributing
 
 Contributions are welcome! If you have an alternative solution or an improvement to an existing solution, feel free to contribute. Follow these steps:
 
@@ -18,12 +20,10 @@ Contributions are welcome! If you have an alternative solution or an improvement
 4. Push to the branch (git push origin feature-new-solution).
 5. Open a pull request.
 
-## 📬 Contact
+## Contact
 
 GitHub: [ilizin](https://github.com/ilizin)
 
-## 🙌 Acknowledgments
-
-## ℹ️ Additional information
+## References
 
 https://spring.io/guides/gs/testing-web
