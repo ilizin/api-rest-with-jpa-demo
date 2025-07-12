@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api")
+@RequestMapping("/api/v1")
 public class AdvertiserRestController {
 
     private final AdvertiserService advertiserService;
@@ -21,7 +21,7 @@ public class AdvertiserRestController {
         return advertiserService.findAll();
     }
 
-    @GetMapping("/advertisers/{advertiserId}")
+    @GetMapping("/advertiser/{advertiserId}")
     public Advertiser getAdvertiser(@PathVariable int advertiserId) {
         Advertiser advertiser = advertiserService.findById(advertiserId);
         if (advertiser == null) {
@@ -30,19 +30,19 @@ public class AdvertiserRestController {
         return advertiser;
     }
 
-    @PostMapping("/advertisers")
+    @PostMapping("/advertiser")
     public Advertiser addAdvertiser(@RequestBody Advertiser advertiser) {
         // Just in case they pass an id in JSON, set the id to 0, to force a save of new item instead of update.
         advertiser.setId(0);
         return advertiserService.save(advertiser);
     }
 
-    @PutMapping("/advertisers")
+    @PutMapping("/advertiser")
     public Advertiser updateAdvertiser(@RequestBody Advertiser advertiser) {
         return advertiserService.save(advertiser);
     }
 
-    @DeleteMapping("/advertisers/{advertiserId}")
+    @DeleteMapping("/advertiser/{advertiserId}")
     public void deleteAdvertiser(@PathVariable int advertiserId) {
         Advertiser advertiser = advertiserService.findById(advertiserId);
         if (advertiser == null) {

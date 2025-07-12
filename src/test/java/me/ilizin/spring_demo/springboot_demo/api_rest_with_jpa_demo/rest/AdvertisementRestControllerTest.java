@@ -37,7 +37,7 @@ public class AdvertisementRestControllerTest {
 
     @Test
     void greetingShouldReturnDefaultMessage() {
-        assertThat(this.restTemplate.getForObject(getUrl(port), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl2(port), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
 
         Advertisement advertisement
@@ -48,7 +48,7 @@ public class AdvertisementRestControllerTest {
         assertThat(this.restTemplate.postForEntity(getUrl(port), request, String.class))
                 .isNotNull();
 
-        assertThat(this.restTemplate.getForObject(getUrl(port), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl2(port), String.class))
                 .contains(EXPECTED_LIST_OF_ONE_ADVERTISEMENT);
 
         assertThat(this.restTemplate.getForObject(getUrl(port, 1), String.class))
@@ -67,15 +67,19 @@ public class AdvertisementRestControllerTest {
         assertThat(this.restTemplate.exchange(getUrl(port, 1), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class))
                 .isNotNull();
 
-        assertThat(this.restTemplate.getForObject(getUrl(port), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl2(port), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
     }
 
     private String getUrl(int port) {
-        return "http://localhost:" + port + "/api/advertisements";
+        return "http://localhost:" + port + "/api/v1/advertisement";
+    }
+
+    private String getUrl2(int port) {
+        return "http://localhost:" + port + "/api/v1/advertisements";
     }
 
     private String getUrl(int port,  int advertisementId) {
-        return "http://localhost:" + port + "/api/advertisements/" + advertisementId;
+        return "http://localhost:" + port + "/api/v1/advertisement/" + advertisementId;
     }
 }
