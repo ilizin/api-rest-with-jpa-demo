@@ -72,14 +72,14 @@ public class AdvertisementRestControllerTest {
     }
 
     private String getUrl(int port) {
-        return "http://localhost:" + port + "/api/v1/advertisement";
+        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1/advertisement";
     }
 
     private String getUrl2(int port) {
-        return "http://localhost:" + port + "/api/v1/advertisements";
+        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1/advertisements";
     }
 
     private String getUrl(int port,  int advertisementId) {
-        return "http://localhost:" + port + "/api/v1/advertisement/" + advertisementId;
+        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1/advertisement/" + advertisementId;
     }
 }
