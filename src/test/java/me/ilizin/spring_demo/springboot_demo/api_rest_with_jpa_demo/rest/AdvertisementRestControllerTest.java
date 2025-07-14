@@ -34,10 +34,11 @@ public class AdvertisementRestControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-
+    
     @Test
-    void greetingShouldReturnDefaultMessage() {
-        assertThat(this.restTemplate.getForObject(getUrl2(port), String.class))
+    void advertisementRestControllerTest() {
+
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisements"), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
 
         Advertisement advertisement
@@ -45,41 +46,33 @@ public class AdvertisementRestControllerTest {
                 8550700, "A studio apartment available for Sale", 120);
         HttpEntity<Advertisement> request = new HttpEntity<>(advertisement);
 
-        assertThat(this.restTemplate.postForEntity(getUrl(port), request, String.class))
+        assertThat(this.restTemplate.postForEntity(getUrl(port, "/advertisement"), request, String.class))
                 .isNotNull();
 
-        assertThat(this.restTemplate.getForObject(getUrl2(port), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisements"), String.class))
                 .contains(EXPECTED_LIST_OF_ONE_ADVERTISEMENT);
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, 1), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisement/1"), String.class))
                 .contains(EXPECTED_ONE_ADVERTISEMENT);
 
         advertisement.setId(1);
         advertisement.setPrice(advertisement.getPrice() - 700);
         request = new HttpEntity<>(advertisement);
 
-        assertThat(this.restTemplate.exchange(getUrl(port), HttpMethod.PUT, request, Advertisement.class))
+        assertThat(this.restTemplate.exchange(getUrl(port, "/advertisement"), HttpMethod.PUT, request, Advertisement.class))
                 .isNotNull();
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, 1), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisement/1"), String.class))
                 .contains(EXPECTED_ONE_ADVERTISEMENT_WITH_UPDATED_PRICE);
 
-        assertThat(this.restTemplate.exchange(getUrl(port, 1), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class))
+        assertThat(this.restTemplate.exchange(getUrl(port, "/advertisement/1"), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class))
                 .isNotNull();
 
-        assertThat(this.restTemplate.getForObject(getUrl2(port), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisements"), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
     }
 
-    private String getUrl(int port) {
-        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1/advertisement";
-    }
-
-    private String getUrl2(int port) {
-        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1/advertisements";
-    }
-
-    private String getUrl(int port,  int advertisementId) {
-        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1/advertisement/" + advertisementId;
+    private String getUrl(int port, String lastPart) {
+        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1" + lastPart;
     }
 }
