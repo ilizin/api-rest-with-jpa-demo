@@ -1,5 +1,6 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 
+import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertisement;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertisementService;
 import org.springframework.web.bind.annotation.*;
@@ -7,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@Tag(name = "Advertisement controller")
 @RequestMapping("/api/v1")
 public class AdvertisementRestController {
 

@@ -34,7 +34,7 @@ public class AdvertisementRestControllerTest {
 
     @Autowired
     private TestRestTemplate restTemplate;
-    
+
     @Test
     void advertisementRestControllerTest() {
 
