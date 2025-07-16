@@ -49,7 +49,7 @@ public class AdvertisementRestController {
         return advertisementService.save(property);
     }
 
-    @Operation(summary = "Delete an advertisement")
+    @Operation(summary = "Delete an existing advertisement")
     @DeleteMapping("/advertisement/{advertisementId}")
     public void deleteAdvertisement(@PathVariable int advertisementId) {
         Advertisement advertisement = advertisementService.findById(advertisementId);
