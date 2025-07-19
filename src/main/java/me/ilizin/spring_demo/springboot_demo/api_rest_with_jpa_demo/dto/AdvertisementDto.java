@@ -2,6 +2,7 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
 public class AdvertisementDto {
@@ -20,13 +21,15 @@ public class AdvertisementDto {
     private String address;
     @Schema(description = "The property price in local currency", example = "8550700")
     @Positive
-    private double price;
+    @NotNull
+    private Double price;
     @Schema(description = "The advertisement description", example = "A studio apartment available for Sale")
     @NotBlank
     private String description;
     @Schema(description = "The property size", example = "120")
     @Positive
-    private int size;
+    @NotNull
+    private Integer size;
 
     public AdvertisementDto() {}
 

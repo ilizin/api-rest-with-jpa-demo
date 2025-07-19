@@ -3,10 +3,12 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertisement;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementResultDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.AdvertisementNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertisementService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -22,18 +24,19 @@ public class AdvertisementRestController {
 
     @Operation(summary = "Get all the advertisements")
     @GetMapping("/advertisements")
-    public List<AdvertisementDto> findAll() {
-        return advertisementService.findAll();
+    public List<AdvertisementResultDto> findAll() {
+        List<AdvertisementResultDto> advertisementsResultDto = advertisementService.findAll();
+        return advertisementsResultDto;
     }
 
     @Operation(summary = "Find an advertisement by id")
     @GetMapping("/advertisement/{advertisementId}")
-    public AdvertisementDto getAdvertisement(@PathVariable int advertisementId) {
-        AdvertisementDto advertisementDto = advertisementService.findById(advertisementId);
-        if (advertisementDto == null) {
-            throw new RuntimeException("Advertisement id not found '" + advertisementId + "'");
+    public AdvertisementResultDto getAdvertisement(@PathVariable int advertisementId) throws AdvertisementNotFoundException {
+        AdvertisementResultDto advertisementResultDto = advertisementService.findById(advertisementId);
+        if (advertisementResultDto == null) {
+            throw new AdvertisementNotFoundException();
         }
-        return advertisementDto;
+        return advertisementResultDto;
     }
 
     @Operation(summary = "Add a new advertisement")

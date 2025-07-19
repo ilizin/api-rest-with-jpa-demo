@@ -2,6 +2,7 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.AdvertisementDao;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementResultDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertisement;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -18,18 +19,21 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<AdvertisementDto> findAll() {
+    public List<AdvertisementResultDto> findAll() {
         List<Advertisement> advertisements = advertisementDao.findAll();
         return advertisements
                 .stream()
-                .map(this::mapAdvertisementToAdvertisementDto)
+                .map(this::mapAdvertisementToAdvertisementResultDto)
                 .toList();
     }
 
     @Override
-    public AdvertisementDto findById(int id) {
+    public AdvertisementResultDto findById(int id) {
         Advertisement advertisement = advertisementDao.findById(id);
-        return mapAdvertisementToAdvertisementDto(advertisement);
+        if (advertisement == null) {
+            return null;
+        }
+        return mapAdvertisementToAdvertisementResultDto(advertisement);
     }
 
     @Transactional
@@ -37,7 +41,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     public AdvertisementDto save(AdvertisementDto advertisementDto) {
         Advertisement advertisement = mapAdvertisementDtoToAdvertisement(advertisementDto);
         Advertisement advertisementSaved = advertisementDao.save(advertisement);
-        return mapAdvertisementToAdvertisementDto(advertisementSaved);
+        return mapAdvertisementToAdvertisementResultDto(advertisementSaved);
     }
 
     @Transactional
@@ -46,12 +50,12 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         advertisementDao.deleteById(id);
     }
 
-    AdvertisementDto mapAdvertisementToAdvertisementDto(Advertisement advertisement) {
-        AdvertisementDto advertisementDto = new AdvertisementDto();
+    AdvertisementResultDto mapAdvertisementToAdvertisementResultDto(Advertisement advertisement) {
+        AdvertisementResultDto advertisementDto = new AdvertisementResultDto();
         advertisementDto.setCity(advertisement.getCity());
         advertisementDto.setCountry(advertisement.getCountry());
         advertisementDto.setDescription(advertisement.getDescription());
-        //advertisementDto.setId(advertisement.getId());
+        advertisementDto.setId(advertisement.getId());
         advertisementDto.setAddress(advertisement.getAddress());
         advertisementDto.setSize(advertisement.getSize());
         advertisementDto.setTitle(advertisement.getTitle());
@@ -64,7 +68,6 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         advertisement.setCity(advertisementDto.getCity());
         advertisement.setCountry(advertisementDto.getCountry());
         advertisement.setDescription(advertisementDto.getDescription());
-        //advertisement.setId(advertisementDto.getId());
         advertisement.setAddress(advertisementDto.getAddress());
         advertisement.setSize(advertisementDto.getSize());
         advertisement.setTitle(advertisementDto.getTitle());
