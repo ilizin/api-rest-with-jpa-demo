@@ -1,6 +1,9 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementResultDto;
@@ -8,7 +11,6 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.Ad
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertisementService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 
 @RestController
@@ -31,7 +33,12 @@ public class AdvertisementRestController {
 
     @Operation(summary = "Find an advertisement by id")
     @GetMapping("/advertisement/{advertisementId}")
-    public AdvertisementResultDto getAdvertisement(@PathVariable int advertisementId) throws AdvertisementNotFoundException {
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful retrieved an advertisement"),
+            @ApiResponse(responseCode = "404", description = "Advertisement not found")
+    })
+    public AdvertisementResultDto getAdvertisement(@Parameter(description = "The advertisement identifier", example = "1981")
+                                                   @PathVariable int advertisementId) throws AdvertisementNotFoundException {
         AdvertisementResultDto advertisementResultDto = advertisementService.findById(advertisementId);
         if (advertisementResultDto == null) {
             throw new AdvertisementNotFoundException();
@@ -55,10 +62,15 @@ public class AdvertisementRestController {
 
     @Operation(summary = "Delete an existing advertisement")
     @DeleteMapping("/advertisement/{advertisementId}")
-    public void deleteAdvertisement(@PathVariable int advertisementId) {
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Successful deleted an advertisement"),
+            @ApiResponse(responseCode = "404", description = "Advertisement not found")
+    })
+    public void deleteAdvertisement(@Parameter(description = "The advertisement identifier", example = "1981")
+                                    @PathVariable int advertisementId) throws AdvertisementNotFoundException {
         AdvertisementDto advertisementDto = advertisementService.findById(advertisementId);
         if (advertisementDto == null) {
-            throw new RuntimeException("Advertisement id not found '" + advertisementId + "'");
+            throw new AdvertisementNotFoundException();
         }
         advertisementService.deleteById(advertisementId);
     }
