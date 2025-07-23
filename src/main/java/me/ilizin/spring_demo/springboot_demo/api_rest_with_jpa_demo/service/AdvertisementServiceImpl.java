@@ -38,8 +38,17 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Transactional
     @Override
-    public AdvertisementDto save(AdvertisementDto advertisementDto) {
+    public AdvertisementResultDto save(AdvertisementDto advertisementDto) {
         Advertisement advertisement = mapAdvertisementDtoToAdvertisement(advertisementDto);
+        Advertisement advertisementSaved = advertisementDao.save(advertisement);
+        return mapAdvertisementToAdvertisementResultDto(advertisementSaved);
+    }
+
+    @Transactional
+    @Override
+    public AdvertisementResultDto update(AdvertisementDto property, int advertisementId) {
+        Advertisement advertisement = mapAdvertisementDtoToAdvertisement(property);
+        advertisement.setId(advertisementId);
         Advertisement advertisementSaved = advertisementDao.save(advertisement);
         return mapAdvertisementToAdvertisementResultDto(advertisementSaved);
     }
@@ -52,7 +61,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     AdvertisementResultDto mapAdvertisementToAdvertisementResultDto(Advertisement advertisement) {
         AdvertisementResultDto advertisementDto = new AdvertisementResultDto();
-        advertisementDto.setCity(advertisement.getCity());
+        advertisementDto.setProvince(advertisement.getProvince());
+        advertisementDto.setMunicipality(advertisement.getMunicipality());
         advertisementDto.setCountry(advertisement.getCountry());
         advertisementDto.setDescription(advertisement.getDescription());
         advertisementDto.setId(advertisement.getId());
@@ -65,7 +75,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     Advertisement mapAdvertisementDtoToAdvertisement(AdvertisementDto advertisementDto) {
         Advertisement advertisement = new Advertisement();
-        advertisement.setCity(advertisementDto.getCity());
+        advertisement.setProvince(advertisementDto.getProvince());
+        advertisement.setMunicipality(advertisementDto.getMunicipality());
         advertisement.setCountry(advertisementDto.getCountry());
         advertisement.setDescription(advertisementDto.getDescription());
         advertisement.setAddress(advertisementDto.getAddress());

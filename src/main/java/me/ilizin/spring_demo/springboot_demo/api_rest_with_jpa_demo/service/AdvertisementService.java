@@ -11,7 +11,9 @@ public interface AdvertisementService {
 
     AdvertisementResultDto findById(int id);
 
-    AdvertisementDto save(AdvertisementDto property);
+    AdvertisementResultDto save(AdvertisementDto property);
+
+    AdvertisementResultDto update(AdvertisementDto property, int advertisementId);
 
     void deleteById(int id);
 }

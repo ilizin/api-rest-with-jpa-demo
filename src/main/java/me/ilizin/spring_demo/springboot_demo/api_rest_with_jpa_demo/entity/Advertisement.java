@@ -14,8 +14,11 @@ public class Advertisement {
     @Column(name="title")
     private String title;
 
-    @Column(name="city")
-    private String city;
+    @Column(name="province")
+    private String province;
+
+    @Column(name="municipality")
+    private String municipality;
 
     @Column(name="country")
     private String country;
@@ -34,10 +37,11 @@ public class Advertisement {
 
     public Advertisement() {}
 
-    public Advertisement(String title, String city, String country, String address, double price, String description,
+    public Advertisement(String title, String province, String municipality, String country, String address, double price, String description,
                          int size) {
         this.title = title;
-        this.city = city;
+        this.province = province;
+        this.municipality = municipality;
         this.country = country;
         this.address = address;
         this.price = price;
@@ -61,12 +65,20 @@ public class Advertisement {
         this.title = title;
     }
 
-    public String getCity() {
-        return city;
+    public String getMunicipality() {
+        return municipality;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getCountry() {
@@ -114,7 +126,8 @@ public class Advertisement {
         return "Advertisement{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
-                ", city='" + city + '\'' +
+                ", province='" + province + '\'' +
+                ", municipality='" + municipality + '\'' +
                 ", country='" + country + '\'' +
                 ", address='" + address + '\'' +
                 ", price=" + price +

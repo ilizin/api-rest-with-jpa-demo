@@ -10,10 +10,13 @@ public class AdvertisementDto {
     @Schema(description = "A title which describes the advertisement", example = "A studio in Culture Thonglor")
     @NotBlank
     private String title;
-    @Schema(description = "The city where the property is located", example = "Bangkok")
+    @Schema(description = "The province where the property is located", example = "Bangkok")
     @NotBlank
-    private String city;
-    @Schema(description = "The county where the property is located", example = "Thailand")
+    private String province;
+    @Schema(description = "The province where the property is located", example = "Bangkok")
+    @NotBlank
+    private String municipality;
+    @Schema(description = "The municipality where the property is located", example = "Bangkok")
     @NotBlank
     private String country;
     @Schema(description = "The address where the property is located", example = "Soi Yanat")
@@ -33,10 +36,11 @@ public class AdvertisementDto {
 
     public AdvertisementDto() {}
 
-    public AdvertisementDto(String title, String city, String country, String address, double price, String description,
+    public AdvertisementDto(String title, String province, String municipality, String country, String address, double price, String description,
                          int size) {
         this.title = title;
-        this.city = city;
+        this.province = province;
+        this.municipality = municipality;
         this.country = country;
         this.address = address;
         this.price = price;
@@ -52,12 +56,20 @@ public class AdvertisementDto {
         this.title = title;
     }
 
-    public String getCity() {
-        return city;
+    public String getProvince() {
+        return province;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setProvince(String province) {
+        this.province = province;
+    }
+
+    public String getMunicipality() {
+        return municipality;
+    }
+
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
     }
 
     public String getCountry() {
@@ -104,7 +116,8 @@ public class AdvertisementDto {
     public String toString() {
         return "AdvertisementDto {" +
                 ", title='" + title + '\'' +
-                ", city='" + city + '\'' +
+                ", province='" + province + '\'' +
+                ", municipality='" + municipality + '\'' +
                 ", country='" + country + '\'' +
                 ", address='" + address + '\'' +
                 ", price=" + price +

@@ -48,16 +48,17 @@ public class AdvertisementRestController {
 
     @Operation(summary = "Add a new advertisement")
     @PostMapping("/advertisement")
-    public AdvertisementDto addAdvertisement(@RequestBody AdvertisementDto advertisementDto) {
+    public AdvertisementResultDto addAdvertisement(@RequestBody AdvertisementDto advertisementDto) {
         // Just in case they pass an id in JSON, set the id to 0, to force a save of new item instead of update.
         // advertisementDto.setId(0); //We don't pass the id from the json
         return advertisementService.save(advertisementDto);
     }
 
     @Operation(summary = "Update an existing advertisement")
-    @PutMapping("/advertisement")
-    public AdvertisementDto updateAdvertisement(@RequestBody AdvertisementDto advertisementDto) {
-        return advertisementService.save(advertisementDto);
+    @PutMapping("/advertisement/{advertisementId}")
+    public AdvertisementResultDto updateAdvertisement(@PathVariable int advertisementId,
+                                                      @RequestBody AdvertisementDto advertisementDto) {
+        return advertisementService.update(advertisementDto, advertisementId);
     }
 
     @Operation(summary = "Delete an existing advertisement")
