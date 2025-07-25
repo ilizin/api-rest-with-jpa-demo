@@ -2,6 +2,7 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertisement;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -41,10 +42,10 @@ public class AdvertisementRestControllerTest {
         assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisements"), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
 
-        Advertisement advertisement
-                = new Advertisement("Studio in Culture Thonglor", "Bangkok", "Thailand", "Soi Yanat",
+        AdvertisementInDto advertisement
+                = new AdvertisementInDto("Studio in Culture Thonglor", "Bangkok", null, "Thailand", "Soi Yanat",
                 8550700, "A studio apartment available for Sale", 120);
-        HttpEntity<Advertisement> request = new HttpEntity<>(advertisement);
+        HttpEntity<AdvertisementInDto> request = new HttpEntity<>(advertisement);
 
         assertThat(this.restTemplate.postForEntity(getUrl(port, "/advertisement"), request, String.class))
                 .isNotNull();
@@ -54,8 +55,7 @@ public class AdvertisementRestControllerTest {
 
         assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisement/1"), String.class))
                 .contains(EXPECTED_ONE_ADVERTISEMENT);
-
-        advertisement.setId(1);
+        
         advertisement.setPrice(advertisement.getPrice() - 700);
         request = new HttpEntity<>(advertisement);
 

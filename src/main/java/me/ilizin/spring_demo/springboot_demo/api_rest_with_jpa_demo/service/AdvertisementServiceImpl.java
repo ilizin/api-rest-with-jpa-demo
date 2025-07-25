@@ -1,8 +1,8 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.AdvertisementDao;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementResultDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertisement;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -19,7 +19,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<AdvertisementResultDto> findAll() {
+    public List<AdvertisementOutDto> findAll() {
         List<Advertisement> advertisements = advertisementDao.findAll();
         return advertisements
                 .stream()
@@ -28,7 +28,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public AdvertisementResultDto findById(int id) {
+    public AdvertisementOutDto findById(int id) {
         Advertisement advertisement = advertisementDao.findById(id);
         if (advertisement == null) {
             return null;
@@ -38,7 +38,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Transactional
     @Override
-    public AdvertisementResultDto save(AdvertisementDto advertisementDto) {
+    public AdvertisementOutDto save(AdvertisementInDto advertisementDto) {
         Advertisement advertisement = mapAdvertisementDtoToAdvertisement(advertisementDto);
         Advertisement advertisementSaved = advertisementDao.save(advertisement);
         return mapAdvertisementToAdvertisementResultDto(advertisementSaved);
@@ -46,7 +46,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Transactional
     @Override
-    public AdvertisementResultDto update(AdvertisementDto property, int advertisementId) {
+    public AdvertisementOutDto update(AdvertisementInDto property, int advertisementId) {
         Advertisement advertisement = mapAdvertisementDtoToAdvertisement(property);
         advertisement.setId(advertisementId);
         Advertisement advertisementSaved = advertisementDao.save(advertisement);
@@ -59,8 +59,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         advertisementDao.deleteById(id);
     }
 
-    AdvertisementResultDto mapAdvertisementToAdvertisementResultDto(Advertisement advertisement) {
-        AdvertisementResultDto advertisementDto = new AdvertisementResultDto();
+    AdvertisementOutDto mapAdvertisementToAdvertisementResultDto(Advertisement advertisement) {
+        AdvertisementOutDto advertisementDto = new AdvertisementOutDto();
         advertisementDto.setProvince(advertisement.getProvince());
         advertisementDto.setMunicipality(advertisement.getMunicipality());
         advertisementDto.setCountry(advertisement.getCountry());
@@ -73,7 +73,7 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         return advertisementDto;
     }
 
-    Advertisement mapAdvertisementDtoToAdvertisement(AdvertisementDto advertisementDto) {
+    Advertisement mapAdvertisementDtoToAdvertisement(AdvertisementInDto advertisementDto) {
         Advertisement advertisement = new Advertisement();
         advertisement.setProvince(advertisementDto.getProvince());
         advertisement.setMunicipality(advertisementDto.getMunicipality());

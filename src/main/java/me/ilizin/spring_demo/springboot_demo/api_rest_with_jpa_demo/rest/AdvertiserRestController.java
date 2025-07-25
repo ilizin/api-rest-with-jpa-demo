@@ -1,12 +1,11 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertiser;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertiserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -28,7 +27,7 @@ public class AdvertiserRestController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved some data")
     })
     @GetMapping("/advertisers")
-    public List<Advertiser> findAll() {
+    public List<AdvertiserOutDto> findAll() {
         return advertiserService.findAll();
     }
 
@@ -37,12 +36,12 @@ public class AdvertiserRestController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved some data")
     })
     @GetMapping("/advertiser/{advertiserId}")
-    public Advertiser getAdvertiser(@PathVariable int advertiserId) {
-        Advertiser advertiser = advertiserService.findById(advertiserId);
-        if (advertiser == null) {
+    public AdvertiserOutDto getAdvertiser(@PathVariable int advertiserId) {
+        AdvertiserOutDto advertiserOutDto = advertiserService.findById(advertiserId);
+        if (advertiserOutDto == null) {
             throw new RuntimeException("Advertiser id not found '" + advertiserId + "'");
         }
-        return advertiser;
+        return advertiserOutDto;
     }
 
     @Operation(summary = "Add a new advertiser")
@@ -50,10 +49,10 @@ public class AdvertiserRestController {
             @ApiResponse(responseCode = "200", description = "Successfully added a new advertiser")
     })
     @PostMapping("/advertiser")
-    public Advertiser addAdvertiser(@RequestBody Advertiser advertiser) {
+    public AdvertiserOutDto addAdvertiser(@RequestBody AdvertiserInDto advertiserDto) {
         // Just in case they pass an id in JSON, set the id to 0, to force a save of new item instead of update.
-        advertiser.setId(0);
-        return advertiserService.save(advertiser);
+        //advertiserDto.setId(0);
+        return advertiserService.save(advertiserDto);
     }
 
     @Operation(summary = "Update an existing advertiser")
@@ -61,8 +60,8 @@ public class AdvertiserRestController {
             @ApiResponse(responseCode = "200", description = "Successfully updated an existing advertiser")
     })
     @PutMapping("/advertiser")
-    public Advertiser updateAdvertiser(@RequestBody Advertiser advertiser) {
-        return advertiserService.save(advertiser);
+    public AdvertiserOutDto updateAdvertiser(@RequestBody AdvertiserInDto advertiserDto) {
+        return advertiserService.save(advertiserDto);
     }
 
     @Operation(summary = "Delete an existing advertiser")
@@ -71,8 +70,8 @@ public class AdvertiserRestController {
     })
     @DeleteMapping("/advertiser/{advertiserId}")
     public void deleteAdvertiser(@PathVariable int advertiserId) {
-        Advertiser advertiser = advertiserService.findById(advertiserId);
-        if (advertiser == null) {
+        AdvertiserOutDto advertiserDto = advertiserService.findById(advertiserId);
+        if (advertiserDto == null) {
             throw new RuntimeException("Property id not found '" + advertiserId + "'");
         }
         advertiserService.deleteById(advertiserId);

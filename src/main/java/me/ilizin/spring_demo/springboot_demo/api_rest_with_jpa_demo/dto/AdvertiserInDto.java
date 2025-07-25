@@ -1,48 +1,34 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto;
 
-import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 
-@Entity
-@Table(name="advertiser")
-public class Advertiser {
+public class AdvertiserInDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
-
-    @Column(name="name")
+    @Schema(description = "The advertiser name", example = "")
+    @NotBlank
     private String name;
-
-    @Column(name="firstSurname")
+    @Schema(description = "The advertiser first surname", example = "")
+    @NotBlank
     private String firstSurname;
-
-    @Column(name="secondSurname")
+    @Schema(description = "The advertiser second surname", example = "")
+    @NotBlank
     private String secondSurname;
-
-    @Column(name="email")
+    @Schema(description = "The advertiser email", example = "")
+    @NotBlank
     private String email;
-
-    @Column(name="phoneNumber")
+    @Schema(description = "The advertiser phone number", example = "")
+    @NotBlank
     private String phoneNumber;
 
-    public Advertiser() {}
+    public AdvertiserInDto() {}
 
-    public Advertiser(int id, String name, String firstSurname, String secondSurname, String email, String phoneNumber) {
-        this.id = id;
+    public AdvertiserInDto(String name, String firstSurname, String secondSurname, String email, String phoneNumber) {
         this.name = name;
         this.firstSurname = firstSurname;
         this.secondSurname = secondSurname;
         this.email = email;
         this.phoneNumber = phoneNumber;
-    }
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -87,8 +73,7 @@ public class Advertiser {
 
     @Override
     public String toString() {
-        return "Advertiser{" +
-                "id=" + id +
+        return "AdvertiserInDto{" +
                 ", name='" + name + '\'' +
                 ", firstSurname='" + firstSurname + '\'' +
                 ", secondSurname='" + secondSurname + '\'' +

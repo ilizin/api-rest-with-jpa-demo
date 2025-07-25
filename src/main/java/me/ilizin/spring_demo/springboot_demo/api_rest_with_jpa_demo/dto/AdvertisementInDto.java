@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 
-public class AdvertisementDto {
+public class AdvertisementInDto {
 
     @Schema(description = "A title which describes the advertisement", example = "A studio in Culture Thonglor")
     @NotBlank
@@ -34,10 +34,10 @@ public class AdvertisementDto {
     @NotNull
     private Integer size;
 
-    public AdvertisementDto() {}
+    public AdvertisementInDto() {}
 
-    public AdvertisementDto(String title, String province, String municipality, String country, String address, double price, String description,
-                         int size) {
+    public AdvertisementInDto(String title, String province, String municipality, String country, String address, double price, String description,
+                              int size) {
         this.title = title;
         this.province = province;
         this.municipality = municipality;
@@ -114,7 +114,7 @@ public class AdvertisementDto {
 
     @Override
     public String toString() {
-        return "AdvertisementDto {" +
+        return "AdvertisementInDto {" +
                 ", title='" + title + '\'' +
                 ", province='" + province + '\'' +
                 ", municipality='" + municipality + '\'' +

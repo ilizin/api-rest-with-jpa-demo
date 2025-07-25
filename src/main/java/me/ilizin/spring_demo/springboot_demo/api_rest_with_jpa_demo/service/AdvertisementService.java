@@ -1,19 +1,19 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementResultDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementOutDto;
 
 import java.util.List;
 
 public interface AdvertisementService {
 
-    List<AdvertisementResultDto> findAll();
+    List<AdvertisementOutDto> findAll();
 
-    AdvertisementResultDto findById(int id);
+    AdvertisementOutDto findById(int id);
 
-    AdvertisementResultDto save(AdvertisementDto property);
+    AdvertisementOutDto save(AdvertisementInDto property);
 
-    AdvertisementResultDto update(AdvertisementDto property, int advertisementId);
+    AdvertisementOutDto update(AdvertisementInDto property, int advertisementId);
 
     void deleteById(int id);
 }

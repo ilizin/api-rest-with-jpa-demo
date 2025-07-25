@@ -5,8 +5,8 @@ import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementResultDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.AdvertisementNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertisementService;
 import org.springframework.web.bind.annotation.*;
@@ -26,8 +26,8 @@ public class AdvertisementRestController {
 
     @Operation(summary = "Get all the advertisements")
     @GetMapping("/advertisements")
-    public List<AdvertisementResultDto> findAll() {
-        List<AdvertisementResultDto> advertisementsResultDto = advertisementService.findAll();
+    public List<AdvertisementOutDto> findAll() {
+        List<AdvertisementOutDto> advertisementsResultDto = advertisementService.findAll();
         return advertisementsResultDto;
     }
 
@@ -37,9 +37,9 @@ public class AdvertisementRestController {
             @ApiResponse(responseCode = "200", description = "Successful retrieved an advertisement"),
             @ApiResponse(responseCode = "404", description = "Advertisement not found")
     })
-    public AdvertisementResultDto getAdvertisement(@Parameter(description = "The advertisement identifier", example = "1981")
+    public AdvertisementOutDto getAdvertisement(@Parameter(description = "The advertisement identifier", example = "1981")
                                                    @PathVariable int advertisementId) throws AdvertisementNotFoundException {
-        AdvertisementResultDto advertisementResultDto = advertisementService.findById(advertisementId);
+        AdvertisementOutDto advertisementResultDto = advertisementService.findById(advertisementId);
         if (advertisementResultDto == null) {
             throw new AdvertisementNotFoundException();
         }
@@ -48,7 +48,7 @@ public class AdvertisementRestController {
 
     @Operation(summary = "Add a new advertisement")
     @PostMapping("/advertisement")
-    public AdvertisementResultDto addAdvertisement(@RequestBody AdvertisementDto advertisementDto) {
+    public AdvertisementOutDto addAdvertisement(@RequestBody AdvertisementInDto advertisementDto) {
         // Just in case they pass an id in JSON, set the id to 0, to force a save of new item instead of update.
         // advertisementDto.setId(0); //We don't pass the id from the json
         return advertisementService.save(advertisementDto);
@@ -56,8 +56,8 @@ public class AdvertisementRestController {
 
     @Operation(summary = "Update an existing advertisement")
     @PutMapping("/advertisement/{advertisementId}")
-    public AdvertisementResultDto updateAdvertisement(@PathVariable int advertisementId,
-                                                      @RequestBody AdvertisementDto advertisementDto) {
+    public AdvertisementOutDto updateAdvertisement(@PathVariable int advertisementId,
+                                                   @RequestBody AdvertisementInDto advertisementDto) {
         return advertisementService.update(advertisementDto, advertisementId);
     }
 
@@ -69,7 +69,7 @@ public class AdvertisementRestController {
     })
     public void deleteAdvertisement(@Parameter(description = "The advertisement identifier", example = "1981")
                                     @PathVariable int advertisementId) throws AdvertisementNotFoundException {
-        AdvertisementDto advertisementDto = advertisementService.findById(advertisementId);
+        AdvertisementInDto advertisementDto = advertisementService.findById(advertisementId);
         if (advertisementDto == null) {
             throw new AdvertisementNotFoundException();
         }

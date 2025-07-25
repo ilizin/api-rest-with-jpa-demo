@@ -1,6 +1,8 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.AdvertiserRepository;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertiser;
 import org.springframework.stereotype.Service;
 
@@ -17,30 +19,57 @@ public class AdvertiserServiceImpl implements AdvertiserService {
     }
 
     @Override
-    public List<Advertiser> findAll() {
-        return advertiserRepository.findAll();
+    public List<AdvertiserOutDto> findAll() {
+        List<Advertiser> advertisers = advertiserRepository.findAll();
+        return advertisers.stream()
+                .map(this::mapAdvertiserToAdvertiserDto)
+                .toList();
     }
 
     @Override
-    public Advertiser findById(int id) {
+    public AdvertiserOutDto findById(int id) {
         Optional<Advertiser> optionalAdvertiser = advertiserRepository.findById(id);
         Advertiser advertiser = null;
         if (optionalAdvertiser.isPresent()) {
             advertiser = optionalAdvertiser.get();
+            return mapAdvertiserToAdvertiserDto(advertiser);
         }
-        return advertiser;
+        return null;
     }
 
     // We can remove @Transactional because JPA repository provides this functionality
     //@Transactional
     @Override
-    public Advertiser save(Advertiser advertiser) {
-        return advertiserRepository.save(advertiser);
+    public AdvertiserOutDto save(AdvertiserInDto advertiserDto) {
+        Advertiser advertiser = mapAdvertiserDtoToAdvertiser(advertiserDto);
+        advertiser = advertiserRepository.save(advertiser);
+        return mapAdvertiserToAdvertiserDto(advertiser);
     }
 
     //@Transactional
     @Override
     public void deleteById(int id) {
         advertiserRepository.deleteById(id);
+    }
+
+    AdvertiserOutDto mapAdvertiserToAdvertiserDto(Advertiser advertiser) {
+        AdvertiserOutDto advertiserDto = new AdvertiserOutDto();
+        advertiserDto.setEmail(advertiser.getEmail());
+        advertiserDto.setFirstSurname(advertiser.getFirstSurname());
+        advertiserDto.setSecondSurname(advertiser.getSecondSurname());
+        advertiserDto.setName(advertiser.getName());
+        advertiserDto.setId(advertiser.getId());
+        advertiserDto.setPhoneNumber(advertiser.getPhoneNumber());
+        return advertiserDto;
+    }
+
+    Advertiser mapAdvertiserDtoToAdvertiser(AdvertiserInDto advertiserDto) {
+        Advertiser advertiser = new Advertiser();
+        advertiser.setEmail(advertiserDto.getEmail());
+        advertiser.setFirstSurname(advertiserDto.getFirstSurname());
+        advertiser.setSecondSurname(advertiserDto.getSecondSurname());
+        advertiser.setName(advertiserDto.getName());
+        advertiser.setPhoneNumber(advertiserDto.getPhoneNumber());
+        return advertiser;
     }
 }

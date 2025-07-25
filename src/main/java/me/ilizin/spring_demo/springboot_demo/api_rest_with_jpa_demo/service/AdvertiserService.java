@@ -1,16 +1,17 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertiser;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserInDto;
 
 import java.util.List;
 
 public interface AdvertiserService {
 
-    List<Advertiser> findAll();
+    List<AdvertiserOutDto> findAll();
 
-    Advertiser findById(int id);
+    AdvertiserOutDto findById(int id);
 
-    Advertiser save(Advertiser advertiser);
+    AdvertiserOutDto save(AdvertiserInDto advertiser);
 
     void deleteById(int id);
 }
