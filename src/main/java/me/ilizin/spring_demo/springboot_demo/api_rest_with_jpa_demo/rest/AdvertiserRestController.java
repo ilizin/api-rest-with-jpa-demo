@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.AdvertiserNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertiserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -36,10 +37,10 @@ public class AdvertiserRestController {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved some data")
     })
     @GetMapping("/advertiser/{advertiserId}")
-    public AdvertiserOutDto getAdvertiser(@PathVariable int advertiserId) {
+    public AdvertiserOutDto getAdvertiser(@PathVariable int advertiserId) throws AdvertiserNotFoundException {
         AdvertiserOutDto advertiserOutDto = advertiserService.findById(advertiserId);
         if (advertiserOutDto == null) {
-            throw new RuntimeException("Advertiser id not found '" + advertiserId + "'");
+            throw new AdvertiserNotFoundException();
         }
         return advertiserOutDto;
     }
@@ -59,9 +60,10 @@ public class AdvertiserRestController {
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully updated an existing advertiser")
     })
-    @PutMapping("/advertiser")
-    public AdvertiserOutDto updateAdvertiser(@RequestBody AdvertiserInDto advertiserDto) {
-        return advertiserService.save(advertiserDto);
+    @PutMapping("/advertiser/{advertiserId}")
+    public AdvertiserOutDto updateAdvertiser(@PathVariable int advertiserId,
+                                             @RequestBody AdvertiserInDto advertiserDto) {
+        return advertiserService.update(advertiserDto, advertiserId);
     }
 
     @Operation(summary = "Delete an existing advertiser")
@@ -69,10 +71,10 @@ public class AdvertiserRestController {
             @ApiResponse(responseCode = "200", description = "Successfully deleted an existing advertiser")
     })
     @DeleteMapping("/advertiser/{advertiserId}")
-    public void deleteAdvertiser(@PathVariable int advertiserId) {
+    public void deleteAdvertiser(@PathVariable int advertiserId) throws AdvertiserNotFoundException {
         AdvertiserOutDto advertiserDto = advertiserService.findById(advertiserId);
         if (advertiserDto == null) {
-            throw new RuntimeException("Property id not found '" + advertiserId + "'");
+            throw new AdvertiserNotFoundException();
         }
         advertiserService.deleteById(advertiserId);
     }

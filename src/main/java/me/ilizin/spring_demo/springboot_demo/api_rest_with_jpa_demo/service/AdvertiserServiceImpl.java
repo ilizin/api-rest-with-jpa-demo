@@ -47,6 +47,14 @@ public class AdvertiserServiceImpl implements AdvertiserService {
         return mapAdvertiserToAdvertiserDto(advertiser);
     }
 
+    @Override
+    public AdvertiserOutDto update(AdvertiserInDto advertiserDto, int advertiserId) {
+        Advertiser advertiser = mapAdvertiserDtoToAdvertiser(advertiserDto);
+        advertiser.setId(advertiserId);
+        advertiser = advertiserRepository.save(advertiser);
+        return mapAdvertiserToAdvertiserDto(advertiser);
+    }
+
     //@Transactional
     @Override
     public void deleteById(int id) {

@@ -13,5 +13,7 @@ public interface AdvertiserService {
 
     AdvertiserOutDto save(AdvertiserInDto advertiser);
 
+    AdvertiserOutDto update(AdvertiserInDto advertiser, int advertiserId);
+
     void deleteById(int id);
 }
