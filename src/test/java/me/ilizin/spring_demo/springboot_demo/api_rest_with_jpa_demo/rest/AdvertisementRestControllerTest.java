@@ -2,8 +2,8 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementInDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertisement;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Property;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -42,10 +42,10 @@ public class AdvertisementRestControllerTest {
         assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisements"), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
 
-        AdvertisementInDto advertisement
-                = new AdvertisementInDto("Studio in Culture Thonglor", "Bangkok", null, "Thailand", "Soi Yanat",
+        PropertyInDto advertisement
+                = new PropertyInDto("Studio in Culture Thonglor", "Bangkok", null, "Thailand", "Soi Yanat",
                 8550700, "A studio apartment available for Sale", 120);
-        HttpEntity<AdvertisementInDto> request = new HttpEntity<>(advertisement);
+        HttpEntity<PropertyInDto> request = new HttpEntity<>(advertisement);
 
         assertThat(this.restTemplate.postForEntity(getUrl(port, "/advertisement"), request, String.class))
                 .isNotNull();
@@ -59,7 +59,7 @@ public class AdvertisementRestControllerTest {
         advertisement.setPrice(advertisement.getPrice() - 700);
         request = new HttpEntity<>(advertisement);
 
-        assertThat(this.restTemplate.exchange(getUrl(port, "/advertisement"), HttpMethod.PUT, request, Advertisement.class))
+        assertThat(this.restTemplate.exchange(getUrl(port, "/advertisement"), HttpMethod.PUT, request, Property.class))
                 .isNotNull();
 
         assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisement/1"), String.class))

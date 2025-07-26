@@ -11,11 +11,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class AdvertiserServiceImpl implements AdvertiserService {
+public class PropertyServiceImpl implements AdvertiserService {
 
     private final AdvertiserRepository advertiserRepository;
 
-    public AdvertiserServiceImpl(AdvertiserRepository advertiserRepository) {
+    public PropertyServiceImpl(AdvertiserRepository advertiserRepository) {
         this.advertiserRepository = advertiserRepository;
     }
 

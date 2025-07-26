@@ -1,43 +1,42 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto;
 
-import jakarta.persistence.*;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
 
-@Entity
-@Table(name="advertisement")
-public class Advertisement {
+public class PropertyInDto {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
-
-    @Column(name="title")
+    @Schema(description = "A title which describes the advertisement", example = "A studio in Culture Thonglor")
+    @NotBlank
     private String title;
-
-    @Column(name="province")
+    @Schema(description = "The province where the property is located", example = "Bangkok")
+    @NotBlank
     private String province;
-
-    @Column(name="municipality")
+    @Schema(description = "The province where the property is located", example = "Bangkok")
+    @NotBlank
     private String municipality;
-
-    @Column(name="country")
+    @Schema(description = "The municipality where the property is located", example = "Bangkok")
+    @NotBlank
     private String country;
-
-    @Column(name="address")
+    @Schema(description = "The address where the property is located", example = "Soi Yanat")
+    @NotBlank
     private String address;
-
-    @Column(name="price")
-    private double price;
-
-    @Column(name="description")
+    @Schema(description = "The property price in local currency", example = "8550700")
+    @Positive
+    @NotNull
+    private Double price;
+    @Schema(description = "The advertisement description", example = "A studio apartment available for Sale")
+    @NotBlank
     private String description;
+    @Schema(description = "The property size", example = "120")
+    @Positive
+    @NotNull
+    private Integer size;
 
-    @Column(name="size")
-    private int size;
+    public PropertyInDto() {}
 
-    public Advertisement() {}
-
-    public Advertisement(String title, String province, String municipality, String country, String address, double price, String description,
+    public PropertyInDto(String title, String province, String municipality, String country, String address, double price, String description,
                          int size) {
         this.title = title;
         this.province = province;
@@ -49,14 +48,6 @@ public class Advertisement {
         this.size = size;
     }
 
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
     public String getTitle() {
         return title;
     }
@@ -65,20 +56,20 @@ public class Advertisement {
         this.title = title;
     }
 
-    public String getMunicipality() {
-        return municipality;
-    }
-
-    public void setMunicipality(String municipality) {
-        this.municipality = municipality;
-    }
-
     public String getProvince() {
         return province;
     }
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public String getMunicipality() {
+        return municipality;
+    }
+
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
     }
 
     public String getCountry() {
@@ -123,8 +114,7 @@ public class Advertisement {
 
     @Override
     public String toString() {
-        return "Advertisement{" +
-                "id=" + id +
+        return "AdvertisementInDto {" +
                 ", title='" + title + '\'' +
                 ", province='" + province + '\'' +
                 ", municipality='" + municipality + '\'' +

@@ -1,43 +1,44 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import jakarta.persistence.*;
 
-public class AdvertisementInDto {
+@Entity
+@Table(name="advertisement")
+public class Property {
 
-    @Schema(description = "A title which describes the advertisement", example = "A studio in Culture Thonglor")
-    @NotBlank
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private int id;
+
+    @Column(name="title")
     private String title;
-    @Schema(description = "The province where the property is located", example = "Bangkok")
-    @NotBlank
+
+    @Column(name="province")
     private String province;
-    @Schema(description = "The province where the property is located", example = "Bangkok")
-    @NotBlank
+
+    @Column(name="municipality")
     private String municipality;
-    @Schema(description = "The municipality where the property is located", example = "Bangkok")
-    @NotBlank
+
+    @Column(name="country")
     private String country;
-    @Schema(description = "The address where the property is located", example = "Soi Yanat")
-    @NotBlank
+
+    @Column(name="address")
     private String address;
-    @Schema(description = "The property price in local currency", example = "8550700")
-    @Positive
-    @NotNull
-    private Double price;
-    @Schema(description = "The advertisement description", example = "A studio apartment available for Sale")
-    @NotBlank
+
+    @Column(name="price")
+    private double price;
+
+    @Column(name="description")
     private String description;
-    @Schema(description = "The property size", example = "120")
-    @Positive
-    @NotNull
-    private Integer size;
 
-    public AdvertisementInDto() {}
+    @Column(name="size")
+    private int size;
 
-    public AdvertisementInDto(String title, String province, String municipality, String country, String address, double price, String description,
-                              int size) {
+    public Property() {}
+
+    public Property(String title, String province, String municipality, String country, String address, double price, String description,
+                    int size) {
         this.title = title;
         this.province = province;
         this.municipality = municipality;
@@ -48,6 +49,14 @@ public class AdvertisementInDto {
         this.size = size;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -56,20 +65,20 @@ public class AdvertisementInDto {
         this.title = title;
     }
 
-    public String getProvince() {
-        return province;
-    }
-
-    public void setProvince(String province) {
-        this.province = province;
-    }
-
     public String getMunicipality() {
         return municipality;
     }
 
     public void setMunicipality(String municipality) {
         this.municipality = municipality;
+    }
+
+    public String getProvince() {
+        return province;
+    }
+
+    public void setProvince(String province) {
+        this.province = province;
     }
 
     public String getCountry() {
@@ -114,7 +123,8 @@ public class AdvertisementInDto {
 
     @Override
     public String toString() {
-        return "AdvertisementInDto {" +
+        return "Advertisement{" +
+                "id=" + id +
                 ", title='" + title + '\'' +
                 ", province='" + province + '\'' +
                 ", municipality='" + municipality + '\'' +

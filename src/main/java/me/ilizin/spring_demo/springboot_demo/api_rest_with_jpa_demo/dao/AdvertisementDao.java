@@ -1,16 +1,16 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertisement;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Property;
 
 import java.util.List;
 
 public interface AdvertisementDao {
 
-    List<Advertisement> findAll();
+    List<Property> findAll();
 
-    Advertisement findById(int id);
+    Property findById(int id);
 
-    Advertisement save(Advertisement property);
+    Property save(Property property);
 
     void deleteById(int id);
 }

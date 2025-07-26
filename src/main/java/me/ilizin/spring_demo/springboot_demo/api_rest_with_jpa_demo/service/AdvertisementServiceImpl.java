@@ -1,16 +1,16 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.AdvertisementDao;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementInDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertisementOutDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertisement;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Property;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
 @Service
-public class AdvertisementServiceImpl implements AdvertisementService {
+public class AdvertisementServiceImpl implements PropertyService {
 
     private final AdvertisementDao advertisementDao;
 
@@ -19,8 +19,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public List<AdvertisementOutDto> findAll() {
-        List<Advertisement> advertisements = advertisementDao.findAll();
+    public List<PropertyOutDto> findAll() {
+        List<Property> advertisements = advertisementDao.findAll();
         return advertisements
                 .stream()
                 .map(this::mapAdvertisementToAdvertisementResultDto)
@@ -28,8 +28,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
     }
 
     @Override
-    public AdvertisementOutDto findById(int id) {
-        Advertisement advertisement = advertisementDao.findById(id);
+    public PropertyOutDto findById(int id) {
+        Property advertisement = advertisementDao.findById(id);
         if (advertisement == null) {
             return null;
         }
@@ -38,18 +38,18 @@ public class AdvertisementServiceImpl implements AdvertisementService {
 
     @Transactional
     @Override
-    public AdvertisementOutDto save(AdvertisementInDto advertisementDto) {
-        Advertisement advertisement = mapAdvertisementDtoToAdvertisement(advertisementDto);
-        Advertisement advertisementSaved = advertisementDao.save(advertisement);
+    public PropertyOutDto save(PropertyInDto advertisementDto) {
+        Property advertisement = mapAdvertisementDtoToAdvertisement(advertisementDto);
+        Property advertisementSaved = advertisementDao.save(advertisement);
         return mapAdvertisementToAdvertisementResultDto(advertisementSaved);
     }
 
     @Transactional
     @Override
-    public AdvertisementOutDto update(AdvertisementInDto property, int advertisementId) {
-        Advertisement advertisement = mapAdvertisementDtoToAdvertisement(property);
+    public PropertyOutDto update(PropertyInDto property, int advertisementId) {
+        Property advertisement = mapAdvertisementDtoToAdvertisement(property);
         advertisement.setId(advertisementId);
-        Advertisement advertisementSaved = advertisementDao.save(advertisement);
+        Property advertisementSaved = advertisementDao.save(advertisement);
         return mapAdvertisementToAdvertisementResultDto(advertisementSaved);
     }
 
@@ -59,8 +59,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         advertisementDao.deleteById(id);
     }
 
-    AdvertisementOutDto mapAdvertisementToAdvertisementResultDto(Advertisement advertisement) {
-        AdvertisementOutDto advertisementDto = new AdvertisementOutDto();
+    PropertyOutDto mapAdvertisementToAdvertisementResultDto(Property advertisement) {
+        PropertyOutDto advertisementDto = new PropertyOutDto();
         advertisementDto.setProvince(advertisement.getProvince());
         advertisementDto.setMunicipality(advertisement.getMunicipality());
         advertisementDto.setCountry(advertisement.getCountry());
@@ -73,8 +73,8 @@ public class AdvertisementServiceImpl implements AdvertisementService {
         return advertisementDto;
     }
 
-    Advertisement mapAdvertisementDtoToAdvertisement(AdvertisementInDto advertisementDto) {
-        Advertisement advertisement = new Advertisement();
+    Property mapAdvertisementDtoToAdvertisement(PropertyInDto advertisementDto) {
+        Property advertisement = new Property();
         advertisement.setProvince(advertisementDto.getProvince());
         advertisement.setMunicipality(advertisementDto.getMunicipality());
         advertisement.setCountry(advertisementDto.getCountry());

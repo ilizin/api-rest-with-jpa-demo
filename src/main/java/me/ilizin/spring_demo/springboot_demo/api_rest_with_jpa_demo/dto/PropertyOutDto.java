@@ -3,7 +3,7 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
-public class AdvertisementOutDto extends AdvertisementInDto {
+public class PropertyOutDto extends PropertyInDto {
 
     @Schema(description = "The advertisement identifier", example = "1981")
     @NotBlank
