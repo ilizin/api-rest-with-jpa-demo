@@ -12,6 +12,7 @@ CREATE TABLE IF NOT EXISTS advertisement(
 
 CREATE TABLE IF NOT EXISTS advertiser(
     id int NOT NULL AUTO_INCREMENT,
+    advertiser_type varchar(255),
     name varchar(255),
     first_surname varchar(255),
     second_surname varchar(255),

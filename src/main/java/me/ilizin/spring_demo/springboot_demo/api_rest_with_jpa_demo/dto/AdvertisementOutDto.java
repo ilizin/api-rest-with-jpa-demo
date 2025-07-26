@@ -4,6 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
 public class AdvertisementOutDto extends AdvertisementInDto {
+
     @Schema(description = "The advertisement identifier", example = "1981")
     @NotBlank
     private int id;

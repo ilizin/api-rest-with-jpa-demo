@@ -14,6 +14,9 @@ public class Advertiser {
     @Column(name="name")
     private String name;
 
+    @Column(name="advertiserType")
+    private String advertiserType;
+
     @Column(name="firstSurname")
     private String firstSurname;
 
@@ -28,8 +31,9 @@ public class Advertiser {
 
     public Advertiser() {}
 
-    public Advertiser(int id, String name, String firstSurname, String secondSurname, String email, String phoneNumber) {
+    public Advertiser(int id, String advertiserType, String name, String firstSurname, String secondSurname, String email, String phoneNumber) {
         this.id = id;
+        this.advertiserType = advertiserType;
         this.name = name;
         this.firstSurname = firstSurname;
         this.secondSurname = secondSurname;
@@ -43,6 +47,14 @@ public class Advertiser {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public String getAdvertiserType() {
+        return advertiserType;
+    }
+
+    public void setAdvertiserType(String advertiserType) {
+        this.advertiserType = advertiserType;
     }
 
     public String getName() {
@@ -90,6 +102,7 @@ public class Advertiser {
         return "Advertiser{" +
                 "id=" + id +
                 ", name='" + name + '\'' +
+                ", advertiserType='" + advertiserType + '\'' +
                 ", firstSurname='" + firstSurname + '\'' +
                 ", secondSurname='" + secondSurname + '\'' +
                 ", email='" + email + '\'' +

@@ -4,6 +4,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.Advertis
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertiser;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.AdvertiserType;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -54,6 +55,7 @@ public class AdvertiserServiceImpl implements AdvertiserService {
 
     AdvertiserOutDto mapAdvertiserToAdvertiserDto(Advertiser advertiser) {
         AdvertiserOutDto advertiserDto = new AdvertiserOutDto();
+        advertiserDto.setAdvertiserType(AdvertiserType.valueOf(advertiser.getAdvertiserType()));
         advertiserDto.setEmail(advertiser.getEmail());
         advertiserDto.setFirstSurname(advertiser.getFirstSurname());
         advertiserDto.setSecondSurname(advertiser.getSecondSurname());
@@ -65,6 +67,7 @@ public class AdvertiserServiceImpl implements AdvertiserService {
 
     Advertiser mapAdvertiserDtoToAdvertiser(AdvertiserInDto advertiserDto) {
         Advertiser advertiser = new Advertiser();
+        advertiser.setAdvertiserType(advertiserDto.getAdvertiserType().toString());
         advertiser.setEmail(advertiserDto.getEmail());
         advertiser.setFirstSurname(advertiserDto.getFirstSurname());
         advertiser.setSecondSurname(advertiserDto.getSecondSurname());

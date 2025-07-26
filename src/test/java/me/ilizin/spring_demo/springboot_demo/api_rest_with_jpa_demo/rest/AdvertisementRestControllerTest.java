@@ -55,7 +55,7 @@ public class AdvertisementRestControllerTest {
 
         assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisement/1"), String.class))
                 .contains(EXPECTED_ONE_ADVERTISEMENT);
-        
+
         advertisement.setPrice(advertisement.getPrice() - 700);
         request = new HttpEntity<>(advertisement);
 
