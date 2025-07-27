@@ -1,6 +1,11 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity;
 
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.Positive;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FlatMatesGender;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.utilities.Range;
 
 @Entity
 @Table(name="advertisement")
@@ -35,10 +40,36 @@ public class Property {
     @Column(name="size")
     private int size;
 
+    @Column(name="floor")
+    private Integer floor;
+
+    @Column(name="totalRooms")
+    private int totalRooms;
+
+    @Column(name="totalFlatmates")
+    private int totalFlatMates;
+
+    @Column(name="totalBathrooms")
+    private int totalBathrooms;
+
+    @Column(name="flatmatesGender")
+    private String flatMatesGender;
+
+    @Column(name="flatmatesAge")
+    private String flatMatesAge;
+
+    @Column(name="isLgbtFriendly")
+    private Boolean isLgbtFriendly;
+
+    @Column(name="hasLift")
+    private Boolean hasLift;
+
     public Property() {}
 
-    public Property(String title, String province, String municipality, String country, String address, double price, String description,
-                    int size) {
+    public Property(int id, String title, String province, String municipality, String country, String address, double price,
+                    String description, int size, Integer floor, int totalRooms, int totalFlatMates, int totalBathrooms,
+                    String flatMatesGender, String flatMatesAge, Boolean isLgbtFriendly, Boolean hasLift) {
+        this.id = id;
         this.title = title;
         this.province = province;
         this.municipality = municipality;
@@ -47,6 +78,14 @@ public class Property {
         this.price = price;
         this.description = description;
         this.size = size;
+        this.floor = floor;
+        this.totalRooms = totalRooms;
+        this.totalFlatMates = totalFlatMates;
+        this.totalBathrooms = totalBathrooms;
+        this.flatMatesGender = flatMatesGender;
+        this.flatMatesAge = flatMatesAge;
+        this.isLgbtFriendly = isLgbtFriendly;
+        this.hasLift = hasLift;
     }
 
     public int getId() {
@@ -65,20 +104,20 @@ public class Property {
         this.title = title;
     }
 
-    public String getMunicipality() {
-        return municipality;
-    }
-
-    public void setMunicipality(String municipality) {
-        this.municipality = municipality;
-    }
-
     public String getProvince() {
         return province;
     }
 
     public void setProvince(String province) {
         this.province = province;
+    }
+
+    public String getMunicipality() {
+        return municipality;
+    }
+
+    public void setMunicipality(String municipality) {
+        this.municipality = municipality;
     }
 
     public String getCountry() {
@@ -121,9 +160,73 @@ public class Property {
         this.size = size;
     }
 
+    public Integer getFloor() {
+        return floor;
+    }
+
+    public void setFloor(Integer floor) {
+        this.floor = floor;
+    }
+
+    public int getTotalRooms() {
+        return totalRooms;
+    }
+
+    public void setTotalRooms(int totalRooms) {
+        this.totalRooms = totalRooms;
+    }
+
+    public int getTotalFlatMates() {
+        return totalFlatMates;
+    }
+
+    public void setTotalFlatMates(int totalFlatMates) {
+        this.totalFlatMates = totalFlatMates;
+    }
+
+    public int getTotalBathrooms() {
+        return totalBathrooms;
+    }
+
+    public void setTotalBathrooms(int totalBathrooms) {
+        this.totalBathrooms = totalBathrooms;
+    }
+
+    public String getFlatMatesGender() {
+        return flatMatesGender;
+    }
+
+    public void setFlatMatesGender(String flatMatesGender) {
+        this.flatMatesGender = flatMatesGender;
+    }
+
+    public String getFlatMatesAge() {
+        return flatMatesAge;
+    }
+
+    public void setFlatMatesAge(String flatMatesAge) {
+        this.flatMatesAge = flatMatesAge;
+    }
+
+    public Boolean getLgbtFriendly() {
+        return isLgbtFriendly;
+    }
+
+    public void setLgbtFriendly(Boolean lgbtFriendly) {
+        isLgbtFriendly = lgbtFriendly;
+    }
+
+    public Boolean getHasLift() {
+        return hasLift;
+    }
+
+    public void setHasLift(Boolean hasLift) {
+        this.hasLift = hasLift;
+    }
+
     @Override
     public String toString() {
-        return "Advertisement{" +
+        return "Property{" +
                 "id=" + id +
                 ", title='" + title + '\'' +
                 ", province='" + province + '\'' +
@@ -132,7 +235,15 @@ public class Property {
                 ", address='" + address + '\'' +
                 ", price=" + price +
                 ", description='" + description + '\'' +
-                ", size='" + size + '\'' +
+                ", size=" + size +
+                ", floor=" + floor +
+                ", totalRooms=" + totalRooms +
+                ", totalFlatMates=" + totalFlatMates +
+                ", totalBathrooms=" + totalBathrooms +
+                ", flatMatesGender=" + flatMatesGender +
+                ", flatMatesAge=" + flatMatesAge +
+                ", isLgbtFriendly=" + isLgbtFriendly +
+                ", hasLift=" + hasLift +
                 '}';
     }
 }

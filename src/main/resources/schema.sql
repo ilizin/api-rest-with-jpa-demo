@@ -7,7 +7,15 @@ CREATE TABLE IF NOT EXISTS advertisement(
     address varchar(255),
     price real,
     description varchar(255),
-    size integer
+    size integer,
+    floor integer,
+    total_rooms integer,
+    total_flatmates integer,
+    total_bathrooms integer,
+    flatmates_gender varchar(255),
+    flatmates_age varchar(255),
+    is_lgbt_friendly boolean,
+    has_lift boolean
 );
 
 CREATE TABLE IF NOT EXISTS advertiser(
