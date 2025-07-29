@@ -2,6 +2,7 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.FlatmatesAgeRangeDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Property;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FlatMatesGender;
@@ -34,7 +35,7 @@ public class AdvertisementRestControllerTest {
 
     private static final PropertyInDto PROPERTY_IN_DTO  = new PropertyInDto("Studio in Culture Thonglor", "Bangkok", null, "Thailand", "Soi Yanat",
             8550700d, "A studio apartment available for Sale", 120, 2, 4, 4, 2, FlatMatesGender.MEN_AND_WOMEN,
-            new Range<>(29, 49), true, false);
+            new FlatmatesAgeRangeDto(29, 49), true, false);
 
     @LocalServerPort
     private int port;

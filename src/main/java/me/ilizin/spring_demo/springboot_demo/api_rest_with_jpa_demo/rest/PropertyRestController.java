@@ -43,7 +43,7 @@ public class PropertyRestController {
             @ApiResponse(responseCode = "200", description = "Successful retrieved a property"),
             @ApiResponse(responseCode = "404", description = "Property not found", content =
                             { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
-                                       examples = { @ExampleObject(value = "[{\"status\": 404, \"message\":\"Property not found\"}]")})
+                                       examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Property not found\"}")})
                             })
     })
     public PropertyOutDto getProperty(@Parameter(description = "The property identifier", example = "1981")
@@ -72,7 +72,7 @@ public class PropertyRestController {
             @ApiResponse(responseCode = "200", description = "Successful updated a property"),
             @ApiResponse(responseCode = "404", description = "Property not found", content =
                     { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
-                            examples = { @ExampleObject(value = "[{\"status\": 404, \"message\":\"Property not found\"}]")})
+                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Property not found\"}")})
                     })
     })
     public PropertyOutDto updateProperty(@Parameter(description = "The property identifier", example = "1981")
@@ -86,7 +86,7 @@ public class PropertyRestController {
             @ApiResponse(responseCode = "200", description = "Successful deleted a property"),
             @ApiResponse(responseCode = "404", description = "Property not found", content =
                     { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
-                            examples = { @ExampleObject(value = "[{\"status\": 404, \"message\":\"Property not found\"}]")})
+                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Property not found\"}")})
                     })
     })
     public void deleteProperty(@Parameter(description = "The property identifier", example = "1981")

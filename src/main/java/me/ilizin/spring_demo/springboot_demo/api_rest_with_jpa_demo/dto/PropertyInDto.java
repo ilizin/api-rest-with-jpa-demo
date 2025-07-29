@@ -6,7 +6,6 @@ import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
 import jakarta.validation.constraints.PositiveOrZero;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FlatMatesGender;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.utilities.Range;
 
 public class PropertyInDto {
 
@@ -51,8 +50,8 @@ public class PropertyInDto {
     @Schema(description = "The flatmates genders", allowableValues = {"ONLY_MEN", "ONLY_WOMEN", "MEN_AND_WOMEN", "NOT_SPECIFIED"}, example = "MEN_AND_WOMEN")
     @NotNull
     private FlatMatesGender flatMatesGender;
-    @Schema(description = "The flatmates range ages", example = "")
-    private Range<Integer> flatMatesAge;
+    @Schema(description = "The flatmates range ages")
+    private FlatmatesAgeRangeDto flatMatesAge;
     @Schema(description = "True if the property is lgbt friendly", example = "true")
     private Boolean isLgbtFriendly;
     @Schema(description = "True if the property has a lift", example = "true")
@@ -64,7 +63,7 @@ public class PropertyInDto {
     public PropertyInDto(String title, String province, String municipality, String country, String address,
                          Double price, String description, Integer size, Integer floor, int totalRooms,
                          int totalFlatMates, int totalBathrooms, FlatMatesGender flatMatesGender,
-                         Range<Integer> flatMatesAge, Boolean isLgbtFriendly, Boolean hasLift) {
+                         FlatmatesAgeRangeDto flatMatesAge, Boolean isLgbtFriendly, Boolean hasLift) {
         this.title = title;
         this.province = province;
         this.municipality = municipality;
@@ -187,11 +186,11 @@ public class PropertyInDto {
         this.flatMatesGender = flatMatesGender;
     }
 
-    public Range<Integer> getFlatMatesAge() {
+    public FlatmatesAgeRangeDto getFlatMatesAge() {
         return flatMatesAge;
     }
 
-    public void setFlatMatesAge(Range<Integer> flatMatesAge) {
+    public void setFlatMatesAge(FlatmatesAgeRangeDto flatMatesAge) {
         this.flatMatesAge = flatMatesAge;
     }
 
