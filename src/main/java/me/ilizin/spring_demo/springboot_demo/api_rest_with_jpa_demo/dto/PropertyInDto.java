@@ -43,15 +43,15 @@ public class PropertyInDto {
     private int totalRooms;
     @Schema(description = "The property total number of flatmates", example = "4")
     @Positive
-    private int totalFlatMates;
+    private int totalFlatmates;
     @Schema(description = "The property total number of bathrooms", example = "2")
     @Positive
     private int totalBathrooms;
     @Schema(description = "The flatmates genders", allowableValues = {"ONLY_MEN", "ONLY_WOMEN", "MEN_AND_WOMEN", "NOT_SPECIFIED"}, example = "MEN_AND_WOMEN")
     @NotNull
-    private FlatMatesGender flatMatesGender;
+    private FlatMatesGender flatmatesGender;
     @Schema(description = "The flatmates range ages")
-    private FlatmatesAgeRangeDto flatMatesAge;
+    private FlatmatesAgeRangeDto flatmatesAge;
     @Schema(description = "True if the property is lgbt friendly", example = "true")
     private Boolean isLgbtFriendly;
     @Schema(description = "True if the property has a lift", example = "true")
@@ -74,10 +74,10 @@ public class PropertyInDto {
         this.size = size;
         this.floor = floor;
         this.totalRooms = totalRooms;
-        this.totalFlatMates = totalFlatMates;
+        this.totalFlatmates = totalFlatMates;
         this.totalBathrooms = totalBathrooms;
-        this.flatMatesGender = flatMatesGender;
-        this.flatMatesAge = flatMatesAge;
+        this.flatmatesGender = flatMatesGender;
+        this.flatmatesAge = flatMatesAge;
         this.isLgbtFriendly = isLgbtFriendly;
         this.hasLift = hasLift;
     }
@@ -162,12 +162,12 @@ public class PropertyInDto {
         this.totalRooms = totalRooms;
     }
 
-    public int getTotalFlatMates() {
-        return totalFlatMates;
+    public int getTotalFlatmates() {
+        return totalFlatmates;
     }
 
-    public void setTotalFlatMates(int totalFlatMates) {
-        this.totalFlatMates = totalFlatMates;
+    public void setTotalFlatmates(int totalFlatMates) {
+        this.totalFlatmates = totalFlatMates;
     }
 
     public int getTotalBathrooms() {
@@ -178,20 +178,20 @@ public class PropertyInDto {
         this.totalBathrooms = totalBathrooms;
     }
 
-    public FlatMatesGender getFlatMatesGender() {
-        return flatMatesGender;
+    public FlatMatesGender getFlatmatesGender() {
+        return flatmatesGender;
     }
 
-    public void setFlatMatesGender(FlatMatesGender flatMatesGender) {
-        this.flatMatesGender = flatMatesGender;
+    public void setFlatmatesGender(FlatMatesGender flatMatesGender) {
+        this.flatmatesGender = flatMatesGender;
     }
 
-    public FlatmatesAgeRangeDto getFlatMatesAge() {
-        return flatMatesAge;
+    public FlatmatesAgeRangeDto getFlatmatesAge() {
+        return flatmatesAge;
     }
 
-    public void setFlatMatesAge(FlatmatesAgeRangeDto flatMatesAge) {
-        this.flatMatesAge = flatMatesAge;
+    public void setFlatmatesAge(FlatmatesAgeRangeDto flatMatesAge) {
+        this.flatmatesAge = flatMatesAge;
     }
 
     public Boolean getLgbtFriendly() {
@@ -223,10 +223,10 @@ public class PropertyInDto {
                 ", size=" + size +
                 ", floor=" + floor +
                 ", totalRooms=" + totalRooms +
-                ", totalFlatMates=" + totalFlatMates +
+                ", totalFlatMates=" + totalFlatmates +
                 ", totalBathrooms=" + totalBathrooms +
-                ", flatMatesGender=" + flatMatesGender +
-                ", flatMatesAge=" + flatMatesAge +
+                ", flatmatesGender=" + flatmatesGender +
+                ", flatmatesAge=" + flatmatesAge +
                 ", isLgbtFriendly=" + isLgbtFriendly +
                 ", hasLift=" + hasLift +
                 '}';

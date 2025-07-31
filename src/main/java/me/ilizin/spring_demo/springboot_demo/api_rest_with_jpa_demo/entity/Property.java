@@ -8,7 +8,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FlatMa
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.utilities.Range;
 
 @Entity
-@Table(name="advertisement")
+@Table(name="property")
 public class Property {
 
     @Id
@@ -47,16 +47,16 @@ public class Property {
     private int totalRooms;
 
     @Column(name="totalFlatmates")
-    private int totalFlatMates;
+    private int totalFlatmates;
 
     @Column(name="totalBathrooms")
     private int totalBathrooms;
 
     @Column(name="flatmatesGender")
-    private String flatMatesGender;
+    private String flatmatesGender;
 
     @Column(name="flatmatesAge")
-    private String flatMatesAge;
+    private String flatmatesAge;
 
     @Column(name="isLgbtFriendly")
     private Boolean isLgbtFriendly;
@@ -80,10 +80,10 @@ public class Property {
         this.size = size;
         this.floor = floor;
         this.totalRooms = totalRooms;
-        this.totalFlatMates = totalFlatMates;
+        this.totalFlatmates = totalFlatMates;
         this.totalBathrooms = totalBathrooms;
-        this.flatMatesGender = flatMatesGender;
-        this.flatMatesAge = flatMatesAge;
+        this.flatmatesGender = flatMatesGender;
+        this.flatmatesAge = flatMatesAge;
         this.isLgbtFriendly = isLgbtFriendly;
         this.hasLift = hasLift;
     }
@@ -176,12 +176,12 @@ public class Property {
         this.totalRooms = totalRooms;
     }
 
-    public int getTotalFlatMates() {
-        return totalFlatMates;
+    public int getTotalFlatmates() {
+        return totalFlatmates;
     }
 
-    public void setTotalFlatMates(int totalFlatMates) {
-        this.totalFlatMates = totalFlatMates;
+    public void setTotalFlatmates(int totalFlatmates) {
+        this.totalFlatmates = totalFlatmates;
     }
 
     public int getTotalBathrooms() {
@@ -192,20 +192,20 @@ public class Property {
         this.totalBathrooms = totalBathrooms;
     }
 
-    public String getFlatMatesGender() {
-        return flatMatesGender;
+    public String getFlatmatesGender() {
+        return flatmatesGender;
     }
 
-    public void setFlatMatesGender(String flatMatesGender) {
-        this.flatMatesGender = flatMatesGender;
+    public void setFlatmatesGender(String flatMatesGender) {
+        this.flatmatesGender = flatMatesGender;
     }
 
-    public String getFlatMatesAge() {
-        return flatMatesAge;
+    public String getFlatmatesAge() {
+        return flatmatesAge;
     }
 
-    public void setFlatMatesAge(String flatMatesAge) {
-        this.flatMatesAge = flatMatesAge;
+    public void setFlatmatesAge(String flatMatesAge) {
+        this.flatmatesAge = flatMatesAge;
     }
 
     public Boolean getLgbtFriendly() {
@@ -238,10 +238,10 @@ public class Property {
                 ", size=" + size +
                 ", floor=" + floor +
                 ", totalRooms=" + totalRooms +
-                ", totalFlatMates=" + totalFlatMates +
+                ", totalFlatmates=" + totalFlatmates +
                 ", totalBathrooms=" + totalBathrooms +
-                ", flatMatesGender=" + flatMatesGender +
-                ", flatMatesAge=" + flatMatesAge +
+                ", flatMatesGender=" + flatmatesGender +
+                ", flatMatesAge=" + flatmatesAge +
                 ", isLgbtFriendly=" + isLgbtFriendly +
                 ", hasLift=" + hasLift +
                 '}';

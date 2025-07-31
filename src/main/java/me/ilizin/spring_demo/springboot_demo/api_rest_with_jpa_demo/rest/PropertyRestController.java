@@ -93,7 +93,7 @@ public class PropertyRestController {
                                @PathVariable int propertyId) throws PropertyNotFoundException {
         PropertyOutDto propertyOutDto = propertyService.findById(propertyId);
         if (propertyOutDto == null) {
-            throw new PropertyNotFoundException();
+            throw new PropertyNotFoundException("Property not found");
         }
         propertyService.deleteById(propertyId);
     }

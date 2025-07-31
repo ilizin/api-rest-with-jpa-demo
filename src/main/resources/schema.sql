@@ -1,4 +1,4 @@
-CREATE TABLE IF NOT EXISTS advertisement(
+CREATE TABLE IF NOT EXISTS property(
     id int NOT NULL AUTO_INCREMENT,
     title varchar(255),
     province varchar(255),
