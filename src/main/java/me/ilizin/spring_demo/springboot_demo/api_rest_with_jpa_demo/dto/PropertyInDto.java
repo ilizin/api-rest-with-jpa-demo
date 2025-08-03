@@ -1,6 +1,7 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto;
 
 import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.Valid;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Positive;
@@ -51,6 +52,7 @@ public class PropertyInDto {
     @NotNull
     private FlatMatesGender flatmatesGender;
     @Schema(description = "The flatmates range ages")
+    @Valid
     private FlatmatesAgeRangeDto flatmatesAge;
     @Schema(description = "True if the property is lgbt friendly", example = "true")
     private Boolean isLgbtFriendly;

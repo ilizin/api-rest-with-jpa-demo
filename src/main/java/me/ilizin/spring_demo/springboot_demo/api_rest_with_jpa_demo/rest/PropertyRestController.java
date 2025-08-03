@@ -50,7 +50,7 @@ public class PropertyRestController {
                                       @PathVariable int propertyId) throws PropertyNotFoundException {
         PropertyOutDto propertyOutDto = propertyService.findById(propertyId);
         if (propertyOutDto == null) {
-            throw new PropertyNotFoundException("Property not found");
+            throw new PropertyNotFoundException("Property with id '" + propertyId + "'not found");
         }
         return propertyOutDto;
     }
@@ -76,7 +76,12 @@ public class PropertyRestController {
                     })
     })
     public PropertyOutDto updateProperty(@Parameter(description = "The property identifier", example = "1981")
-                                         @PathVariable int propertyId, @RequestBody PropertyInDto propertyInDto) {
+                                         @PathVariable int propertyId, @RequestBody PropertyInDto propertyInDto)
+                                        throws PropertyNotFoundException {
+        PropertyOutDto propertyOutDto = propertyService.findById(propertyId);
+        if (propertyOutDto == null) {
+            throw new PropertyNotFoundException("Property with id '" + propertyId + "'not found");
+        }
         return propertyService.update(propertyInDto, propertyId);
     }
 
@@ -93,7 +98,7 @@ public class PropertyRestController {
                                @PathVariable int propertyId) throws PropertyNotFoundException {
         PropertyOutDto propertyOutDto = propertyService.findById(propertyId);
         if (propertyOutDto == null) {
-            throw new PropertyNotFoundException("Property not found");
+            throw new PropertyNotFoundException("Property with id '" + propertyId + "'not found");
         }
         propertyService.deleteById(propertyId);
     }
