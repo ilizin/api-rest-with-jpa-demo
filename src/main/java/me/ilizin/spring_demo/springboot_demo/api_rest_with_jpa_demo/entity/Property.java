@@ -1,11 +1,6 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.persistence.*;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FlatMatesGender;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.utilities.Range;
 
 @Entity
 @Table(name="property")
@@ -55,8 +50,11 @@ public class Property {
     @Column(name="flatmatesGender")
     private String flatmatesGender;
 
-    @Column(name="flatmatesAge")
-    private String flatmatesAge;
+    @Column(name="flatmatesMinAge")
+    private Integer flatmatesMinAge;
+
+    @Column(name="flatmatesMaxAge")
+    private Integer flatmatesMaxAge;
 
     @Column(name="isLgbtFriendly")
     private Boolean isLgbtFriendly;
@@ -68,7 +66,7 @@ public class Property {
 
     public Property(int id, String title, String province, String municipality, String country, String address, double price,
                     String description, int size, Integer floor, int totalRooms, int totalFlatMates, int totalBathrooms,
-                    String flatMatesGender, String flatMatesAge, Boolean isLgbtFriendly, Boolean hasLift) {
+                    String flatMatesGender, Integer flatmatesMinAge, Integer flatmatesMaxAge, Boolean isLgbtFriendly, Boolean hasLift) {
         this.id = id;
         this.title = title;
         this.province = province;
@@ -83,7 +81,8 @@ public class Property {
         this.totalFlatmates = totalFlatMates;
         this.totalBathrooms = totalBathrooms;
         this.flatmatesGender = flatMatesGender;
-        this.flatmatesAge = flatMatesAge;
+        this.flatmatesMinAge = flatmatesMinAge;
+        this.flatmatesMaxAge = flatmatesMaxAge;
         this.isLgbtFriendly = isLgbtFriendly;
         this.hasLift = hasLift;
     }
@@ -200,12 +199,20 @@ public class Property {
         this.flatmatesGender = flatMatesGender;
     }
 
-    public String getFlatmatesAge() {
-        return flatmatesAge;
+    public Integer getFlatmatesMinAge() {
+        return flatmatesMinAge;
     }
 
-    public void setFlatmatesAge(String flatMatesAge) {
-        this.flatmatesAge = flatMatesAge;
+    public void setFlatmatesMinAge(Integer flatmatesMinAge) {
+        this.flatmatesMinAge = flatmatesMinAge;
+    }
+
+    public Integer getFlatmatesMaxAge() {
+        return flatmatesMaxAge;
+    }
+
+    public void setFlatmatesMaxAge(Integer flatmatesMaxAge) {
+        this.flatmatesMaxAge = flatmatesMaxAge;
     }
 
     public Boolean getLgbtFriendly() {
@@ -241,7 +248,8 @@ public class Property {
                 ", totalFlatmates=" + totalFlatmates +
                 ", totalBathrooms=" + totalBathrooms +
                 ", flatMatesGender=" + flatmatesGender +
-                ", flatMatesAge=" + flatmatesAge +
+                ", flatmatesMinAge=" + flatmatesMinAge +
+                ", flatmatesMaxAge=" + flatmatesMaxAge +
                 ", isLgbtFriendly=" + isLgbtFriendly +
                 ", hasLift=" + hasLift +
                 '}';

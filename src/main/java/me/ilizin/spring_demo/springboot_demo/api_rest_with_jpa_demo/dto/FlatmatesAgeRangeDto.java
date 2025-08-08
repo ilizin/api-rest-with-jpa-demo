@@ -4,7 +4,7 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Positive;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.utilities.Range;
 
-public class FlatmatesAgeRangeDto extends Range<Integer> {
+public class FlatmatesAgeRangeDto {
 
     @Positive
     @Schema(description = "The minimum age of your flatmates", example = "19")
@@ -14,7 +14,8 @@ public class FlatmatesAgeRangeDto extends Range<Integer> {
     private Integer max;
 
     public FlatmatesAgeRangeDto(Integer min, Integer max) {
-        super(min, max);
+        this.min = min;
+        this.max = max;
     }
 
     public Integer getMin() {

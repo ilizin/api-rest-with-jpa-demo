@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS property(
     total_flatmates integer,
     total_bathrooms integer,
     flatmates_gender varchar(255),
-    flatmates_age varchar(255),
+    flatmates_min_age integer,
+    flatmates_max_age integer,
     is_lgbt_friendly boolean,
     has_lift boolean
 );

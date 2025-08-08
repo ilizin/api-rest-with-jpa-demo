@@ -1,6 +1,7 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.AdvertisementDao;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.FlatmatesAgeRangeDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Property;
@@ -76,7 +77,7 @@ public class PropertyServiceImpl implements PropertyService {
         advertisementDto.setTotalFlatmates(advertisement.getTotalFlatmates());
         advertisementDto.setTotalBathrooms(advertisement.getTotalBathrooms());
         advertisementDto.setFlatmatesGender(FlatMatesGender.valueOf(advertisement.getFlatmatesGender()));
-        advertisementDto.setFlatmatesAge(null);
+        advertisementDto.setFlatmatesAge(new FlatmatesAgeRangeDto(advertisement.getFlatmatesMinAge(), advertisement.getFlatmatesMaxAge()));
         advertisementDto.setLgbtFriendly(advertisement.getLgbtFriendly());
         advertisementDto.setHasLift(advertisement.getHasLift());
         return advertisementDto;
@@ -92,13 +93,13 @@ public class PropertyServiceImpl implements PropertyService {
         advertisement.setSize(advertisementDto.getSize());
         advertisement.setTitle(advertisementDto.getTitle());
         advertisement.setPrice(advertisementDto.getPrice());
-
         advertisement.setFloor(advertisementDto.getFloor());
         advertisement.setTotalRooms(advertisementDto.getTotalRooms());
         advertisement.setTotalFlatmates(advertisementDto.getTotalFlatmates());
         advertisement.setTotalBathrooms(advertisementDto.getTotalBathrooms());
         advertisement.setFlatmatesGender(advertisementDto.getFlatmatesGender().toString());
-        advertisement.setFlatmatesAge(null);
+        advertisement.setFlatmatesMinAge(advertisementDto.getFlatmatesAge().getMin());
+        advertisement.setFlatmatesMaxAge(advertisementDto.getFlatmatesAge().getMax());
         advertisement.setLgbtFriendly(advertisementDto.getLgbtFriendly());
         advertisement.setHasLift(advertisementDto.getHasLift());
         return advertisement;
