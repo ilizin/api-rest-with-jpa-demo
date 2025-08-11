@@ -1,12 +1,17 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 
 import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.Parameter;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.ExampleObject;
+import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.AdvertiserNotFoundException;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.ErrorResponse;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertiserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,10 +39,15 @@ public class AdvertiserRestController {
 
     @Operation(summary = "Find an advertiser by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully retrieved some data")
+            @ApiResponse(responseCode = "200", description = "Successfully retrieved some data"),
+            @ApiResponse(responseCode = "404", description = "Advertiser not found", content =
+                    { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
+                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Advertiser with id '1981'not found\"}")})
+                    })
     })
     @GetMapping("/advertiser/{advertiserId}")
-    public AdvertiserOutDto getAdvertiser(@PathVariable int advertiserId) throws AdvertiserNotFoundException {
+    public AdvertiserOutDto getAdvertiser(@Parameter(description = "The advertiser identifier", example = "1981")
+                                          @PathVariable int advertiserId) throws AdvertiserNotFoundException {
         AdvertiserOutDto advertiserOutDto = advertiserService.findById(advertiserId);
         if (advertiserOutDto == null) {
             throw new AdvertiserNotFoundException();
@@ -58,20 +68,29 @@ public class AdvertiserRestController {
 
     @Operation(summary = "Update an existing advertiser")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully updated an existing advertiser")
+            @ApiResponse(responseCode = "200", description = "Successfully updated an existing advertiser"),
+            @ApiResponse(responseCode = "404", description = "Advertiser not found", content =
+                    { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
+                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Advertiser with id '1981'not found\"}")})
+                    })
     })
     @PutMapping("/advertiser/{advertiserId}")
-    public AdvertiserOutDto updateAdvertiser(@PathVariable int advertiserId,
-                                             @RequestBody AdvertiserInDto advertiserDto) {
+    public AdvertiserOutDto updateAdvertiser(@Parameter(description = "The advertiser identifier", example = "1981")
+                                             @PathVariable int advertiserId, @RequestBody AdvertiserInDto advertiserDto) {
         return advertiserService.update(advertiserDto, advertiserId);
     }
 
     @Operation(summary = "Delete an existing advertiser")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully deleted an existing advertiser")
+            @ApiResponse(responseCode = "200", description = "Successfully deleted an existing advertiser"),
+            @ApiResponse(responseCode = "404", description = "Advertiser not found", content =
+                    { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
+                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Advertiser with id '1981'not found\"}")})
+                    })
     })
     @DeleteMapping("/advertiser/{advertiserId}")
-    public void deleteAdvertiser(@PathVariable int advertiserId) throws AdvertiserNotFoundException {
+    public void deleteAdvertiser(@Parameter(description = "The advertiser identifier", example = "1981")
+                                 @PathVariable int advertiserId) throws AdvertiserNotFoundException {
         AdvertiserOutDto advertiserDto = advertiserService.findById(advertiserId);
         if (advertiserDto == null) {
             throw new AdvertiserNotFoundException();
