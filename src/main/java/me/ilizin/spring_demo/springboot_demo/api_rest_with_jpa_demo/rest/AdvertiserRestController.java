@@ -10,8 +10,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.AdvertiserNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.ErrorResponse;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.PropertyNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertiserService;
 import org.springframework.web.bind.annotation.*;
 
@@ -50,7 +52,7 @@ public class AdvertiserRestController {
                                           @PathVariable int advertiserId) throws AdvertiserNotFoundException {
         AdvertiserOutDto advertiserOutDto = advertiserService.findById(advertiserId);
         if (advertiserOutDto == null) {
-            throw new AdvertiserNotFoundException();
+            throw new AdvertiserNotFoundException("Advertiser with id '" + advertiserId + "'not found");
         }
         return advertiserOutDto;
     }
@@ -76,7 +78,13 @@ public class AdvertiserRestController {
     })
     @PutMapping("/advertiser/{advertiserId}")
     public AdvertiserOutDto updateAdvertiser(@Parameter(description = "The advertiser identifier", example = "1981")
-                                             @PathVariable int advertiserId, @RequestBody AdvertiserInDto advertiserDto) {
+                                             @PathVariable int advertiserId, @RequestBody AdvertiserInDto advertiserDto)
+                                                throws AdvertiserNotFoundException {
+
+        AdvertiserOutDto advertiserOutDto = advertiserService.findById(advertiserId);
+        if (advertiserOutDto == null) {
+            throw new AdvertiserNotFoundException("Advertiser with id '" + advertiserId + "'not found");
+        }
         return advertiserService.update(advertiserDto, advertiserId);
     }
 
@@ -93,7 +101,7 @@ public class AdvertiserRestController {
                                  @PathVariable int advertiserId) throws AdvertiserNotFoundException {
         AdvertiserOutDto advertiserDto = advertiserService.findById(advertiserId);
         if (advertiserDto == null) {
-            throw new AdvertiserNotFoundException();
+            throw new AdvertiserNotFoundException("Advertiser with id '" + advertiserId + "'not found");
         }
         advertiserService.deleteById(advertiserId);
     }
