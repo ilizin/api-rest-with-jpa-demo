@@ -21,17 +21,13 @@ import org.springframework.http.HttpMethod;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class AdvertisementRestControllerTest {
 
-    private static final String EXPECTED_ONE_ADVERTISEMENT = "{\"id\":1,\"title\":\"Studio in Culture Thonglor\",\"city\":\"Bangkok\"," +
-            "\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700.0,\"description\":" +
-            "\"A studio apartment available for Sale\",\"size\":120}";
+    private static final String EXPECTED_ONE_ADVERTISEMENT = "{\"title\":\"Studio in Culture Thonglor\",\"province\":\"Bangkok\",\"municipality\":null,\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700.0,\"description\":\"A studio apartment available for Sale\",\"size\":120,\"floor\":2,\"totalRooms\":4,\"totalFlatmates\":4,\"totalBathrooms\":2,\"flatmatesGender\":\"MEN_AND_WOMEN\",\"flatmatesAge\":{\"min\":29,\"max\":49},\"hasLift\":false,\"id\":1,\"lgbtFriendly\":true}";
 
     private static final String EXPECTED_LIST_OF_ONE_ADVERTISEMENT = "[" + EXPECTED_ONE_ADVERTISEMENT + "]";
 
     private static final String EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT = "[]";
 
-    private static final String EXPECTED_ONE_ADVERTISEMENT_WITH_UPDATED_PRICE = "{\"id\":1,\"title\":\"Studio in Culture Thonglor\",\"city\":\"Bangkok\"," +
-            "\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550000.0,\"description\":" +
-            "\"A studio apartment available for Sale\",\"size\":120}";
+    private static final String EXPECTED_ONE_ADVERTISEMENT_WITH_UPDATED_PRICE = "{\"title\":\"Studio in Culture Thonglor\",\"province\":\"Bangkok\",\"municipality\":null,\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700.0,\"description\":\"A studio apartment available for Sale\",\"size\":120,\"floor\":2,\"totalRooms\":4,\"totalFlatmates\":4,\"totalBathrooms\":2,\"flatmatesGender\":\"MEN_AND_WOMEN\",\"flatmatesAge\":{\"min\":29,\"max\":49},\"hasLift\":false,\"id\":1,\"lgbtFriendly\":true}";
 
     private static final PropertyInDto PROPERTY_IN_DTO  = new PropertyInDto("Studio in Culture Thonglor", "Bangkok", null, "Thailand", "Soi Yanat",
             8550700d, "A studio apartment available for Sale", 120, 2, 4, 4, 2, FlatMatesGender.MEN_AND_WOMEN,
@@ -46,33 +42,33 @@ public class AdvertisementRestControllerTest {
     @Test
     void advertisementRestControllerTest() {
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisements"), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/properties"), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
 
         HttpEntity<PropertyInDto> request = new HttpEntity<>(PROPERTY_IN_DTO);
 
-        assertThat(this.restTemplate.postForEntity(getUrl(port, "/advertisement"), request, String.class))
+        assertThat(this.restTemplate.postForEntity(getUrl(port, "/property"), request, String.class))
                 .isNotNull();
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisements"), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/properties"), String.class))
                 .contains(EXPECTED_LIST_OF_ONE_ADVERTISEMENT);
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisement/1"), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/property/1"), String.class))
                 .contains(EXPECTED_ONE_ADVERTISEMENT);
 
         PROPERTY_IN_DTO.setPrice(PROPERTY_IN_DTO.getPrice() - 700);
         request = new HttpEntity<>(PROPERTY_IN_DTO);
 
-        assertThat(this.restTemplate.exchange(getUrl(port, "/advertisement"), HttpMethod.PUT, request, Property.class))
+        assertThat(this.restTemplate.exchange(getUrl(port, "/property"), HttpMethod.PUT, request, Property.class))
                 .isNotNull();
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisement/1"), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/property/1"), String.class))
                 .contains(EXPECTED_ONE_ADVERTISEMENT_WITH_UPDATED_PRICE);
 
-        assertThat(this.restTemplate.exchange(getUrl(port, "/advertisement/1"), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class))
+        assertThat(this.restTemplate.exchange(getUrl(port, "/property/1"), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class))
                 .isNotNull();
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, "/advertisements"), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/properties"), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
     }
 
