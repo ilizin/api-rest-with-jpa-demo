@@ -1,5 +1,17 @@
 # api-rest-with-jpa-demo
 
+This demo project shows how easy is to build an api rest with a jpa persistence layer with springboot.
+
+Springboot is full of properties and annotations, find this code fully commented to document how to use a bunch of them.
+
+**Annotations:** @Repository, @SpringBootApplication, @Service, @Transactional, @RestController, @RequestMapping,
+@GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PathVariable, @RequestBody, @ControllerAdvice, @ExceptionHandler, 
+
+
+**Properties:** spring.application.name, server.servlet.context-path, spring.datasource.url, spring.datasource.username,
+spring.datasource.password, spring.jpa.hibernate.ddl-auto, management.endpoints.web.exposure.include, spring.data.rest.base-path,
+spring.data.rest.default-page-size
+
 ## Description
 
 ## Installation
