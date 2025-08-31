@@ -33,7 +33,7 @@ git clone git@github.com:ilizin/api-rest-with-jpa-demo.git
 
 4. Run the <i>mvn clean install</i> command to run the tests and install the project:
 ```
-ilizin@ilizin:~/repos/api-rest-demo (main)
+ilizin@ilizin:~/repos/api-rest-with-jpa-demo (main)
 $ mvn clean install
 [INFO] Scanning for projects...
 [INFO]
