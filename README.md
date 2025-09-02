@@ -114,4 +114,5 @@ GitHub: [ilizin](https://github.com/ilizin)
 
 ## References
 
-https://spring.io/guides/gs/testing-web
+* Spring documentation. (Unknown). *Testing the Web Layer.* <br/>
+  Retrieved from https://spring.io/guides/gs/testing-web
