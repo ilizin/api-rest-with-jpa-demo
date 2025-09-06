@@ -7,12 +7,28 @@ Springboot is full of properties and annotations, find this code fully commented
 **Annotations:** @Repository, @SpringBootApplication, @Service, @Transactional, @RestController, @RequestMapping,
 @GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PathVariable, @RequestBody, @ControllerAdvice, @ExceptionHandler, 
 
-
 **Properties:** spring.application.name, server.servlet.context-path, spring.datasource.url, spring.datasource.username,
 spring.datasource.password, spring.jpa.hibernate.ddl-auto, management.endpoints.web.exposure.include, spring.data.rest.base-path,
 spring.data.rest.default-page-size
 
+This demo project goal is just didactic, so I encourage you to read the code, read all the comments, and learn from it.
+
 ## Description
+
+This demo project set up an easy API with two controllers and the whole set of CRUD operations each:
+
+* Advertiser controller
+    * GET    /api/v1/advertisers
+    * GET    /api/v1/advertiser/{advertiserId}
+    * POST   /api/v1/advertiser
+    * PUT    /api/v1/advertiser/{advertiserId}
+    * DELETE /api/v1/advertiser/{advertiserId}
+* Property controller
+    * GET    /api/v1/properties
+    * GET    /api/v1/property/{propertyId}
+    * POST   /api/v1/property
+    * PUT    /api/v1/property/{propertyId}
+    * DELETE /api/v1/property/{propertyId}
 
 ## Installation
 
