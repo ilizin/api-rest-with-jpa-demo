@@ -18,17 +18,17 @@ This demo project goal is just didactic, so I encourage you to read the code, re
 This demo project set up an easy API with two controllers and the whole set of CRUD operations each:
 
 * Advertiser controller
-    * GET    /api/v1/advertisers
-    * GET    /api/v1/advertiser/{advertiserId}
-    * POST   /api/v1/advertiser
-    * PUT    /api/v1/advertiser/{advertiserId}
-    * DELETE /api/v1/advertiser/{advertiserId}
+    * <span style="color:green">GET</span> /api/v1/advertisers
+    * <span style="color:green">GET</span> /api/v1/advertiser/{advertiserId}
+    * <span style="color:blue">POST</span> /api/v1/advertiser
+    * <span style="color:orange">PUT</span> /api/v1/advertiser/{advertiserId}
+    * <span style="color:red">DELETE</span> /api/v1/advertiser/{advertiserId}
 * Property controller
-    * GET    /api/v1/properties
-    * GET    /api/v1/property/{propertyId}
-    * POST   /api/v1/property
-    * PUT    /api/v1/property/{propertyId}
-    * DELETE /api/v1/property/{propertyId}
+    * <span style="color:green">GET</span> /api/v1/properties
+    * <span style="color:green">GET</span> /api/v1/property/{propertyId}
+    * <span style="color:blue">POST</span> /api/v1/property
+    * <span style="color:blue">PUT</span> /api/v1/property/{propertyId}
+    * <span style="color:red">DELETE</span> /api/v1/property/{propertyId}
 
 ## Installation
 
