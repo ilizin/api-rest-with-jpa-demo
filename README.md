@@ -1,6 +1,6 @@
 # api-rest-with-jpa-demo
 
-This demo project shows how easy is to build an api rest with a jpa persistence layer with springboot.
+This demo project shows how easy is to build an api rest with a jpa persistence layer with springboot and the h2 in memory database.
 
 Springboot is full of properties and annotations, find this code fully commented to document how to use a bunch of them.
 
