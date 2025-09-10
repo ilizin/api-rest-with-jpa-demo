@@ -71,7 +71,7 @@ $ mvn clean install
 [INFO] --------------------------------[ jar ]---------------------------------
 ...
 est method 'PUT' is not supported]
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.707 s -- in me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest.AdvertisementRestControllerTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.707 s -- in me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest.PropertyRestControllerTest
 [INFO]
 [INFO] Results:
 [INFO]
