@@ -1,19 +1,30 @@
 # api-rest-with-jpa-demo
 
-This demo project shows how easy is to build an api rest with a jpa persistence layer with springboot and the h2 in memory database.
+This demo project shows how easy is to build an api rest with a jpa persistence layer with spring boot and the h2 in memory database.
 
-Springboot is full of properties and annotations, find this code fully commented to document how to use a bunch of them.
+Spring boot is full of properties and annotations, and you will find this code fully commented on how to use a bunch of them,
+the ones you'll find are summarized in the following two tables.
 
-**Annotations:** @Repository, @SpringBootApplication, @Service, @Transactional, @RestController, @RequestMapping,
-@GetMapping, @PostMapping, @PutMapping, @DeleteMapping, @PathVariable, @RequestBody, @ControllerAdvice, @ExceptionHandler, 
+| Annotations            | Properties                                |  
+|------------------------|-------------------------------------------|
+| @Repository            | spring.application.name                   | 
+| @SpringBootApplication | server.servlet.context-path               |    
+| @Service               | spring.datasource.url                     | 
+| @Transactional         | spring.datasource.username                |
+| @RestController        | spring.datasource.password                | 
+| @RequestMapping        | spring.jpa.hibernate.ddl-auto             |
+| @GetMapping            | management.endpoints.web.exposure.include | 
+| @PostMapping           | spring.data.rest.base-path                |
+| @PutMapping            | spring.data.rest.default-page-size        | 
+| @DeleteMapping         |                                           | 
+| @PathVariable          |                                           |
+| @RequestBody           |                                           |
+| @ControllerAdvice      |                                           | 
+| @ExceptionHandler      |                                           |
 
-**Properties:** spring.application.name, server.servlet.context-path, spring.datasource.url, spring.datasource.username,
-spring.datasource.password, spring.jpa.hibernate.ddl-auto, management.endpoints.web.exposure.include, spring.data.rest.base-path,
-spring.data.rest.default-page-size
+This demo project goal is just didactic, so I encourage you to read the code, the comments, and learn from them.
 
-This demo project goal is just didactic, so I encourage you to read the code, read all the comments, and learn from it.
-
-## Description
+## 📘 Description
 
 This demo project set up an easy API with two controllers and the whole set of CRUD operations each:
 
@@ -30,7 +41,7 @@ This demo project set up an easy API with two controllers and the whole set of C
     * PUT /api/v1/property/{propertyId}
     * DELETE /api/v1/property/{propertyId}
 
-## Installation
+## 💾 Installation
 
 1. The project is based on spring boot <i>v3.4.1</i>, so make sure you have installed at least the required *jdk17*:
 ```
@@ -42,7 +53,7 @@ ilizin@ilizin:~$
 ```
 
 2. Make sure you've installed the apache maven, or refer to the official page [Install Maven](https://maven.apache.org/install.html)
-   to install it.
+   to install it. Find the right JDK compatibility at the [Maven Releases History](https://maven.apache.org/docs/history.html) page.
 ```
 ilizin@ilizin /c
 $ mvn -v
@@ -58,8 +69,9 @@ ilizin@ilizin /c
 ```
 git clone git@github.com:ilizin/api-rest-with-jpa-demo.git
 ```
+4. Move to the *api-rest-with-jpa-demo* folder.
 
-4. Run the <i>mvn clean install</i> command to run the tests and install the project:
+5Run the <i>mvn clean install</i> command to run the tests and install the project:
 ```
 ilizin@ilizin:~/repos/api-rest-with-jpa-demo (main)
 $ mvn clean install
@@ -110,25 +122,47 @@ ilizin@ilizin:~/repos/api-rest-with-jpa-demo $ mvn spring-boot:run
 ```
 4. Access the swagger UI page from the link: http://localhost:8080/api-rest-with-jpa-demo/swagger-ui/index.html
 
-## Structure
+## 📂 Structure
 
-It's a maven based project, therefore the structure is standard, more details about the maven project director layout  [here](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html)
+This is a maven based project, so it follows a standard structure, more details about the maven project director layout [here](https://maven.apache.org/guides/introduction/introduction-to-the-standard-directory-layout.html).
 
-## Contributing
+Besides that, I follow this folders structure for an API rest development.
 
-Contributions are welcome! If you have an alternative solution or an improvement to an existing solution, feel free to contribute. Follow these steps:
+```
+/
+└── src
+    ├── main
+    │   ├── java
+    │   │   └── me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo
+    │   │       ├── config
+    │   │       ├── controllers
+    │   │       ├── enums
+    │   │       ├── filters
+    │   │       ├── model
+    │   │       ├── services
+    │   │       └── ApiRestWithJpaDemoApplication.java
+    │   │
+    │   └── resources
+    │       ├── application.properties
+    │       └── banner.txt      
+    │ 
+    └── test
+        └── java
+            └── me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo
+                ├── controllers
+                ├── services
+                └── ApiRestWithJpaDemoApplicationTest.java
+```
 
-1. Fork the repository.
-2. Create a new branch (git checkout -b feature-new-solution).
-3. Commit your changes (git commit -m 'Add new solution for problem X').
-4. Push to the branch (git push origin feature-new-solution).
-5. Open a pull request.
-
-## Contact
+## 📬 Contact
 
 GitHub: [ilizin](https://github.com/ilizin)
 
-## References
+## 📜 License
+
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
+
+## 🔗 References
 
 * Spring documentation. (Unknown). *Testing the Web Layer.* <br/>
   Retrieved from https://spring.io/guides/gs/testing-web
