@@ -2,9 +2,9 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.FlatmatesAgeRangeDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyInDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Property;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.FlatmatesAgeRangeDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Property;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FlatMatesGender;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

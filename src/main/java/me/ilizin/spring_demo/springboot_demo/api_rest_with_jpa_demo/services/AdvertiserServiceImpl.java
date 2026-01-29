@@ -1,9 +1,9 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.AdvertiserRepository;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserOutDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.AdvertiserInDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Advertiser;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.AdvertiserOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.AdvertiserInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Advertiser;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.AdvertiserType;
 import org.springframework.stereotype.Service;
 

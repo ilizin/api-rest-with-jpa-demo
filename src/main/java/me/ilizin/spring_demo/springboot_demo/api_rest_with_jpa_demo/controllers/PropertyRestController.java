@@ -1,4 +1,4 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
@@ -8,11 +8,11 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyInDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyOutDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.ErrorResponse;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.PropertyNotFoundException;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.PropertyService;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.ErrorResponse;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.PropertyNotFoundException;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services.PropertyService;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

@@ -2,7 +2,7 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Property;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Property;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;

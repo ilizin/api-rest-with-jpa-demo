@@ -1,7 +1,7 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyInDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyOutDto;
 
 import java.util.List;
 

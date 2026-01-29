@@ -1,10 +1,10 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.AdvertisementDao;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.FlatmatesAgeRangeDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyInDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dto.PropertyOutDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.entity.Property;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.FlatmatesAgeRangeDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Property;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FlatMatesGender;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;

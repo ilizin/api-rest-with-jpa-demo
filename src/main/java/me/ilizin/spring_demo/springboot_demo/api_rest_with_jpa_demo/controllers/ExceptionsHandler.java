@@ -1,8 +1,8 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.AdvertiserNotFoundException;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.ErrorResponse;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exception.PropertyNotFoundException;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.AdvertiserNotFoundException;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.ErrorResponse;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.PropertyNotFoundException;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;

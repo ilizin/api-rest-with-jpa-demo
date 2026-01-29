@@ -1,9 +1,9 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest.AdvertiserRestController;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest.PropertyRestController;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.AdvertiserService;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.service.PropertyService;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers.AdvertiserRestController;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers.PropertyRestController;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services.AdvertiserService;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services.PropertyService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;

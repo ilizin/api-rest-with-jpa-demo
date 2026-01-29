@@ -28,3 +28,13 @@ CREATE TABLE IF NOT EXISTS advertiser(
     email varchar(255),
     phone_number varchar(255)
 );
+
+CREATE TABLE IF NOT EXISTS car(
+    id int NOT NULL AUTO_INCREMENT,
+    advertiser_type varchar(255),
+    name varchar(255),
+    first_surname varchar(255),
+    second_surname varchar(255),
+    email varchar(255),
+    phone_number varchar(255)
+);
