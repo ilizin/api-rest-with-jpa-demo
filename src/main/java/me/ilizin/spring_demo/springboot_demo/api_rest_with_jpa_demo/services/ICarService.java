@@ -1,5 +1,7 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.PropertyOutDto;
 
@@ -7,13 +9,13 @@ import java.util.List;
 
 public interface ICarService {
 
-    List<PropertyOutDto> findAll();
+    List<CarOutDto> findAll();
 
-    PropertyOutDto findById(int id);
+    CarOutDto findById(int id);
 
-    PropertyOutDto save(PropertyInDto property);
+    CarOutDto save(CarInDto carInDto);
 
-    PropertyOutDto update(PropertyInDto property, int advertisementId);
+    CarOutDto update(CarInDto carInDto, int carId);
 
     void deleteById(int id);
 }
