@@ -2,8 +2,12 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.AdvertisementDao;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.ICarDao;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.AdvertiserType;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.AdvertiserInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.AdvertiserOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Advertiser;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Car;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Property;
 
@@ -22,7 +26,7 @@ public class CarService implements ICarService {
         List<Car> cars = carDao.findAll();
         return cars
                 .stream()
-                .map(this::mapAdvertisementToAdvertisementResultDto)
+                .map(this::mapCarToCarDto)
                 .toList();
     }
 
@@ -32,26 +36,36 @@ public class CarService implements ICarService {
         if (car == null) {
             return null;
         }
-        return mapAdvertisementToAdvertisementResultDto(car);
+        return mapCarToCarDto(car);
     }
 
     @Override
     public CarOutDto save(CarInDto carInDto) {
-        Car car = mapAdvertisementDtoToAdvertisement(carInDto);
-        Car savedCar = advertisementDao.save(car);
-        return mapAdvertisementToAdvertisementResultDto(savedCar);
+        Car car = mapCarDtoToCar(carInDto);
+        Car savedCar = carDao.save(car);
+        return mapCarToCarDto(savedCar);
     }
 
     @Override
     public CarOutDto update(CarInDto carInDto, int carId) {
-        Car car = mapAdvertisementDtoToAdvertisement(carInDto);
+        Car car = mapCarDtoToCar(carInDto);
         car.setId(carId);
         Car savedCar = carDao.save(car);
-        return mapAdvertisementToAdvertisementResultDto(savedCar);
+        return mapCarToCarDto(savedCar);
     }
 
     @Override
     public void deleteById(int id) {
         carDao.deleteById(id);
+    }
+
+    private CarOutDto mapCarToCarDto(Car car) {
+        CarOutDto carOutDto = new CarOutDto();
+        return carOutDto;
+    }
+
+    private Car mapCarDtoToCar(CarInDto carInDto) {
+        Car car = new Car();
+        return car;
     }
 }
