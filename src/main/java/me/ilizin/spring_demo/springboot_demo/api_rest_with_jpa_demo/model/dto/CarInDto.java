@@ -1,28 +1,47 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto;
 
-import jakarta.persistence.Column;
+import io.swagger.v3.oas.annotations.media.Schema;
+import jakarta.validation.constraints.NotBlank;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 
 public class CarInDto {
 
+    @Schema(description = "The car make", example = "Ferrari")
+    @NotBlank
     private String make;
 
+    @Schema(description = "The car model", example = "Testarossa")
+    @NotBlank
     private String model;
 
+    @Schema(description = "The date of first registration", example = "1984")
+    @NotBlank
     private int firstRegistrationFrom;
 
+    @Schema(description = "The car body type", allowableValues = {"COMPACT", "SUV", "TRANSPORTER", "CONVERTIBLE", "VAN", "SEDAN", "STATION_WAGON", "COUPE"}, example = "COUPE")
+    @NotBlank
     private BodyType bodyType;
 
+    @Schema(description = "The car price", example = "250000")
+    @NotBlank
     private int price;
 
+    @Schema(description = "The total distance a vehicle has traveled", example = "51122")
+    @NotBlank
     private int mileage;
 
+    @Schema(description = "The vehicle fuel type", allowableValues = {"GASOLINE", "DIESEL", "ELECTRIC", "HYBRID", "ALTERNATIVE_FUEL"}, example = "GASOLINE")
+    @NotBlank
     private FuelType fuelType;
 
+    @Schema(description = "The vehicle gearbox", allowableValues = {"MANUAL", "AUTOMATIC"}, example = "MANUAL")
+    @NotBlank
     private GearBox gearBox;
 
+    @Schema(description = "The vehicle power in horsepower", example = "380")
+    @NotBlank
     private int power;
 
     public String getMake() {
