@@ -9,6 +9,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.AdvertiserNotFoundException;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.CarNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.ErrorResponse;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.AdvertiserOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
@@ -29,7 +30,7 @@ public class CarRestController {
         this.carService = carService;
     }
 
-    @Operation(summary = "Get all the advertisers")
+    @Operation(summary = "Get all the cars")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved some data")
     })
@@ -41,17 +42,17 @@ public class CarRestController {
     @Operation(summary = "Find a car by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully retrieved some data"),
-            @ApiResponse(responseCode = "404", description = "Advertiser not found", content =
+            @ApiResponse(responseCode = "404", description = "Car not found", content =
                     { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
-                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Advertiser with id '1981'not found\"}")})
+                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Car with id '1981'not found\"}")})
                     })
     })
     @GetMapping("/car/{carId}")
-    public CarOutDto getCar(@Parameter(description = "The advertiser identifier", example = "1981")
-                                          @PathVariable int carId) throws AdvertiserNotFoundException {
+    public CarOutDto getCar(@Parameter(description = "The car identifier", example = "1981")
+                                          @PathVariable int carId) throws CarNotFoundException {
         CarOutDto carOutDto = carService.findById(carId);
         if (carOutDto == null) {
-            throw new AdvertiserNotFoundException("Car with id '" + carId + "'not found");
+            throw new CarNotFoundException("Car with id '" + carId + "'not found");
         }
         return carOutDto;
     }
@@ -61,7 +62,7 @@ public class CarRestController {
             @ApiResponse(responseCode = "200", description = "Successfully added a new car")
     })
     @PostMapping("/car")
-    public AdvertiserOutDto addAdvertiser(@RequestBody CarInDto carInDto) {
+    public CarOutDto addCar(@RequestBody CarInDto carInDto) {
         // Just in case they pass an id in JSON, set the id to 0, to force a save of new item instead of update.
         //advertiserDto.setId(0);
         return carService.save(carInDto);
@@ -70,37 +71,37 @@ public class CarRestController {
     @Operation(summary = "Update an existing car")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Successfully updated an existing car"),
-            @ApiResponse(responseCode = "404", description = "Advertiser not found", content =
+            @ApiResponse(responseCode = "404", description = "Car not found", content =
                     { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
-                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Advertiser with id '1981'not found\"}")})
+                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Car with id '1981' not found\"}")})
                     })
     })
     @PutMapping("/car/{carId}")
-    public AdvertiserOutDto updateCar(@Parameter(description = "The car identifier", example = "1981")
+    public CarOutDto updateCar(@Parameter(description = "The car identifier", example = "1981")
                                              @PathVariable int carId, @RequestBody CarInDto carInDto)
-            throws AdvertiserNotFoundException {
+            throws CarNotFoundException {
 
         CarOutDto carOutDto = carService.findById(carId);
         if (carOutDto == null) {
-            throw new AdvertiserNotFoundException("Car with id '" + carId + "'not found");
+            throw new CarNotFoundException("Car with id '" + carId + "'not found");
         }
         return carService.update(carInDto, carId);
     }
 
-    @Operation(summary = "Delete an existing advertiser")
+    @Operation(summary = "Delete an existing car")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully deleted an existing advertiser"),
-            @ApiResponse(responseCode = "404", description = "Advertiser not found", content =
+            @ApiResponse(responseCode = "200", description = "Successfully deleted an existing car"),
+            @ApiResponse(responseCode = "404", description = "Car not found", content =
                     { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
-                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Advertiser with id '1981'not found\"}")})
+                            examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Car with id '1981'not found\"}")})
                     })
     })
     @DeleteMapping("/car/{carId}")
-    public void deleteAdvertiser(@Parameter(description = "The car identifier", example = "1981")
-                                 @PathVariable int carId) throws AdvertiserNotFoundException {
+    public void deleteCar(@Parameter(description = "The car identifier", example = "1981")
+                                 @PathVariable int carId) throws CarNotFoundException {
         CarOutDto carOutDto = carService.findById(carId);
         if (carOutDto == null) {
-            throw new AdvertiserNotFoundException("Car with id '" + carId + "'not found");
+            throw new CarNotFoundException("Car with id '" + carId + "'not found");
         }
         carService.deleteById(carId);
     }
