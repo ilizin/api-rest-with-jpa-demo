@@ -20,7 +20,7 @@ public class CarService implements ICarService {
         List<Car> cars = carDao.findAll();
         return cars
                 .stream()
-                .map(this::mapCarToCarDto)
+                .map(this::mapCarToCarOutDto)
                 .toList();
     }
 
@@ -30,22 +30,22 @@ public class CarService implements ICarService {
         if (car == null) {
             return null;
         }
-        return mapCarToCarDto(car);
+        return mapCarToCarOutDto(car);
     }
 
     @Override
     public CarOutDto save(CarInDto carInDto) {
-        Car car = mapCarDtoToCar(carInDto);
+        Car car = mapCarInDtoToCar(carInDto);
         Car savedCar = carDao.save(car);
-        return mapCarToCarDto(savedCar);
+        return mapCarToCarOutDto(savedCar);
     }
 
     @Override
     public CarOutDto update(CarInDto carInDto, int carId) {
-        Car car = mapCarDtoToCar(carInDto);
+        Car car = mapCarInDtoToCar(carInDto);
         car.setId(carId);
         Car savedCar = carDao.save(car);
-        return mapCarToCarDto(savedCar);
+        return mapCarToCarOutDto(savedCar);
     }
 
     @Override
@@ -53,13 +53,15 @@ public class CarService implements ICarService {
         carDao.deleteById(id);
     }
 
-    private CarOutDto mapCarToCarDto(Car car) {
+    private CarOutDto mapCarToCarOutDto(Car car) {
         CarOutDto carOutDto = new CarOutDto();
+        carOutDto.setId(car.getId());
+        carOutDto.setBodyType(car.getBodyType());
         return carOutDto;
     }
-
-    private Car mapCarDtoToCar(CarInDto carInDto) {
+    private Car mapCarInDtoToCar(CarInDto carInDto) {
         Car car = new Car();
+        car.setMake(carInDto.getMake());
         return car;
     }
 }
