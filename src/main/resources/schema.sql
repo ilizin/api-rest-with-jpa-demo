@@ -33,11 +33,11 @@ CREATE TABLE IF NOT EXISTS car(
     id int NOT NULL AUTO_INCREMENT,
     make varchar(255),
     model varchar(255),
-    firstRegistrationFrom integer,
-    bodyType varchar(255),
+    first_registration_from integer,
+    body_type varchar(255),
     price integer,
     mileage integer,
-    fuelType varchar(255),
-    gearBox varchar(255),
+    fuel_type varchar(255),
+    gear_box varchar(255),
     power integer
 );

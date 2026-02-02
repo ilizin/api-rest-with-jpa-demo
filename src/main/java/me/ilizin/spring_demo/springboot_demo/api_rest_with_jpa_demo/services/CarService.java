@@ -56,7 +56,7 @@ public class CarService implements ICarService {
     private CarOutDto mapCarToCarOutDto(Car car) {
         CarOutDto carOutDto = new CarOutDto();
         carOutDto.setId(car.getId());
-        carOutDto.setBodyType(car.getBodyType());
+        carOutDto.setMake(car.getMake());
         return carOutDto;
     }
     private Car mapCarInDtoToCar(CarInDto carInDto) {

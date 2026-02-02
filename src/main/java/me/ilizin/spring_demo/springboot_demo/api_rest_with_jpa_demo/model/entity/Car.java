@@ -1,9 +1,6 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity;
 
 import jakarta.persistence.*;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 
 @Entity
 @Table(name="car")
@@ -24,7 +21,7 @@ public class Car {
     private int firstRegistrationFrom;
 
     @Column(name="bodyType")
-    private BodyType bodyType;
+    private String bodyType;
 
     @Column(name="price")
     private int price;
@@ -33,10 +30,10 @@ public class Car {
     private int mileage;
 
     @Column(name="fuelType")
-    private FuelType fuelType;
+    private String fuelType;
 
     @Column(name="gearBox")
-    private GearBox gearBox;
+    private String gearBox;
 
     @Column(name="power")
     private int power;
@@ -73,11 +70,11 @@ public class Car {
         this.firstRegistrationFrom = firstRegistrationFrom;
     }
 
-    public BodyType getBodyType() {
+    public String getBodyType() {
         return bodyType;
     }
 
-    public void setBodyType(BodyType bodyType) {
+    public void setBodyType(String bodyType) {
         this.bodyType = bodyType;
     }
 
@@ -97,19 +94,19 @@ public class Car {
         this.mileage = mileage;
     }
 
-    public FuelType getFuelType() {
+    public String getFuelType() {
         return fuelType;
     }
 
-    public void setFuelType(FuelType fuelType) {
+    public void setFuelType(String fuelType) {
         this.fuelType = fuelType;
     }
 
-    public GearBox getGearBox() {
+    public String getGearBox() {
         return gearBox;
     }
 
-    public void setGearBox(GearBox gearBox) {
+    public void setGearBox(String gearBox) {
         this.gearBox = gearBox;
     }
 
