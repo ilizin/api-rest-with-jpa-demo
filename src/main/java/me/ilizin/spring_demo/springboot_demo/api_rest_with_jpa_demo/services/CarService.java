@@ -4,9 +4,11 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.ICarDao;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Car;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class CarService implements ICarService {
 
     private final ICarDao carDao;

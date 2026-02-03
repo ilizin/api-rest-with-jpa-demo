@@ -3,9 +3,11 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Car;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
 public class CarDaoJpa implements ICarDao {
 
     private final EntityManager entityManager;
