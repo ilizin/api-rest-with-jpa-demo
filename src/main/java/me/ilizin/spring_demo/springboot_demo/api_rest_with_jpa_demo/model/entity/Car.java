@@ -4,71 +4,10 @@ import jakarta.persistence.*;
 
 @Entity
 @Table(name="car")
-public class Car {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
-
-    @Column(name="make")
-    private String make;
-
-    @Column(name="model")
-    private String model;
-
-    @Column(name="firstRegistrationFrom")
-    private int firstRegistrationFrom;
+public class Car extends Vehicle {
 
     @Column(name="bodyType")
     private String bodyType;
-
-    @Column(name="price")
-    private int price;
-
-    @Column(name="mileage")
-    private int mileage;
-
-    @Column(name="fuelType")
-    private String fuelType;
-
-    @Column(name="gearBox")
-    private String gearBox;
-
-    @Column(name="power")
-    private int power;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getMake() {
-        return make;
-    }
-
-    public void setMake(String make) {
-        this.make = make;
-    }
-
-    public String getModel() {
-        return model;
-    }
-
-    public void setModel(String model) {
-        this.model = model;
-    }
-
-    public int getFirstRegistrationFrom() {
-        return firstRegistrationFrom;
-    }
-
-    public void setFirstRegistrationFrom(int firstRegistrationFrom) {
-        this.firstRegistrationFrom = firstRegistrationFrom;
-    }
 
     public String getBodyType() {
         return bodyType;
@@ -76,45 +15,5 @@ public class Car {
 
     public void setBodyType(String bodyType) {
         this.bodyType = bodyType;
-    }
-
-    public int getPrice() {
-        return price;
-    }
-
-    public void setPrice(int price) {
-        this.price = price;
-    }
-
-    public int getMileage() {
-        return mileage;
-    }
-
-    public void setMileage(int mileage) {
-        this.mileage = mileage;
-    }
-
-    public String getFuelType() {
-        return fuelType;
-    }
-
-    public void setFuelType(String fuelType) {
-        this.fuelType = fuelType;
-    }
-
-    public String getGearBox() {
-        return gearBox;
-    }
-
-    public void setGearBox(String gearBox) {
-        this.gearBox = gearBox;
-    }
-
-    public int getPower() {
-        return power;
-    }
-
-    public void setPower(int power) {
-        this.power = power;
     }
 }

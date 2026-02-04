@@ -1,0 +1,7 @@
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums;
+
+public enum BodyTypeMotorcycle {
+    SUPERSPORT, SPORT_TOURING, CHOPPER_CRUISER, TOURING_ENDURO, STREETFIGHTER, ENDURO_BIKE, MOTOCROSSER,
+    SIDECAR, CLASSIC, THREE_WHEELER, SCOOTER, MOPED, SUPER_MOTO, MINIBIKE, OTHER, NAKED_BIKE, QUAD, RALLY, TRIALS_BIKE,
+    RACING, TOURER;
+}
