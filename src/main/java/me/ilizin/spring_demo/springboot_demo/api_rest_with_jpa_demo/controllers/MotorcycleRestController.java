@@ -8,8 +8,8 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.CarNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.ErrorResponse;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.MotorcycleNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services.IMotorcycleService;
@@ -47,10 +47,10 @@ public class MotorcycleRestController {
     })
     @GetMapping("/motorcycle/{motorcycleId}")
     public MotorcycleOutDto getMotorcycle(@Parameter(description = "The motorcycle identifier", example = "1981")
-                            @PathVariable int motorcycleId) throws CarNotFoundException {
+                            @PathVariable int motorcycleId) throws MotorcycleNotFoundException {
         MotorcycleOutDto motorcycleOutDto = motorcycleService.findById(motorcycleId);
         if (motorcycleOutDto == null) {
-            throw new CarNotFoundException("Motorcycle with id '" + motorcycleId + "'not found");
+            throw new MotorcycleNotFoundException("Motorcycle with id '" + motorcycleId + "'not found");
         }
         return motorcycleOutDto;
     }
@@ -77,11 +77,11 @@ public class MotorcycleRestController {
     @PutMapping("/motorcycle/{motorcycleId}")
     public MotorcycleOutDto updateMotorcycle(@Parameter(description = "The motorcycle identifier", example = "1981")
                                @PathVariable int motorcycleId, @RequestBody MotorcycleInDto motorcycleInDto)
-            throws CarNotFoundException {
+            throws MotorcycleNotFoundException {
 
         MotorcycleOutDto motorcycleOutDto = motorcycleService.findById(motorcycleId);
         if (motorcycleOutDto == null) {
-            throw new CarNotFoundException("Motorcycle with id '" + motorcycleId + "'not found");
+            throw new MotorcycleNotFoundException("Motorcycle with id '" + motorcycleId + "'not found");
         }
         return motorcycleService.update(motorcycleInDto, motorcycleId);
     }
@@ -96,10 +96,10 @@ public class MotorcycleRestController {
     })
     @DeleteMapping("/motorcycle/{motorcycleId}")
     public void deleteMotorcycle(@Parameter(description = "The motorcycleId identifier", example = "1981")
-                          @PathVariable int motorcycleId) throws CarNotFoundException {
+                          @PathVariable int motorcycleId) throws MotorcycleNotFoundException {
         MotorcycleOutDto motorcycleOutDto = motorcycleService.findById(motorcycleId);
         if (motorcycleOutDto == null) {
-            throw new CarNotFoundException("Motorcycle with id '" + motorcycleId + "'not found");
+            throw new MotorcycleNotFoundException("Motorcycle with id '" + motorcycleId + "'not found");
         }
         motorcycleService.deleteById(motorcycleId);
     }
