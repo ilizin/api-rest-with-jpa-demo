@@ -1,6 +1,9 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.ICarDao;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Car;
@@ -59,11 +62,27 @@ public class CarService implements ICarService {
         CarOutDto carOutDto = new CarOutDto();
         carOutDto.setId(car.getId());
         carOutDto.setMake(car.getMake());
+        carOutDto.setBodyType(BodyType.valueOf(car.getBodyType()));
+        carOutDto.setMileage(car.getMileage());
+        carOutDto.setFuelType(FuelType.valueOf(car.getFuelType()));
+        carOutDto.setFirstRegistrationFrom(car.getFirstRegistrationFrom());
+        carOutDto.setGearBox(GearBox.valueOf(car.getGearBox()));
+        carOutDto.setModel(car.getModel());
+        carOutDto.setPower(car.getPower());
+        carOutDto.setPrice(car.getPrice());
         return carOutDto;
     }
     private Car mapCarInDtoToCar(CarInDto carInDto) {
         Car car = new Car();
         car.setMake(carInDto.getMake());
+        car.setBodyType(carInDto.getBodyType().toString());
+        car.setMileage(carInDto.getMileage());
+        car.setFuelType(carInDto.getFuelType().toString());
+        car.setFirstRegistrationFrom(carInDto.getFirstRegistrationFrom());
+        car.setGearBox(carInDto.getGearBox().toString());
+        car.setModel(carInDto.getModel());
+        car.setPower(carInDto.getPower());
+        car.setPrice(carInDto.getPrice());
         return car;
     }
 }
