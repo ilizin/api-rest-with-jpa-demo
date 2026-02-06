@@ -1,18 +1,8 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 
 public class Vehicle {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name="id")
-    private int id;
 
     @Column(name="make")
     private String make;
@@ -37,14 +27,6 @@ public class Vehicle {
 
     @Column(name="power")
     private int power;
-
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
 
     public String getMake() {
         return make;

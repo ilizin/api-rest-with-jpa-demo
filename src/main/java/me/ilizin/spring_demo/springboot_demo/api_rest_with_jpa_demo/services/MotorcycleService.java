@@ -2,9 +2,11 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleOutDto;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class MotorcycleService implements IMotorcycleService {
 
     @Override

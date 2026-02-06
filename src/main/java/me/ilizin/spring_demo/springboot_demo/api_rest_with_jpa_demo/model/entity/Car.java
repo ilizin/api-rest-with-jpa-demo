@@ -6,6 +6,11 @@ import jakarta.persistence.*;
 @Table(name="car")
 public class Car extends Vehicle {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name="id")
+    private int id;
+
     @Column(name="bodyType")
     private String bodyType;
 
@@ -15,5 +20,13 @@ public class Car extends Vehicle {
 
     public void setBodyType(String bodyType) {
         this.bodyType = bodyType;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }
