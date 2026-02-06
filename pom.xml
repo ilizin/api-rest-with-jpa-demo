@@ -9,7 +9,7 @@
 		<relativePath>../springboot-demos</relativePath> <!-- lookup parent from repository -->
 	</parent>
 	<artifactId>api-rest-with-jpa-demo</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>api-rest-with-jpa-demo</name>
 	<description>A CRUD API rest with Jpa/hibernate (h2) demo project</description>
 	<url/>
