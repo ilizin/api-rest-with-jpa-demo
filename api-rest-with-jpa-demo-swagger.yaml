@@ -1,0 +1,177 @@
+openapi: 3.1.1
+info:
+  title: Api rest with JPA demo
+  description: AA CRUD API rest with Jpa/hibernate (h2) demo project.
+  version: 1.0.0-SNAPSHOT
+  contact:
+    name: Contact the developer
+    url: 'https://github.com/ilizin'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  termsOfService: 'http://swagger.io/terms/'
+
+externalDocs:
+  description: Find out more about Swagger
+  url: 'https://swagger.io/'
+
+paths:
+  /v1/sqrt/{value}:
+    get:
+      summary: Calculate the square roots of a positive number
+      description: Calculate the square roots of a positive number using the Heron algorithm
+      tags:
+        - Number controller
+      parameters:
+        - in: path
+          name: value
+          required: true
+          description: A positive number the square root must be calculated
+          example: 4
+          schema:
+            type: integer
+      responses:
+        "200": # status code
+          description: Successful square roots calculation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OkResponseDTO" # Reference to an object
+              example:
+                value: 2
+                responseTime: 10
+        "400": # status code
+          description: Incorrect input value
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO" # Reference to an object
+              example:
+                status: 400
+                message: The value must be positive
+
+  /v1/prime:
+    get:
+      summary: Check if a number is a prime number
+      description: Return true if the number is prime else return false
+      tags:
+        - Number controller
+      parameters:
+        - in: query
+          name: primeInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/PrimeInDTO" # Reference to an object
+      responses:
+        "200": # status code
+          description: Successful prime number evaluation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OkResponseDTO" # Reference to an object
+              example:
+                value: true
+                responseTime: 10
+  /v1/gcd:
+    get:
+      summary: Find the Greatest Common Divisor (GCD) of two integers
+      description: Use the Euclidean Algorithm to find the Greatest Common Divisor (GCD) of two integers
+      tags:
+        - Number controller
+      parameters:
+        - in: query
+          name: gcdInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/GcdInDTO" # Reference to an object
+      responses:
+        "200": # status code
+          description: Successful GCD evaluation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OkResponseDTO" # Reference to an object
+              example:
+                value: 35
+                responseTime: 10
+
+  /v1/palindrome/{value}:
+    get:
+      summary: Check if a string is palindrome or not
+      description: Return true if the string is palindrome, else false
+      tags:
+        - String controller
+      parameters:
+        - in: path
+          name: value
+          required: true
+          description: A word to be checked if it's palindrome or not
+          example: Level
+          schema:
+            type: string
+      responses:
+        "200": # status code
+          description: Successful string evaluation
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/OkResponseDTO" # Reference to an object
+              example:
+                value: true
+                responseTime: 10
+        "400": # status code
+          description: Incorrect input value
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO" # Reference to an object
+              example:
+                status: 400
+                message: Wrong '1981' argument, please only use letters
+components:
+  schemas:
+    OkResponseDTO:
+      type: object
+      properties:
+        value:
+          description: The calculated value
+          type: string
+          example: 4
+        responseTime:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+    ErrorResponseDTO:
+      type: object
+      properties:
+        status:
+          description: The error status code
+          type: integer
+          example: 400
+        message:
+          description: The error message
+          type: string
+          example: "The value must be positive"
+    GcdInDTO:
+      type: object
+      properties:
+        value1:
+          description: First number
+          type: integer
+          example: 105
+        value2:
+          description: Second number
+          type: integer
+          example: 70
+    PrimeInDTO:
+      type: object
+      properties:
+        value:
+          description: The integer value we want to validate if it's prime
+          type: integer
+          example: 17
+        method:
+          description: The method used to check if a number is prime
+          type: string
+          enum: [NAIVE_METHOD, SIEVE_OF_ERATOSTHENES_METHOD, SIEVE_OF_SUNDARAM_METHOD, SIEVE_OF_ATKIN_METHOD]
+          example: NAIVE_METHOD
