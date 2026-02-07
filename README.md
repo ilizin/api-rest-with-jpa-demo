@@ -26,20 +26,12 @@ This demo project goal is just didactic, so I encourage you to read the code, th
 
 ## 📘 Description
 
-This demo project set up an easy API with two controllers and the whole set of CRUD operations each:
+This API provides two controllers with basic CRUD of operations to manage a car store.
+The API is fully described with an OpenAPI document hosted on GitHub, please visualize it at the following swagger page https://ilizin.github.io/api-rest-with-jpa-demo/
 
-* Advertiser controller
-    * GET /api/v1/advertisers
-    * GET /api/v1/advertiser/{advertiserId}
-    * POST /api/v1/advertiser
-    * PUT /api/v1/advertiser/{advertiserId}
-    * DELETE /api/v1/advertiser/{advertiserId}
-* Property controller
-    * GET /api/v1/properties
-    * GET /api/v1/property/{propertyId}
-    * POST /api/v1/property
-    * PUT /api/v1/property/{propertyId}
-    * DELETE /api/v1/property/{propertyId}
+### CarController
+
+### MotorcycleController
 
 ## 💾 Installation
 
@@ -82,8 +74,7 @@ $ mvn clean install
 [INFO]   from pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 ...
-est method 'PUT' is not supported]
-[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.707 s -- in me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest.PropertyRestControllerTest
+[INFO] Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 3.707 s -- in me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers.CarRestControllerTest
 [INFO]
 [INFO] Results:
 [INFO]
@@ -136,6 +127,7 @@ Besides that, I follow this folders structure for an API rest development.
     │   │   └── me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo
     │   │       ├── config
     │   │       ├── controllers
+    │   │       ├── data  
     │   │       ├── enums
     │   │       ├── filters
     │   │       ├── model

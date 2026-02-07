@@ -1,4 +1,4 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.data.dao;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Motorcycle;
 import org.springframework.data.jpa.repository.JpaRepository;

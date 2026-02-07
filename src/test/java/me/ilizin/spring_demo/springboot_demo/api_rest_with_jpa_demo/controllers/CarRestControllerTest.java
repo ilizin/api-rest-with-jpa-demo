@@ -1,4 +1,4 @@
-package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.rest;
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
@@ -14,7 +14,7 @@ import org.springframework.http.HttpMethod;
    in test environments) and the injection of the port with @LocalServerPort. Also, note that Spring Boot has automatically
    provided a TestRestTemplate for you. */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public class PropertyRestControllerTest {
+public class CarRestControllerTest {
 
     private static final String EXPECTED_ONE_ADVERTISEMENT = "{\"title\":\"Studio in Culture Thonglor\",\"province\":\"Bangkok\",\"municipality\":null,\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700.0,\"description\":\"A studio apartment available for Sale\",\"size\":120,\"floor\":2,\"totalRooms\":4,\"totalFlatmates\":4,\"totalBathrooms\":2,\"flatmatesGender\":\"MEN_AND_WOMEN\",\"flatmatesAge\":{\"min\":29,\"max\":49},\"hasLift\":false,\"id\":1,\"lgbtFriendly\":true}";
     private static final String EXPECTED_LIST_OF_ONE_ADVERTISEMENT = "[" + EXPECTED_ONE_ADVERTISEMENT + "]";

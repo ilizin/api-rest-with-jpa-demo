@@ -1,6 +1,6 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.dao.ICarDao;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.data.dao.ICarDao;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
