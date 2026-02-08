@@ -16,23 +16,22 @@ externalDocs:
   url: 'https://swagger.io/'
 
 paths:
-  /v1/sqrt/{value}:
+  /v1/cars:
     get:
-      summary: Calculate the square roots of a positive number
-      description: Calculate the square roots of a positive number using the Heron algorithm
+      summary: Get all the cars
       tags:
-        - Number controller
+        - Car controller
       parameters:
-        - in: path
-          name: value
+        - in: query
+          name: carInDto
           required: true
           description: A positive number the square root must be calculated
           example: 4
           schema:
-            type: integer
+            $ref: "#/components/schemas/CarInDto"
       responses:
         "200": # status code
-          description: Successful square roots calculation
+          description: Successfully retrieved some data
           content:
             application/json:
               schema:
@@ -41,7 +40,7 @@ paths:
                 value: 2
                 responseTime: 10
         "400": # status code
-          description: Incorrect input value
+          description: Car not found
           content:
             application/json:
               schema:
@@ -49,26 +48,87 @@ paths:
               example:
                 status: 400
                 message: The value must be positive
-
-  /v1/prime:
-    get:
-      summary: Check if a number is a prime number
-      description: Return true if the number is prime else return false
+    put:
+      summary: Update an existing car
       tags:
-        - Number controller
+        - Car controller
       parameters:
         - in: query
-          name: primeInDto
+          name: carInDto
+          required: true
+          description: A positive number the square root must be calculated
+          example: 4
+          schema:
+            $ref: "#/components/schemas/CarInDto"
+      responses:
+        "200": # status code
+          description: Successfully updated an existing car
+          content:
+            application/json:
+              schema:
+                type: integer
+              example:
+                value: true
+                responseTime: 10
+        "400": # status code
+          description: Car not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO" # Reference to an object
+              example:
+                status: 400
+                message: The value must be positive
+  /v1/car/{carId}:
+    get:
+      summary: Find a car by id
+      tags:
+        - Car controller
+      parameters:
+        - in: path
+          name: carId
           required: true
           schema:
             $ref: "#/components/schemas/PrimeInDTO" # Reference to an object
       responses:
         "200": # status code
-          description: Successful prime number evaluation
+          description: Successfully retrieved some data
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/OkResponseDTO" # Reference to an object
+                type: integer
+              example:
+                value: true
+                responseTime: 10
+        "400": # status code
+          description: Car not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO" # Reference to an object
+              example:
+                status: 400
+                message: The value must be positive
+  /v1/car:
+    post:
+      summary: Add a new car
+      tags:
+        - Car controller
+      parameters:
+        - in: query
+          name: carInDto
+          required: true
+          description: A positive number the square root must be calculated
+          example: 4
+          schema:
+            $ref: "#/components/schemas/CarInDto"
+      responses:
+        "200": # status code
+          description: Successfully added a new car
+          content:
+            application/json:
+              schema:
+                type: integer
               example:
                 value: true
                 responseTime: 10
