@@ -228,7 +228,7 @@ paths:
     put:
       summary: Update an existing car
       tags:
-        - Car controller
+        - Motorcycle controller
       parameters:
         - in: query
           name: carInDto
@@ -259,7 +259,7 @@ paths:
     delete:
       summary: Delete an existing car
       tags:
-        - Car controller
+        - Motorcycle controller
       parameters:
         - in: query
           name: carInDto
