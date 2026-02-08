@@ -48,21 +48,20 @@ paths:
               example:
                 status: 400
                 message: The value must be positive
-    put:
-      summary: Update an existing car
+  /v1/car/{carId}:
+    get:
+      summary: Find a car by id
       tags:
         - Car controller
       parameters:
-        - in: query
-          name: carInDto
+        - in: path
+          name: carId
           required: true
-          description: A positive number the square root must be calculated
-          example: 4
           schema:
-            $ref: "#/components/schemas/CarInDto"
+            $ref: "#/components/schemas/PrimeInDTO" # Reference to an object
       responses:
         "200": # status code
-          description: Successfully updated an existing car
+          description: Successfully retrieved some data
           content:
             application/json:
               schema:
@@ -79,20 +78,52 @@ paths:
               example:
                 status: 400
                 message: The value must be positive
-  /v1/car/{carId}:
-    get:
-      summary: Find a car by id
+  put:
+    summary: Update an existing car
+    tags:
+      - Car controller
+    parameters:
+      - in: query
+        name: carInDto
+        required: true
+        description: A positive number the square root must be calculated
+        example: 4
+        schema:
+          $ref: "#/components/schemas/CarInDto"
+    responses:
+      "200": # status code
+        description: Successfully updated an existing car
+        content:
+          application/json:
+            schema:
+              type: integer
+            example:
+              value: true
+              responseTime: 10
+      "400": # status code
+        description: Car not found
+        content:
+          application/json:
+            schema:
+              $ref: "#/components/schemas/ErrorResponseDTO" # Reference to an object
+            example:
+              status: 400
+              message: The value must be positive
+    delete:
+      summary: Delete an existing car
       tags:
         - Car controller
       parameters:
-        - in: path
-          name: carId
+        - in: query
+          name: carInDto
           required: true
+          description: A positive number the square root must be calculated
+          example: 4
           schema:
-            $ref: "#/components/schemas/PrimeInDTO" # Reference to an object
+            $ref: "#/components/schemas/CarInDto"
       responses:
         "200": # status code
-          description: Successfully retrieved some data
+          description: Successfully deleted an existing car
           content:
             application/json:
               schema:
@@ -132,62 +163,6 @@ paths:
               example:
                 value: true
                 responseTime: 10
-  /v1/gcd:
-    get:
-      summary: Find the Greatest Common Divisor (GCD) of two integers
-      description: Use the Euclidean Algorithm to find the Greatest Common Divisor (GCD) of two integers
-      tags:
-        - Number controller
-      parameters:
-        - in: query
-          name: gcdInDto
-          required: true
-          schema:
-            $ref: "#/components/schemas/GcdInDTO" # Reference to an object
-      responses:
-        "200": # status code
-          description: Successful GCD evaluation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/OkResponseDTO" # Reference to an object
-              example:
-                value: 35
-                responseTime: 10
-
-  /v1/palindrome/{value}:
-    get:
-      summary: Check if a string is palindrome or not
-      description: Return true if the string is palindrome, else false
-      tags:
-        - String controller
-      parameters:
-        - in: path
-          name: value
-          required: true
-          description: A word to be checked if it's palindrome or not
-          example: Level
-          schema:
-            type: string
-      responses:
-        "200": # status code
-          description: Successful string evaluation
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/OkResponseDTO" # Reference to an object
-              example:
-                value: true
-                responseTime: 10
-        "400": # status code
-          description: Incorrect input value
-          content:
-            application/json:
-              schema:
-                $ref: "#/components/schemas/ErrorResponseDTO" # Reference to an object
-              example:
-                status: 400
-                message: Wrong '1981' argument, please only use letters
 components:
   schemas:
     OkResponseDTO:
