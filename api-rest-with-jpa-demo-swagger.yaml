@@ -78,37 +78,37 @@ paths:
               example:
                 status: 400
                 message: The value must be positive
-  put:
-    summary: Update an existing car
-    tags:
-      - Car controller
-    parameters:
-      - in: query
-        name: carInDto
-        required: true
-        description: A positive number the square root must be calculated
-        example: 4
-        schema:
-          $ref: "#/components/schemas/CarInDto"
-    responses:
-      "200": # status code
-        description: Successfully updated an existing car
-        content:
-          application/json:
-            schema:
-              type: integer
-            example:
-              value: true
-              responseTime: 10
-      "400": # status code
-        description: Car not found
-        content:
-          application/json:
-            schema:
-              $ref: "#/components/schemas/ErrorResponseDTO" # Reference to an object
-            example:
-              status: 400
-              message: The value must be positive
+    put:
+      summary: Update an existing car
+      tags:
+        - Car controller
+      parameters:
+        - in: query
+          name: carInDto
+          required: true
+          description: A positive number the square root must be calculated
+          example: 4
+          schema:
+            $ref: "#/components/schemas/CarInDto"
+      responses:
+        "200": # status code
+          description: Successfully updated an existing car
+          content:
+            application/json:
+              schema:
+                type: integer
+              example:
+                value: true
+                responseTime: 10
+        "400": # status code
+          description: Car not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO" # Reference to an object
+              example:
+                status: 400
+                message: The value must be positive
     delete:
       summary: Delete an existing car
       tags:
