@@ -312,18 +312,46 @@ paths:
                 responseTime: 10
 components:
   schemas:
-    OkResponseDTO:
+    MotorcycleInDto:
       type: object
       properties:
-        value:
+        make:
           description: The calculated value
           type: string
           example: 4
-        responseTime:
+        model:
           description: The time in seconds to calculate the value
           type: integer
           example: 50
-    ErrorResponseDTO:
+        firstRegistrationFrom:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        price:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        mileage:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        fuelType:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        gearBox:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        power:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        bodyType:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+    ErrorResponse:
       type: object
       properties:
         status:
@@ -334,26 +362,128 @@ components:
           description: The error message
           type: string
           example: "The value must be positive"
-    GcdInDTO:
+    MotorcycleOutDto:
       type: object
       properties:
-        value1:
-          description: First number
-          type: integer
-          example: 105
-        value2:
-          description: Second number
-          type: integer
-          example: 70
-    PrimeInDTO:
-      type: object
-      properties:
-        value:
-          description: The integer value we want to validate if it's prime
-          type: integer
-          example: 17
-        method:
-          description: The method used to check if a number is prime
+        make:
+          description: The calculated value
           type: string
-          enum: [NAIVE_METHOD, SIEVE_OF_ERATOSTHENES_METHOD, SIEVE_OF_SUNDARAM_METHOD, SIEVE_OF_ATKIN_METHOD]
-          example: NAIVE_METHOD
+          example: 4
+        model:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        firstRegistrationFrom:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        price:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        mileage:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        fuelType:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        gearBox:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        power:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        bodyType:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        id:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+    CarInDto:
+      type: object
+      properties:
+        make:
+          description: The calculated value
+          type: string
+          example: 4
+        model:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        firstRegistrationFrom:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        price:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        mileage:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        fuelType:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        gearBox:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        power:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        bodyType:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+    CarOutDto:
+      type: object
+      properties:
+        make:
+          description: The calculated value
+          type: string
+          example: 4
+        model:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        firstRegistrationFrom:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        price:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        mileage:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        fuelType:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        gearBox:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        power:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        bodyType:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        id:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
