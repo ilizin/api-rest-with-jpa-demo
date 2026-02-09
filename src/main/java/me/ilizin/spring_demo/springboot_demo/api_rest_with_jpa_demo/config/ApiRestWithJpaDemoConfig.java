@@ -5,16 +5,21 @@ import io.swagger.v3.oas.models.OpenAPI;
 import io.swagger.v3.oas.models.info.Contact;
 import io.swagger.v3.oas.models.info.Info;
 import io.swagger.v3.oas.models.info.License;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.info.BuildProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
 public class ApiRestWithJpaDemoConfig {
 
+    @Autowired
+    private BuildProperties buildProperties;
+
     @Bean
     public OpenAPI customOpenAPI() {
         return new OpenAPI().info(new Info()
-                        .version("1.0.0-SNAPSHOT")
+                        .version(buildProperties.getVersion())
                         .title("Api rest with JPA demo")
                         .description("A CRUD API rest with Jpa/hibernate (h2) demo project")
                         .contact(new Contact()

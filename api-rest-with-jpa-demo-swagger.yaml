@@ -321,7 +321,7 @@ components:
           example: 4
         model:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         firstRegistrationFrom:
           description: The time in seconds to calculate the value
@@ -337,11 +337,11 @@ components:
           example: 50
         fuelType:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         gearBox:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         power:
           description: The time in seconds to calculate the value
@@ -349,7 +349,7 @@ components:
           example: 50
         bodyType:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
     ErrorResponse:
       type: object
@@ -371,7 +371,7 @@ components:
           example: 4
         model:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         firstRegistrationFrom:
           description: The time in seconds to calculate the value
@@ -387,11 +387,11 @@ components:
           example: 50
         fuelType:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         gearBox:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         power:
           description: The time in seconds to calculate the value
@@ -399,7 +399,7 @@ components:
           example: 50
         bodyType:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         id:
           description: The time in seconds to calculate the value
@@ -414,7 +414,7 @@ components:
           example: 4
         model:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         firstRegistrationFrom:
           description: The time in seconds to calculate the value
@@ -430,11 +430,11 @@ components:
           example: 50
         fuelType:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         gearBox:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         power:
           description: The time in seconds to calculate the value
@@ -442,7 +442,7 @@ components:
           example: 50
         bodyType:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
     CarOutDto:
       type: object
@@ -453,7 +453,7 @@ components:
           example: 4
         model:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         firstRegistrationFrom:
           description: The time in seconds to calculate the value
@@ -469,11 +469,11 @@ components:
           example: 50
         fuelType:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         gearBox:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         power:
           description: The time in seconds to calculate the value
@@ -481,7 +481,7 @@ components:
           example: 50
         bodyType:
           description: The time in seconds to calculate the value
-          type: integer
+          type: string
           example: 50
         id:
           description: The time in seconds to calculate the value
