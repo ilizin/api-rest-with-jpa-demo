@@ -10,7 +10,7 @@
 	</parent>
 	<artifactId>api-rest-with-jpa-demo</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
-	<name>api-rest-with-jpa-demo</name>
+	<name>Api rest with JPA demo</name>
 	<description>A CRUD API rest with Jpa/hibernate (h2) demo project</description>
 	<url/>
 	<licenses>

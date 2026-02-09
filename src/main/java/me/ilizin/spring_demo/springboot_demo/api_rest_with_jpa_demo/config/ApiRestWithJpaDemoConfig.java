@@ -20,7 +20,7 @@ public class ApiRestWithJpaDemoConfig {
     public OpenAPI customOpenAPI() {
         return new OpenAPI().info(new Info()
                         .version(buildProperties.getVersion())
-                        .title("Api rest with JPA demo")
+                        .title(buildProperties.getName())
                         .description("A CRUD API rest with Jpa/hibernate (h2) demo project")
                         .contact(new Contact()
                                 .name("Contact the developer")
