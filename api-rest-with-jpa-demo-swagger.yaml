@@ -16,7 +16,7 @@ externalDocs:
   url: 'https://swagger.io/'
 
 paths:
-  /v1/cars:
+  /api/v1/cars:
     get:
       summary: Get all the cars
       tags:
@@ -48,7 +48,7 @@ paths:
               example:
                 status: 400
                 message: The value must be positive
-  /v1/car/{carId}:
+  /api/v1/car/{carId}:
     get:
       summary: Find a car by id
       tags:
@@ -140,7 +140,7 @@ paths:
               example:
                 status: 400
                 message: The value must be positive
-  /v1/car:
+  /api/v1/car:
     post:
       summary: Add a new car
       tags:
@@ -163,7 +163,7 @@ paths:
               example:
                 value: true
                 responseTime: 10
-  /v1/motorcycles:
+  /api/v1/motorcycles:
     get:
       summary: Get all the cars
       tags:
@@ -195,7 +195,7 @@ paths:
               example:
                 status: 400
                 message: The value must be positive
-  /v1/motorcycle/{motorcycleId}:
+  /api/v1/motorcycle/{motorcycleId}:
     get:
       summary: Find a car by id
       tags:
@@ -287,7 +287,7 @@ paths:
               example:
                 status: 400
                 message: The value must be positive
-  /v1/motorcycle:
+  /api/v1/motorcycle:
     post:
       summary: Add a new car
       tags:
