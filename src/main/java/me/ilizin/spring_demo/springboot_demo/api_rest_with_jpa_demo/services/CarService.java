@@ -8,6 +8,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.Ca
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Car;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
@@ -38,6 +39,7 @@ public class CarService implements ICarService {
         return mapCarToCarOutDto(car);
     }
 
+    @Transactional
     @Override
     public CarOutDto save(CarInDto carInDto) {
         Car car = mapCarInDtoToCar(carInDto);
@@ -45,6 +47,7 @@ public class CarService implements ICarService {
         return mapCarToCarOutDto(savedCar);
     }
 
+    @Transactional
     @Override
     public CarOutDto update(CarInDto carInDto, int carId) {
         Car car = mapCarInDtoToCar(carInDto);
