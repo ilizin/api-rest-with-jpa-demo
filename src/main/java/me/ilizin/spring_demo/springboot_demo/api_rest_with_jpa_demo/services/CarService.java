@@ -56,6 +56,7 @@ public class CarService implements ICarService {
         return mapCarToCarOutDto(savedCar);
     }
 
+    @Transactional
     @Override
     public void deleteById(int id) {
         carDao.deleteById(id);
