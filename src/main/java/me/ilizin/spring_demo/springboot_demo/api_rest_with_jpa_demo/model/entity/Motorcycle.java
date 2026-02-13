@@ -38,7 +38,6 @@ public class Motorcycle {
     @Column(name="bodyType")
     private String bodyTypeMotorcycle;
 
-
     public String getMake() {
         return make;
     }

@@ -3,7 +3,7 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto;
 import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.NotBlank;
 
-public class MotorcycleOutDto extends CarInDto {
+public class MotorcycleOutDto extends MotorcycleInDto {
 
     @Schema(description = "The motorcycle identifier", example = "1994")
     @NotBlank
