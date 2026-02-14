@@ -14,7 +14,6 @@ info:
 externalDocs:
   description: Find out more about Swagger
   url: 'https://swagger.io/'
-
 paths:
   /api/v1/cars:
     get:
@@ -34,15 +33,101 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/CarOutDto"
-        "400":
-          description: Car not found
+  /api/v1/car:
+    post:
+      summary: Add a new car
+      tags:
+        - Car controller
+      parameters:
+        - in: query
+          name: carInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/CarInDto"
+      responses:
+        "200":
+          description: Successfully added a new car
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/ErrorResponseDTO"
-              example:
-                status: 400
-                message: The value must be positive
+                $ref: "#/components/schemas/CarOutDto"
+  /api/v1/car/{carId}:
+    get:
+      summary: Find a car by id
+      tags:
+        - Car controller
+      parameters:
+        - in: path
+          name: carId
+          required: true
+          description: The car identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully retrieved some data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarOutDto"
+        "404":
+          description: Car with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+    put:
+      summary: Update an existing car
+      tags:
+        - Car controller
+      parameters:
+        - in: query
+          name: carInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/CarInDto"
+        - in: path
+          name: carId
+          required: true
+          description: The car identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully updated an existing car
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarOutDto"
+        "404":
+          description: Car with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+    delete:
+      summary: Delete an existing car
+      tags:
+        - Car controller
+      parameters:
+        - in: path
+          name: carId
+          required: true
+          description: The car identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully deleted an existing car
+        "404":
+          description: Car with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
 components:
   schemas:
     MotorcycleInDto:
@@ -209,7 +294,7 @@ components:
           description: The car identifier
           type: integer
           example: 50
-    ErrorResponseDTO:
+    ErrorResponseDto:
       type: object
       properties:
         status:

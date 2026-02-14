@@ -67,8 +67,7 @@ public class CarRestController {
                     })
     })*/
     @PutMapping("/car/{carId}")
-    public CarOutDto updateCar(@Parameter(description = "The car identifier", example = "1981")
-                                             @PathVariable int carId, @RequestBody CarInDto carInDto)
+    public CarOutDto updateCar(@PathVariable int carId, @RequestBody CarInDto carInDto)
             throws CarNotFoundException {
 
         CarOutDto carOutDto = carService.findById(carId);
@@ -80,7 +79,7 @@ public class CarRestController {
 
     /*@Operation(summary = "Delete an existing car")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Successfully deleted an existing car"),
+            @ApiResponse(responseCode = "200", description = "nSuccessfully deleted a existing car"),
             @ApiResponse(responseCode = "404", description = "Car not found", content =
                     { @Content(mediaType = "application/json", schema = @Schema(implementation = ErrorResponse.class),
                             examples = { @ExampleObject(value = "{\"status\": 404, \"message\":\"Car with id '1981'not found\"}")})
