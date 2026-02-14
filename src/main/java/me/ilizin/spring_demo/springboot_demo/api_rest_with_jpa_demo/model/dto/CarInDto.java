@@ -6,7 +6,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyTy
 
 public class CarInDto extends VehicleInDto {
 
-    @Schema(description = "The car body type", allowableValues = {"COMPACT", "SUV", "TRANSPORTER", "CONVERTIBLE", "VAN", "SEDAN", "STATION_WAGON", "COUPE"}, example = "COUPE")
+    //@Schema(description = "The car body type", allowableValues = {"COMPACT", "SUV", "TRANSPORTER", "CONVERTIBLE", "VAN", "SEDAN", "STATION_WAGON", "COUPE"}, example = "COUPE")
     @NotBlank
     private BodyType bodyType;
 

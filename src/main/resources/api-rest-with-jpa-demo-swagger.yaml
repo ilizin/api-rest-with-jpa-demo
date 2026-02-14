@@ -51,183 +51,172 @@ components:
         make:
           description: The calculated value
           type: string
-          example: 4
+          example: Ducati
         model:
           description: The time in seconds to calculate the value
           type: string
-          example: 50
+          example: 1199 Panigale
         firstRegistrationFrom:
           description: The time in seconds to calculate the value
           type: integer
-          example: 50
+          example: 2013
         price:
           description: The time in seconds to calculate the value
           type: integer
-          example: 50
+          example: 5200
         mileage:
           description: The time in seconds to calculate the value
           type: integer
-          example: 50
+          example: 10000
         fuelType:
           description: The time in seconds to calculate the value
           type: string
-          example: 50
+          example: GASOLINE
         gearBox:
           description: The time in seconds to calculate the value
           type: string
-          example: 50
+          example: MANUAL
         power:
           description: The time in seconds to calculate the value
           type: integer
-          example: 50
+          example: 200
         bodyType:
           description: The time in seconds to calculate the value
           type: string
-          example: 50
-    ErrorResponse:
-      type: object
-      properties:
-        status:
-          description: The error status code
-          type: integer
-          example: 400
-        message:
-          description: The error message
-          type: string
-          example: "The value must be positive"
+          example: SUPERSPORT
     MotorcycleOutDto:
       type: object
       properties:
         make:
           description: The calculated value
           type: string
-          example: 4
+          example: Ducati
         model:
           description: The time in seconds to calculate the value
           type: string
-          example: 50
+          example: 1199 Panigale
         firstRegistrationFrom:
           description: The time in seconds to calculate the value
           type: integer
-          example: 50
+          example: 2013
         price:
           description: The time in seconds to calculate the value
           type: integer
-          example: 50
+          example: 5200
         mileage:
           description: The time in seconds to calculate the value
           type: integer
-          example: 50
+          example: 10000
         fuelType:
           description: The time in seconds to calculate the value
           type: string
-          example: 50
+          example: GASOLINE
         gearBox:
           description: The time in seconds to calculate the value
           type: string
-          example: 50
+          example: MANUAL
         power:
           description: The time in seconds to calculate the value
           type: integer
-          example: 50
+          example: 200
         bodyType:
           description: The time in seconds to calculate the value
           type: string
-          example: 50
+          example: SUPERSPORT
         id:
-          description: The time in seconds to calculate the value
+          description: The car identifier
           type: integer
-          example: 50
+          example: 1981
     CarInDto:
       type: object
       properties:
         make:
-          description: The calculated value
+          description: The car make
           type: string
-          example: 4
+          example: Ferrari
         model:
-          description: The time in seconds to calculate the value
+          description: The car model
           type: string
-          example: 50
+          example: Testarossa
         firstRegistrationFrom:
-          description: The time in seconds to calculate the value
+          description: The date of first registration
           type: integer
-          example: 50
+          example: 1984
         price:
-          description: The time in seconds to calculate the value
+          description: The car price
           type: integer
-          example: 50
+          example: 250000
         mileage:
-          description: The time in seconds to calculate the value
+          description: The total distance a vehicle has traveled
           type: integer
-          example: 50
+          example: 51000
         fuelType:
-          description: The time in seconds to calculate the value
+          description: The car fuel type
           type: string
-          example: 50
+          example: GASOLINE
         gearBox:
-          description: The time in seconds to calculate the value
+          description: The car gearbox"
           type: string
-          example: 50
+          example: MANUAL
         power:
-          description: The time in seconds to calculate the value
+          description: The car power in horsepower
           type: integer
-          example: 50
+          example: 380
         bodyType:
-          description: The time in seconds to calculate the value
+          description: The car body type
           type: string
-          example: 50
+          example: COUPE
     CarOutDto:
       type: object
       properties:
         make:
-          description: The calculated value
+          description: The car make
           type: string
-          example: 4
+          example: Ferrari
         model:
-          description: The time in seconds to calculate the value
+          description: The car model
           type: string
-          example: 50
+          example: Testarossa
         firstRegistrationFrom:
-          description: The time in seconds to calculate the value
+          description: The date of first registration
           type: integer
-          example: 50
+          example: 1984
         price:
-          description: The time in seconds to calculate the value
+          description: The car price
           type: integer
-          example: 50
+          example: 250000
         mileage:
-          description: The time in seconds to calculate the value
+          description: The total distance a vehicle has traveled
           type: integer
-          example: 50
+          example: 51000
         fuelType:
-          description: The time in seconds to calculate the value
+          description: The car fuel type
           type: string
-          example: 50
+          example: GASOLINE
         gearBox:
-          description: The time in seconds to calculate the value
+          description: The car gearbox"
           type: string
-          example: 50
+          example: MANUAL
         power:
-          description: The time in seconds to calculate the value
+          description: The car power in horsepower
           type: integer
-          example: 50
+          example: 380
         bodyType:
-          description: The time in seconds to calculate the value
+          description: The car body type
           type: string
-          example: 50
+          example: COUPE
         id:
-          description: The time in seconds to calculate the value
+          description: The car identifier
           type: integer
           example: 50
     ErrorResponseDTO:
       type: object
       properties:
         status:
-          description: The calculated value
-          type: string
-          example: 4
+          description: The error status code
+          type: integer
+          example: 404
         message:
-          description: The time in seconds to calculate the value
+          description: The error message
           type: string
-          example: 50
+          example: Car with id '1981' not found

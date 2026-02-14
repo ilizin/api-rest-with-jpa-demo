@@ -5,7 +5,7 @@ import jakarta.validation.constraints.NotBlank;
 
 public class CarOutDto extends CarInDto {
 
-    @Schema(description = "The car identifier", example = "1981")
+    //@Schema(description = "The car identifier", example = "1981")
     @NotBlank
     private int id;
 

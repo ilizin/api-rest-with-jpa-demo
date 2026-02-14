@@ -6,7 +6,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyTy
 
 public class MotorcycleInDto extends VehicleInDto {
 
-    @Schema(description = "The motorcycle body type", allowableValues = {"SUPERSPORT"}, example = "SUPERSPORT")
+    //@Schema(description = "The motorcycle body type", allowableValues = {"SUPERSPORT"}, example = "SUPERSPORT")
     @NotBlank
     private BodyTypeMotorcycle bodyType;
 
