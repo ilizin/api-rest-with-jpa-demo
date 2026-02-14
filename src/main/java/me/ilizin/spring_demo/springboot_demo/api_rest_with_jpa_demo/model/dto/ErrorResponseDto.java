@@ -1,12 +1,9 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto;
 
-import io.swagger.v3.oas.annotations.media.Schema;
 
 public class ErrorResponseDto {
 
-    //@Schema(description = "The error status code", example = "404")
     private int status;
-    //@Schema(description = "The error message", example = "The value must be positive")
     private String message;
 
     public ErrorResponseDto() {}
