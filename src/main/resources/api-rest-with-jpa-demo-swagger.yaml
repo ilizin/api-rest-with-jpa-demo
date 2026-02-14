@@ -1,0 +1,233 @@
+openapi: 3.1.1
+info:
+  title: Api rest with JPA demo
+  description: A CRUD API rest with Jpa/hibernate (h2) demo project.
+  version: 1.0.0-SNAPSHOT
+  contact:
+    name: Contact the developer
+    url: 'https://github.com/ilizin'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  termsOfService: 'http://swagger.io/terms/'
+
+externalDocs:
+  description: Find out more about Swagger
+  url: 'https://swagger.io/'
+
+paths:
+  /api/v1/cars:
+    get:
+      summary: Get all the cars
+      tags:
+        - Car controller
+      parameters:
+        - in: query
+          name: carInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/CarInDto"
+      responses:
+        "200":
+          description: Successfully retrieved some data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarOutDto"
+        "400":
+          description: Car not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDTO"
+              example:
+                status: 400
+                message: The value must be positive
+components:
+  schemas:
+    MotorcycleInDto:
+      type: object
+      properties:
+        make:
+          description: The calculated value
+          type: string
+          example: 4
+        model:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        firstRegistrationFrom:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        price:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        mileage:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        fuelType:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        gearBox:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        power:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        bodyType:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+    ErrorResponse:
+      type: object
+      properties:
+        status:
+          description: The error status code
+          type: integer
+          example: 400
+        message:
+          description: The error message
+          type: string
+          example: "The value must be positive"
+    MotorcycleOutDto:
+      type: object
+      properties:
+        make:
+          description: The calculated value
+          type: string
+          example: 4
+        model:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        firstRegistrationFrom:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        price:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        mileage:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        fuelType:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        gearBox:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        power:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        bodyType:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        id:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+    CarInDto:
+      type: object
+      properties:
+        make:
+          description: The calculated value
+          type: string
+          example: 4
+        model:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        firstRegistrationFrom:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        price:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        mileage:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        fuelType:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        gearBox:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        power:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        bodyType:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+    CarOutDto:
+      type: object
+      properties:
+        make:
+          description: The calculated value
+          type: string
+          example: 4
+        model:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        firstRegistrationFrom:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        price:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        mileage:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        fuelType:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        gearBox:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        power:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+        bodyType:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
+        id:
+          description: The time in seconds to calculate the value
+          type: integer
+          example: 50
+    ErrorResponseDTO:
+      type: object
+      properties:
+        status:
+          description: The calculated value
+          type: string
+          example: 4
+        message:
+          description: The time in seconds to calculate the value
+          type: string
+          example: 50
