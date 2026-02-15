@@ -25,8 +25,7 @@ public class CarRestController {
     }
 
     @GetMapping("/car/{carId}")
-    public CarOutDto getCar(@Parameter(description = "The car identifier", example = "1981")
-                                          @PathVariable int carId) throws CarNotFoundException {
+    public CarOutDto getCar(@PathVariable int carId) throws CarNotFoundException {
         CarOutDto carOutDto = carService.findById(carId);
         if (carOutDto == null) {
             throw new CarNotFoundException("Car with id '" + carId + "'not found");
@@ -53,8 +52,7 @@ public class CarRestController {
     }
 
     @DeleteMapping("/car/{carId}")
-    public void deleteCar(@Parameter(description = "The car identifier", example = "1981")
-                                 @PathVariable int carId) throws CarNotFoundException {
+    public void deleteCar(@PathVariable int carId) throws CarNotFoundException {
         CarOutDto carOutDto = carService.findById(carId);
         if (carOutDto == null) {
             throw new CarNotFoundException("Car with id '" + carId + "'not found");

@@ -25,8 +25,7 @@ public class MotorcycleRestController {
     }
 
     @GetMapping("/motorcycle/{motorcycleId}")
-    public MotorcycleOutDto getMotorcycle(@Parameter(description = "The motorcycle identifier", example = "1981")
-                            @PathVariable int motorcycleId) throws MotorcycleNotFoundException {
+    public MotorcycleOutDto getMotorcycle(@PathVariable int motorcycleId) throws MotorcycleNotFoundException {
         MotorcycleOutDto motorcycleOutDto = motorcycleService.findById(motorcycleId);
         if (motorcycleOutDto == null) {
             throw new MotorcycleNotFoundException("Motorcycle with id '" + motorcycleId + "'not found");
@@ -42,8 +41,7 @@ public class MotorcycleRestController {
     }
 
     @PutMapping("/motorcycle/{motorcycleId}")
-    public MotorcycleOutDto updateMotorcycle(@Parameter(description = "The motorcycle identifier", example = "1981")
-                               @PathVariable int motorcycleId, @RequestBody MotorcycleInDto motorcycleInDto)
+    public MotorcycleOutDto updateMotorcycle(@PathVariable int motorcycleId, @RequestBody MotorcycleInDto motorcycleInDto)
             throws MotorcycleNotFoundException {
 
         MotorcycleOutDto motorcycleOutDto = motorcycleService.findById(motorcycleId);
@@ -54,8 +52,7 @@ public class MotorcycleRestController {
     }
 
     @DeleteMapping("/motorcycle/{motorcycleId}")
-    public void deleteMotorcycle(@Parameter(description = "The motorcycleId identifier", example = "1981")
-                          @PathVariable int motorcycleId) throws MotorcycleNotFoundException {
+    public void deleteMotorcycle(@PathVariable int motorcycleId) throws MotorcycleNotFoundException {
         MotorcycleOutDto motorcycleOutDto = motorcycleService.findById(motorcycleId);
         if (motorcycleOutDto == null) {
             throw new MotorcycleNotFoundException("Motorcycle with id '" + motorcycleId + "'not found");

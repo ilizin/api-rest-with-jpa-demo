@@ -20,12 +20,6 @@ paths:
       summary: Get all the cars
       tags:
         - Car controller
-      parameters:
-        - in: query
-          name: carInDto
-          required: true
-          schema:
-            $ref: "#/components/schemas/CarInDto"
       responses:
         "200":
           description: Successfully retrieved some data
@@ -128,84 +122,191 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/ErrorResponseDto"
+  /api/v1/motorcycles:
+    get:
+      summary: Get all the motorcycles
+      tags:
+        - Motorcycle controller
+      responses:
+        "200":
+          description: Successfully retrieved some data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MotorcycleOutDto"
+  /api/v1/motorcycle:
+    post:
+      summary: Add a new motorcycle
+      tags:
+        - Motorcycle controller
+      parameters:
+        - in: query
+          name: motorcycleInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/MotorcycleInDto"
+      responses:
+        "200":
+          description: Successfully added a new motorcycle
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MotorcycleOutDto"
+  /api/v1/motorcycle/{motorcycleId}:
+    get:
+      summary: Find a motorcycle by id
+      tags:
+        - Motorcycle controller
+      parameters:
+        - in: path
+          name: motorcycleId
+          required: true
+          description: The motorcycle identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully retrieved some data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MotorcycleOutDto"
+        "404":
+          description: Motorcycle with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+    put:
+      summary: Update an existing motorcycle
+      tags:
+        - Motorcycle controller
+      parameters:
+        - in: query
+          name: motorcycleInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/MotorcycleInDto"
+        - in: path
+          name: motorcycleId
+          required: true
+          description: The motorcycle identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully updated an existing motorcycle
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MotorcycleOutDto"
+        "404":
+          description: Motorcycle with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+    delete:
+      summary: Delete an existing motorcycle
+      tags:
+        - Motorcycle controller
+      parameters:
+        - in: path
+          name: motorcycleId
+          required: true
+          description: The motorcycle identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully deleted an existing motorcycle
+        "404":
+          description: Motorcycle with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
 components:
   schemas:
     MotorcycleInDto:
       type: object
       properties:
         make:
-          description: The calculated value
+          description: The motorcycle make
           type: string
           example: Ducati
         model:
-          description: The time in seconds to calculate the value
+          description: The motorcycle model
           type: string
           example: 1199 Panigale
         firstRegistrationFrom:
-          description: The time in seconds to calculate the value
+          description: The date of first registration
           type: integer
           example: 2013
         price:
-          description: The time in seconds to calculate the value
+          description: The motorcycle price
           type: integer
           example: 5200
         mileage:
-          description: The time in seconds to calculate the value
+          description: The total distance a vehicle has traveled
           type: integer
           example: 10000
         fuelType:
-          description: The time in seconds to calculate the value
+          description: The motorcycle fuel type
           type: string
           example: GASOLINE
         gearBox:
-          description: The time in seconds to calculate the value
+          description: The motorcycle gearbox
           type: string
           example: MANUAL
         power:
-          description: The time in seconds to calculate the value
+          description: The motorcycle power in horsepower
           type: integer
           example: 200
         bodyType:
-          description: The time in seconds to calculate the value
+          description: The motorcycle body type
           type: string
           example: SUPERSPORT
     MotorcycleOutDto:
       type: object
       properties:
         make:
-          description: The calculated value
+          description: The motorcycle make
           type: string
           example: Ducati
         model:
-          description: The time in seconds to calculate the value
+          description: The motorcycle model
           type: string
           example: 1199 Panigale
         firstRegistrationFrom:
-          description: The time in seconds to calculate the value
+          description: The date of first registration
           type: integer
           example: 2013
         price:
-          description: The time in seconds to calculate the value
+          description: The motorcycle price
           type: integer
           example: 5200
         mileage:
-          description: The time in seconds to calculate the value
+          description: The total distance a vehicle has traveled
           type: integer
           example: 10000
         fuelType:
-          description: The time in seconds to calculate the value
+          description: The motorcycle fuel type
           type: string
           example: GASOLINE
         gearBox:
-          description: The time in seconds to calculate the value
+          description: The motorcycle gearbox
           type: string
           example: MANUAL
         power:
-          description: The time in seconds to calculate the value
+          description: The motorcycle power in horsepower
           type: integer
           example: 200
         bodyType:
-          description: The time in seconds to calculate the value
+          description: The motorcycle body type
           type: string
           example: SUPERSPORT
         id:
@@ -240,7 +341,7 @@ components:
           type: string
           example: GASOLINE
         gearBox:
-          description: The car gearbox"
+          description: The car gearbox
           type: string
           example: MANUAL
         power:
@@ -279,7 +380,7 @@ components:
           type: string
           example: GASOLINE
         gearBox:
-          description: The car gearbox"
+          description: The car gearbox
           type: string
           example: MANUAL
         power:
