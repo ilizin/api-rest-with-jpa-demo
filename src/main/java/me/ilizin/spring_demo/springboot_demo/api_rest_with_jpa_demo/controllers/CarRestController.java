@@ -51,7 +51,7 @@ public class CarRestController {
         }
         return carService.update(carInDto, carId);
     }
-    
+
     @DeleteMapping("/car/{carId}")
     public void deleteCar(@Parameter(description = "The car identifier", example = "1981")
                                  @PathVariable int carId) throws CarNotFoundException {
