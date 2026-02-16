@@ -1,0 +1,408 @@
+openapi: 3.1.1
+info:
+  title: Api rest with JPA demo
+  description: A CRUD API rest with Jpa/hibernate (h2) demo project.
+  version: 1.0.0-SNAPSHOT
+  contact:
+    name: Contact the developer
+    url: 'https://github.com/ilizin'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
+  termsOfService: 'http://swagger.io/terms/'
+
+externalDocs:
+  description: Find out more about Swagger
+  url: 'https://swagger.io/'
+paths:
+  /api/v1/cars:
+    get:
+      summary: Get all the cars
+      tags:
+        - Car controller
+      responses:
+        "200":
+          description: Successfully retrieved some data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarOutDto"
+  /api/v1/car:
+    post:
+      summary: Add a new car
+      tags:
+        - Car controller
+      parameters:
+        - in: query
+          name: carInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/CarInDto"
+      responses:
+        "200":
+          description: Successfully added a new car
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarOutDto"
+  /api/v1/car/{carId}:
+    get:
+      summary: Find a car by id
+      tags:
+        - Car controller
+      parameters:
+        - in: path
+          name: carId
+          required: true
+          description: The car identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully retrieved some data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarOutDto"
+        "404":
+          description: Car with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+    put:
+      summary: Update an existing car
+      tags:
+        - Car controller
+      parameters:
+        - in: query
+          name: carInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/CarInDto"
+        - in: path
+          name: carId
+          required: true
+          description: The car identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully updated an existing car
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/CarOutDto"
+        "404":
+          description: Car with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+    delete:
+      summary: Delete an existing car
+      tags:
+        - Car controller
+      parameters:
+        - in: path
+          name: carId
+          required: true
+          description: The car identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully deleted an existing car
+        "404":
+          description: Car with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+  /api/v1/motorcycles:
+    get:
+      summary: Get all the motorcycles
+      tags:
+        - Motorcycle controller
+      responses:
+        "200":
+          description: Successfully retrieved some data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MotorcycleOutDto"
+  /api/v1/motorcycle:
+    post:
+      summary: Add a new motorcycle
+      tags:
+        - Motorcycle controller
+      parameters:
+        - in: query
+          name: motorcycleInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/MotorcycleInDto"
+      responses:
+        "200":
+          description: Successfully added a new motorcycle
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MotorcycleOutDto"
+  /api/v1/motorcycle/{motorcycleId}:
+    get:
+      summary: Find a motorcycle by id
+      tags:
+        - Motorcycle controller
+      parameters:
+        - in: path
+          name: motorcycleId
+          required: true
+          description: The motorcycle identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully retrieved some data
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MotorcycleOutDto"
+        "404":
+          description: Motorcycle with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+    put:
+      summary: Update an existing motorcycle
+      tags:
+        - Motorcycle controller
+      parameters:
+        - in: query
+          name: motorcycleInDto
+          required: true
+          schema:
+            $ref: "#/components/schemas/MotorcycleInDto"
+        - in: path
+          name: motorcycleId
+          required: true
+          description: The motorcycle identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully updated an existing motorcycle
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/MotorcycleOutDto"
+        "404":
+          description: Motorcycle with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+    delete:
+      summary: Delete an existing motorcycle
+      tags:
+        - Motorcycle controller
+      parameters:
+        - in: path
+          name: motorcycleId
+          required: true
+          description: The motorcycle identifier
+          example: 1994
+          schema:
+            type: integer
+      responses:
+        "200":
+          description: Successfully deleted an existing motorcycle
+        "404":
+          description: Motorcycle with id '1981' not found
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/ErrorResponseDto"
+components:
+  schemas:
+    MotorcycleInDto:
+      type: object
+      properties:
+        make:
+          description: The motorcycle make
+          type: string
+          example: Ducati
+        model:
+          description: The motorcycle model
+          type: string
+          example: 1199 Panigale
+        firstRegistrationFrom:
+          description: The date of first registration
+          type: integer
+          example: 2013
+        price:
+          description: The motorcycle price
+          type: integer
+          example: 5200
+        mileage:
+          description: The total distance a vehicle has traveled
+          type: integer
+          example: 10000
+        fuelType:
+          description: The motorcycle fuel type
+          type: string
+          example: GASOLINE
+        gearBox:
+          description: The motorcycle gearbox
+          type: string
+          example: MANUAL
+        power:
+          description: The motorcycle power in horsepower
+          type: integer
+          example: 200
+        bodyType:
+          description: The motorcycle body type
+          type: string
+          example: SUPERSPORT
+    MotorcycleOutDto:
+      type: object
+      properties:
+        make:
+          description: The motorcycle make
+          type: string
+          example: Ducati
+        model:
+          description: The motorcycle model
+          type: string
+          example: 1199 Panigale
+        firstRegistrationFrom:
+          description: The date of first registration
+          type: integer
+          example: 2013
+        price:
+          description: The motorcycle price
+          type: integer
+          example: 5200
+        mileage:
+          description: The total distance a vehicle has traveled
+          type: integer
+          example: 10000
+        fuelType:
+          description: The motorcycle fuel type
+          type: string
+          example: GASOLINE
+        gearBox:
+          description: The motorcycle gearbox
+          type: string
+          example: MANUAL
+        power:
+          description: The motorcycle power in horsepower
+          type: integer
+          example: 200
+        bodyType:
+          description: The motorcycle body type
+          type: string
+          example: SUPERSPORT
+        id:
+          description: The car identifier
+          type: integer
+          example: 1981
+    CarInDto:
+      type: object
+      properties:
+        make:
+          description: The car make
+          type: string
+          example: Ferrari
+        model:
+          description: The car model
+          type: string
+          example: Testarossa
+        firstRegistrationFrom:
+          description: The date of first registration
+          type: integer
+          example: 1984
+        price:
+          description: The car price
+          type: integer
+          example: 250000
+        mileage:
+          description: The total distance a vehicle has traveled
+          type: integer
+          example: 51000
+        fuelType:
+          description: The car fuel type
+          type: string
+          example: GASOLINE
+        gearBox:
+          description: The car gearbox
+          type: string
+          example: MANUAL
+        power:
+          description: The car power in horsepower
+          type: integer
+          example: 380
+        bodyType:
+          description: The car body type
+          type: string
+          example: COUPE
+    CarOutDto:
+      type: object
+      properties:
+        make:
+          description: The car make
+          type: string
+          example: Ferrari
+        model:
+          description: The car model
+          type: string
+          example: Testarossa
+        firstRegistrationFrom:
+          description: The date of first registration
+          type: integer
+          example: 1984
+        price:
+          description: The car price
+          type: integer
+          example: 250000
+        mileage:
+          description: The total distance a vehicle has traveled
+          type: integer
+          example: 51000
+        fuelType:
+          description: The car fuel type
+          type: string
+          example: GASOLINE
+        gearBox:
+          description: The car gearbox
+          type: string
+          example: MANUAL
+        power:
+          description: The car power in horsepower
+          type: integer
+          example: 380
+        bodyType:
+          description: The car body type
+          type: string
+          example: COUPE
+        id:
+          description: The car identifier
+          type: integer
+          example: 50
+    ErrorResponseDto:
+      type: object
+      properties:
+        status:
+          description: The error status code
+          type: integer
+          example: 404
+        message:
+          description: The error message
+          type: string
+          example: Car with id '1981' not found
