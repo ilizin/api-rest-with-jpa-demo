@@ -11,7 +11,7 @@
 	<artifactId>api-rest-with-jpa-demo</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<name>Api rest with JPA demo</name>
-	<description>A CRUD API rest with Jpa/hibernate (h2) demo project</description>
+	<description>A CRUD API rest demo project with Jpa/hibernate on an h2 database</description>
 	<url/>
 	<licenses>
 		<license/>

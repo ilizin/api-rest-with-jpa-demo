@@ -32,6 +32,7 @@ public class ApiRestWithJpaDemoConfig implements WebMvcConfigurer {
             OpenAPI openAPI = result.getOpenAPI();
             openAPI.getInfo().setTitle(buildProperties.getName());
             openAPI.getInfo().setVersion(buildProperties.getVersion());
+            //openAPI.getInfo().setDescription(buildProperties.get("description"));
             return openAPI;
         } else {
             throw new RuntimeException("Failed to parse OpenAPI definition: " + result.getMessages());

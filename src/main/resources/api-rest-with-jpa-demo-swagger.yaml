@@ -2,7 +2,7 @@ openapi: 3.1.1
 info:
   # Title and version will be overridden from the pom.xml
   title: zzz
-  description: A CRUD API rest with Jpa/hibernate (h2) demo project.
+  description: A CRUD API rest demo project with Jpa/hibernate on an h2 database
   version: zzz
   contact:
     name: Contact the developer
