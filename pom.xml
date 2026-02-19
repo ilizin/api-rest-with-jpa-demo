@@ -54,7 +54,7 @@
 			<version>2.8.4</version>
 		</dependency>
 
-		<!--        For Parsing Swagger yaml file into object-->
+		<!-- For Parsing Swagger yaml file into object-->
 		<dependency>
 			<groupId>io.swagger.parser.v3</groupId>
 			<artifactId>swagger-parser</artifactId>
