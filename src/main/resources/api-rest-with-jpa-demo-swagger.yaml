@@ -1,9 +1,9 @@
 openapi: 3.1.1
 info:
   # Title and version will be overridden from the pom.xml
-  title: zzz
+  title: Api rest with JPA demo
   description: A CRUD API rest demo project with Jpa/hibernate on an h2 database
-  version: zzz
+  version: 1.0.0-SNAPSHOT
   contact:
     name: Contact the developer
     url: 'https://github.com/ilizin'
