@@ -29,7 +29,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/CarOutDto"
+                type: array
+                items:
+                  $ref: "#/components/schemas/CarOutDto"
   /api/v1/car:
     post:
       summary: Add a new car
@@ -136,7 +138,9 @@ paths:
           content:
             application/json:
               schema:
-                $ref: "#/components/schemas/MotorcycleOutDto"
+                type: array
+                items:
+                  $ref: "#/components/schemas/MotorcycleOutDto"
   /api/v1/motorcycle:
     post:
       summary: Add a new motorcycle
