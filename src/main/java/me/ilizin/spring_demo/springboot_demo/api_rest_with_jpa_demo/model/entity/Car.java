@@ -17,6 +17,9 @@ public class Car {
     @Column(name="model")
     private String model;
 
+    @Column(name="submodel")
+    private String submodel;
+
     @Column(name="firstRegistrationFrom")
     private int firstRegistrationFrom;
 
@@ -52,6 +55,14 @@ public class Car {
 
     public void setModel(String model) {
         this.model = model;
+    }
+
+    public String getSubmodel() {
+        return submodel;
+    }
+
+    public void setSubmodel(String submodel) {
+        this.submodel = submodel;
     }
 
     public int getFirstRegistrationFrom() {
