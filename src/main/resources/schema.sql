@@ -32,4 +32,8 @@ CREATE TABLE IF NOT EXISTS motorcycle (
     power integer
 );
 
-INSERT INTO motorcycle (make, model, submodel, first_registration_from, body_type, price, mileage, fuel_type, gear_box, power) VALUES ('Ducati', '620 Sport', null, 2004, 'SUPERSPORT', 2700, 20000 'GASOLINE', 'MANUAL', 60);
+INSERT INTO motorcycle (make, model, submodel, first_registration_from, body_type, price, mileage, fuel_type, gear_box, power) VALUES ('Ducati', '620 Sport', null, 2004, 'SUPERSPORT', 2700, 20000, 'GASOLINE', 'MANUAL', 60);
+INSERT INTO motorcycle (make, model, submodel, first_registration_from, body_type, price, mileage, fuel_type, gear_box, power) VALUES ('Ducati', 'Streetfighter', 'V4S', 2021, 'SUPERSPORT', 20000, 15000, 'GASOLINE', 'MANUAL', 212);
+INSERT INTO motorcycle (make, model, submodel, first_registration_from, body_type, price, mileage, fuel_type, gear_box, power) VALUES ('Kawasaki', 'Ninja', '500 SE', 2024, 'SUPERSPORT', 7000, 17320, 'GASOLINE', 'MANUAL', 48);
+INSERT INTO motorcycle (make, model, submodel, first_registration_from, body_type, price, mileage, fuel_type, gear_box, power) VALUES ('Honda', 'NSR 50', null, 1990, 'SUPERSPORT', 5500, 22000, 'GASOLINE', 'MANUAL', 14);
+INSERT INTO motorcycle (make, model, submodel, first_registration_from, body_type, price, mileage, fuel_type, gear_box, power) VALUES ('Yamaha', 'FJ 1200', null, 1989, 'SUPERSPORT', 4000, 68000, 'GASOLINE', 'MANUAL', 131);
