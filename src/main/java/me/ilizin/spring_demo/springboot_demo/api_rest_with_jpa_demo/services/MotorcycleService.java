@@ -80,7 +80,7 @@ public class MotorcycleService implements IMotorcycleService {
     private Vehicle mapMotorcycleInDtoToMotorcycle(MotorcycleInDto motorcycleInDto) {
         Vehicle motorcycle = new Vehicle();
         motorcycle.setMake(motorcycleInDto.getMake());
-        motorcycle.setBodyTypeMotorcycle(motorcycleInDto.getBodyType().toString());
+        motorcycle.setBodyType(motorcycleInDto.getBodyType().toString());
         motorcycle.setMileage(motorcycleInDto.getMileage());
         motorcycle.setFuelType(motorcycleInDto.getFuelType().toString());
         motorcycle.setFirstRegistrationFrom(motorcycleInDto.getFirstRegistrationFrom());
