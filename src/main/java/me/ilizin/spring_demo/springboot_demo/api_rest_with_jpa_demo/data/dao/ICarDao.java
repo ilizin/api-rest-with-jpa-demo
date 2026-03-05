@@ -1,16 +1,16 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.data.dao;
 
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Car;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Vehicle;
 
 import java.util.List;
 
 public interface ICarDao {
 
-    List<Car> findAll();
+    List<Vehicle> findAll();
 
-    Car findById(int id);
+    Vehicle findById(int id);
 
-    Car save(Car car);
+    Vehicle save(Vehicle car);
 
     void deleteById(int id);
 }

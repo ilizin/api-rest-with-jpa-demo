@@ -1,13 +1,12 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.services;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.data.dao.MotorcycleRepository;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyTypeMotorcycle;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleOutDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Motorcycle;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Vehicle;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +24,7 @@ public class MotorcycleService implements IMotorcycleService {
 
     @Override
     public List<MotorcycleOutDto> findAll() {
-        List<Motorcycle> cars = motorcycleRepository.findAll();
+        List<Vehicle> cars = motorcycleRepository.findAll();
         return cars
                 .stream()
                 .map(this::mapMotorcycleToMotorcycleOutDto)
@@ -34,7 +33,7 @@ public class MotorcycleService implements IMotorcycleService {
 
     @Override
     public MotorcycleOutDto findById(int id) {
-        Optional<Motorcycle> motorcycle = motorcycleRepository.findById(id);
+        Optional<Vehicle> motorcycle = motorcycleRepository.findById(id);
         if (motorcycle.isEmpty()) {
             return null;
         }
@@ -44,16 +43,16 @@ public class MotorcycleService implements IMotorcycleService {
     @Transactional
     @Override
     public MotorcycleOutDto save(MotorcycleInDto motorcycleInDto) {
-        Motorcycle motorcycle = mapMotorcycleInDtoToMotorcycle(motorcycleInDto);
-        Motorcycle savedMotorcycle = motorcycleRepository.save(motorcycle);
+        Vehicle motorcycle = mapMotorcycleInDtoToMotorcycle(motorcycleInDto);
+        Vehicle savedMotorcycle = motorcycleRepository.save(motorcycle);
         return mapMotorcycleToMotorcycleOutDto(savedMotorcycle);
     }
 
     @Override
     public MotorcycleOutDto update(MotorcycleInDto motorcycleInDto, int motorcycleId) {
-        Motorcycle motorcycle = mapMotorcycleInDtoToMotorcycle(motorcycleInDto);
+        Vehicle motorcycle = mapMotorcycleInDtoToMotorcycle(motorcycleInDto);
         motorcycle.setId(motorcycleId);
-        Motorcycle savedMotorcycle = motorcycleRepository.save(motorcycle);
+        Vehicle savedMotorcycle = motorcycleRepository.save(motorcycle);
         return mapMotorcycleToMotorcycleOutDto(savedMotorcycle);
     }
 
@@ -63,7 +62,7 @@ public class MotorcycleService implements IMotorcycleService {
         motorcycleRepository.deleteById(id);
     }
 
-    private MotorcycleOutDto mapMotorcycleToMotorcycleOutDto(Motorcycle motorcycle) {
+    private MotorcycleOutDto mapMotorcycleToMotorcycleOutDto(Vehicle motorcycle) {
         MotorcycleOutDto motorcycleOutDto = new MotorcycleOutDto();
         motorcycleOutDto.setId(motorcycle.getId());
         motorcycleOutDto.setMake(motorcycle.getMake());
@@ -78,8 +77,8 @@ public class MotorcycleService implements IMotorcycleService {
         return motorcycleOutDto;
     }
 
-    private Motorcycle mapMotorcycleInDtoToMotorcycle(MotorcycleInDto motorcycleInDto) {
-        Motorcycle motorcycle = new Motorcycle();
+    private Vehicle mapMotorcycleInDtoToMotorcycle(MotorcycleInDto motorcycleInDto) {
+        Vehicle motorcycle = new Vehicle();
         motorcycle.setMake(motorcycleInDto.getMake());
         motorcycle.setBodyTypeMotorcycle(motorcycleInDto.getBodyType().toString());
         motorcycle.setMileage(motorcycleInDto.getMileage());

@@ -6,7 +6,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelTy
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Car;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Vehicle;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,7 +23,7 @@ public class CarService implements ICarService {
 
     @Override
     public List<CarOutDto> findAll() {
-        List<Car> cars = carDao.findAll();
+        List<Vehicle> cars = carDao.findAll();
         return cars
                 .stream()
                 .map(this::mapCarToCarOutDto)
@@ -32,7 +32,7 @@ public class CarService implements ICarService {
 
     @Override
     public CarOutDto findById(int id) {
-        Car car = carDao.findById(id);
+        Vehicle car = carDao.findById(id);
         if (car == null) {
             return null;
         }
@@ -42,17 +42,17 @@ public class CarService implements ICarService {
     @Transactional
     @Override
     public CarOutDto save(CarInDto carInDto) {
-        Car car = mapCarInDtoToCar(carInDto);
-        Car savedCar = carDao.save(car);
+        Vehicle car = mapCarInDtoToCar(carInDto);
+        Vehicle savedCar = carDao.save(car);
         return mapCarToCarOutDto(savedCar);
     }
 
     @Transactional
     @Override
     public CarOutDto update(CarInDto carInDto, int carId) {
-        Car car = mapCarInDtoToCar(carInDto);
+        Vehicle car = mapCarInDtoToCar(carInDto);
         car.setId(carId);
-        Car savedCar = carDao.save(car);
+        Vehicle savedCar = carDao.save(car);
         return mapCarToCarOutDto(savedCar);
     }
 
@@ -62,7 +62,7 @@ public class CarService implements ICarService {
         carDao.deleteById(id);
     }
 
-    private CarOutDto mapCarToCarOutDto(Car car) {
+    private CarOutDto mapCarToCarOutDto(Vehicle car) {
         CarOutDto carOutDto = new CarOutDto();
         carOutDto.setId(car.getId());
         carOutDto.setMake(car.getMake());
@@ -76,8 +76,8 @@ public class CarService implements ICarService {
         carOutDto.setPrice(car.getPrice());
         return carOutDto;
     }
-    private Car mapCarInDtoToCar(CarInDto carInDto) {
-        Car car = new Car();
+    private Vehicle mapCarInDtoToCar(CarInDto carInDto) {
+        Vehicle car = new Vehicle();
         car.setMake(carInDto.getMake());
         car.setBodyType(carInDto.getBodyType().toString());
         car.setMileage(carInDto.getMileage());

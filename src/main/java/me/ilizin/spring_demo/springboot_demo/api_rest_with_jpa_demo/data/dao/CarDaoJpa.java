@@ -2,7 +2,6 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.data.dao;
 
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.TypedQuery;
-import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Car;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
