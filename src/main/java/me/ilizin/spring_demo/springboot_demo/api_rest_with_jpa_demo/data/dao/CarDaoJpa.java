@@ -20,7 +20,7 @@ public class CarDaoJpa implements ICarDao {
 
     @Override
     public List<Vehicle> findAll() {
-        TypedQuery<Vehicle> query = entityManager.createQuery("from Car", Vehicle.class);
+        TypedQuery<Vehicle> query = entityManager.createQuery("from Vehicle where vehicleType = 'CAR'", Vehicle.class);
         return query.getResultList();
     }
 
