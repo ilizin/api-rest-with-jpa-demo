@@ -40,6 +40,7 @@ paths:
           name: carInDto
           required: true
           schema:
+            type: CarInDto
             $ref: "#/components/schemas/CarInDto"
       responses:
         "200":
@@ -83,6 +84,7 @@ paths:
           name: carInDto
           required: true
           schema:
+            type: CarInDto
             $ref: "#/components/schemas/CarInDto"
         - in: path
           name: carId
@@ -149,6 +151,7 @@ paths:
           name: motorcycleInDto
           required: true
           schema:
+            type: MotorcycleInDto
             $ref: "#/components/schemas/MotorcycleInDto"
       responses:
         "200":
@@ -192,6 +195,7 @@ paths:
           name: motorcycleInDto
           required: true
           schema:
+            type: MotorcycleInDto
             $ref: "#/components/schemas/MotorcycleInDto"
         - in: path
           name: motorcycleId
