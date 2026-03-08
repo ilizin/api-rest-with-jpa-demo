@@ -1,0 +1,9 @@
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.data.dao;
+
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Vehicle;
+
+import java.util.List;
+
+public interface MotorcycleCustomRepository {
+    List<Vehicle> findAll();
+}

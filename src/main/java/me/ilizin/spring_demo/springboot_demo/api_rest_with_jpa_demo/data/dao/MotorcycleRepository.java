@@ -7,5 +7,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 Spring data rest instead of exposing /employees it'll expose /owners
 This is often used to fix the spring pluralized form that is very basic as it just adds an 's' at the end of the word
 @RepositoryRestResource(path="owners") */
-public interface MotorcycleRepository extends JpaRepository<Vehicle, Integer> {
+public interface MotorcycleRepository extends MotorcycleCustomRepository, JpaRepository<Vehicle, Integer> {
 }
