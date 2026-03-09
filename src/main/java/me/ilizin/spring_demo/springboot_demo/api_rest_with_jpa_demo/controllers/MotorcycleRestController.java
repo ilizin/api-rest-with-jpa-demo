@@ -1,6 +1,5 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers;
 
-import io.swagger.v3.oas.annotations.Parameter;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.exceptions.MotorcycleNotFoundException;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleOutDto;
