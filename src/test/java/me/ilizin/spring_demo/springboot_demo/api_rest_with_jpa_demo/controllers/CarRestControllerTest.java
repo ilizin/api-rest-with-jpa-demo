@@ -2,6 +2,10 @@ package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers
 
 import static org.assertj.core.api.Assertions.assertThat;
 
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -16,14 +20,10 @@ import org.springframework.http.HttpMethod;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CarRestControllerTest {
 
-    private static final String EXPECTED_ONE_ADVERTISEMENT = "{\"title\":\"Studio in Culture Thonglor\",\"province\":\"Bangkok\",\"municipality\":null,\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700.0,\"description\":\"A studio apartment available for Sale\",\"size\":120,\"floor\":2,\"totalRooms\":4,\"totalFlatmates\":4,\"totalBathrooms\":2,\"flatmatesGender\":\"MEN_AND_WOMEN\",\"flatmatesAge\":{\"min\":29,\"max\":49},\"hasLift\":false,\"id\":1,\"lgbtFriendly\":true}";
-    private static final String EXPECTED_LIST_OF_ONE_ADVERTISEMENT = "[" + EXPECTED_ONE_ADVERTISEMENT + "]";
     private static final String EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT = "[{\"make\":\"Lamborghini\",\"model\":\"Miura\",\"firstRegistrationFrom\":1970,\"price\":2700000,\"mileage\":48000,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":380,\"bodyType\":\"COUPE\",\"id\":1},{\"make\":\"Ferrari\",\"model\":\"Testarossa\",\"firstRegistrationFrom\":1984,\"price\":250000,\"mileage\":51000,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":380,\"bodyType\":\"COUPE\",\"id\":2},{\"make\":\"Citroën\",\"model\":\"XM\",\"firstRegistrationFrom\":1992,\"price\":13900,\"mileage\":75500,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":194,\"bodyType\":\"SEDAN\",\"id\":3},{\"make\":\"Ferrari\",\"model\":\"Enzo\",\"firstRegistrationFrom\":2003,\"price\":4800000,\"mileage\":32000,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":650,\"bodyType\":\"COUPE\",\"id\":4},{\"make\":\"Lamborghini\",\"model\":\"Countach\",\"firstRegistrationFrom\":1981,\"price\":700000,\"mileage\":73000,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":455,\"bodyType\":\"COUPE\",\"id\":5}]";
     private static final String EXPECTED_ONE_ADVERTISEMENT_WITH_UPDATED_PRICE = "{\"title\":\"Studio in Culture Thonglor\",\"province\":\"Bangkok\",\"municipality\":null,\"country\":\"Thailand\",\"address\":\"Soi Yanat\",\"price\":8550700.0,\"description\":\"A studio apartment available for Sale\",\"size\":120,\"floor\":2,\"totalRooms\":4,\"totalFlatmates\":4,\"totalBathrooms\":2,\"flatmatesGender\":\"MEN_AND_WOMEN\",\"flatmatesAge\":{\"min\":29,\"max\":49},\"hasLift\":false,\"id\":1,\"lgbtFriendly\":true}";
-    /*private static final PropertyInDto PROPERTY_IN_DTO  = new PropertyInDto("Studio in Culture Thonglor", "Bangkok", null, "Thailand", "Soi Yanat",
-            8550700d, "A studio apartment available for Sale", 120, 2, 4, 4, 2, FlatMatesGender.MEN_AND_WOMEN,
-            new FlatmatesAgeRangeDto(29, 49), true, false);
-*/
+    private static final CarInDto CAR_IN_DTO  = new CarInDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV);
+
     private static final String URL_LAST_PART_FOR_GETTING_ALL_CARS = "/cars";
     private static final String URL_LAST_PART_FOR_GETTING_CAR_WITH_ID1 = "/car/1";
 
@@ -46,11 +46,15 @@ public class CarRestControllerTest {
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
 
-        /*assertThat(this.restTemplate.postForEntity(getUrl(port, "/property"), new HttpEntity<>(PROPERTY_IN_DTO),
+        assertThat(this.restTemplate.postForEntity(getUrl(port, "/car"), new HttpEntity<>(CAR_IN_DTO),
                 String.class)).isNotNull();
-        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_PROPERTIES), String.class))
+        
+        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
+                .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
+
+       /* assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
                 .contains(EXPECTED_LIST_OF_ONE_ADVERTISEMENT);
-        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_PROPERTY_ONE), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
                 .contains(EXPECTED_ONE_ADVERTISEMENT);*/
     }
 

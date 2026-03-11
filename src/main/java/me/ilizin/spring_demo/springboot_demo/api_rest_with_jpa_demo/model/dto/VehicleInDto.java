@@ -30,6 +30,20 @@ public class VehicleInDto {
     @NotBlank
     private int power;
 
+    public VehicleInDto() {}
+    
+    public VehicleInDto(String make, String model, int firstRegistrationFrom, int price, int mileage,
+                        FuelType fuelType, GearBox gearBox, int power) {
+        this.make = make;
+        this.model = model;
+        this.firstRegistrationFrom = firstRegistrationFrom;
+        this.price = price;
+        this.mileage = mileage;
+        this.fuelType = fuelType;
+        this.gearBox = gearBox;
+        this.power = power;
+    }
+
     public String getMake() {
         return make;
     }
