@@ -6,6 +6,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyTy
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -30,17 +31,13 @@ public class CarRestControllerTest {
     @Autowired
     private TestRestTemplate restTemplate;
 
-    private String getUrl(int port, String lastUrlPart) {
-        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1" + lastUrlPart;
-    }
-
     @Test
     public void addCar() {
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
                 .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
 
         assertThat(this.restTemplate.postForEntity(getUrl(port, "/car"), new HttpEntity<>(CAR_IN_DTO),
-                String.class)).isNotNull();
+                CarOutDto.class)).isNotNull();
 
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
                 .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
@@ -65,4 +62,8 @@ public class CarRestControllerTest {
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_PROPERTIES), String.class))
                 .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
     }*/
+
+    private String getUrl(int port, String lastUrlPart) {
+        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1" + lastUrlPart;
+    }
 }
