@@ -4,6 +4,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.data.dao.ICa
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.VehicleType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Vehicle;
@@ -78,6 +79,7 @@ public class CarService implements ICarService {
     }
     private Vehicle mapCarInDtoToCar(CarInDto carInDto) {
         Vehicle car = new Vehicle();
+        car.setVehicleType(VehicleType.CAR.toString());
         car.setMake(carInDto.getMake());
         car.setBodyType(carInDto.getBodyType().toString());
         car.setMileage(carInDto.getMileage());

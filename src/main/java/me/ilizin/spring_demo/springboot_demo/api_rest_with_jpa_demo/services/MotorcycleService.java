@@ -4,6 +4,7 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.data.dao.Mot
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyTypeMotorcycle;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.VehicleType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleOutDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.entity.Vehicle;
@@ -79,6 +80,7 @@ public class MotorcycleService implements IMotorcycleService {
 
     private Vehicle mapMotorcycleInDtoToMotorcycle(MotorcycleInDto motorcycleInDto) {
         Vehicle motorcycle = new Vehicle();
+        motorcycle.setVehicleType(VehicleType.MOTORCYCLE.toString());
         motorcycle.setMake(motorcycleInDto.getMake());
         motorcycle.setBodyType(motorcycleInDto.getBodyType().toString());
         motorcycle.setMileage(motorcycleInDto.getMileage());
