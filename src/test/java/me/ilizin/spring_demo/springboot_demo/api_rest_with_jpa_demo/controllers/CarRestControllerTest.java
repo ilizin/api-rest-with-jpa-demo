@@ -14,6 +14,8 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.HttpStatusCode;
 
 /* Note the use of webEnvironment=RANDOM_PORT to start the server with a random port (useful to avoid conflicts
    in test environments) and the injection of the port with @LocalServerPort. Also, note that Spring Boot has automatically
@@ -43,11 +45,17 @@ public class CarRestControllerTest {
 
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
                 .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
+    }
 
-       /* assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
-                .contains(EXPECTED_LIST_OF_ONE_ADVERTISEMENT);
+    @Test
+    public void deleteCar() {
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
-                .contains(EXPECTED_ONE_ADVERTISEMENT);*/
+                .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
+
+        assertThat(this.restTemplate.exchange(getUrl(port, "/car/1"), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class
+                ).getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
+        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
+                .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
     }
 
     /*private void updatePropertyAndValidate() {
