@@ -5,6 +5,8 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyTy
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 
+import java.util.Objects;
+
 public class CarOutDto extends CarInDto {
 
     @NotBlank
@@ -26,5 +28,18 @@ public class CarOutDto extends CarInDto {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        CarOutDto carOutDto = (CarOutDto) o;
+        return id == carOutDto.id;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), id);
     }
 }

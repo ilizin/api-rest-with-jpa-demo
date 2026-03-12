@@ -4,6 +4,8 @@ import jakarta.validation.constraints.NotBlank;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 
+import java.util.Objects;
+
 public class VehicleInDto {
 
     @NotBlank
@@ -106,5 +108,17 @@ public class VehicleInDto {
 
     public void setPower(int power) {
         this.power = power;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        VehicleInDto that = (VehicleInDto) o;
+        return firstRegistrationFrom == that.firstRegistrationFrom && price == that.price && mileage == that.mileage && power == that.power && Objects.equals(make, that.make) && Objects.equals(model, that.model) && fuelType == that.fuelType && gearBox == that.gearBox;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(make, model, firstRegistrationFrom, price, mileage, fuelType, gearBox, power);
     }
 }

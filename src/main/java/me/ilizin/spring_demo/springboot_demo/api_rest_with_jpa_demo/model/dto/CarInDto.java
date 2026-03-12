@@ -5,6 +5,8 @@ import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyTy
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 
+import java.util.Objects;
+
 public class CarInDto extends VehicleInDto {
 
     @NotBlank
@@ -24,5 +26,18 @@ public class CarInDto extends VehicleInDto {
 
     public void setBodyType(BodyType bodyType) {
         this.bodyType = bodyType;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (o == null || getClass() != o.getClass()) return false;
+        if (!super.equals(o)) return false;
+        CarInDto carInDto = (CarInDto) o;
+        return bodyType == carInDto.bodyType;
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(super.hashCode(), bodyType);
     }
 }
