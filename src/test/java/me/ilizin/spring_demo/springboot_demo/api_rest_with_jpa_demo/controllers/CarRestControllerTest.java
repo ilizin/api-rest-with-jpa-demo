@@ -14,7 +14,6 @@ import org.springframework.boot.test.web.client.TestRestTemplate;
 import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.HttpStatusCode;
 
 /* Note the use of webEnvironment=RANDOM_PORT to start the server with a random port (useful to avoid conflicts
@@ -23,7 +22,118 @@ import org.springframework.http.HttpStatusCode;
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
 public class CarRestControllerTest {
 
-    private static final String EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT = "[{\"make\":\"Lamborghini\",\"model\":\"Miura\",\"firstRegistrationFrom\":1970,\"price\":2700000,\"mileage\":48000,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":380,\"bodyType\":\"COUPE\",\"id\":1},{\"make\":\"Ferrari\",\"model\":\"Testarossa\",\"firstRegistrationFrom\":1984,\"price\":250000,\"mileage\":51000,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":380,\"bodyType\":\"COUPE\",\"id\":2},{\"make\":\"Citroën\",\"model\":\"XM\",\"firstRegistrationFrom\":1992,\"price\":13900,\"mileage\":75500,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":194,\"bodyType\":\"SEDAN\",\"id\":3},{\"make\":\"Ferrari\",\"model\":\"Enzo\",\"firstRegistrationFrom\":2003,\"price\":4800000,\"mileage\":32000,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":650,\"bodyType\":\"COUPE\",\"id\":4},{\"make\":\"Lamborghini\",\"model\":\"Countach\",\"firstRegistrationFrom\":1981,\"price\":700000,\"mileage\":73000,\"fuelType\":\"GASOLINE\",\"gearBox\":\"MANUAL\",\"power\":455,\"bodyType\":\"COUPE\",\"id\":5}]";
+    private static final String EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY =
+            "[{\"make\":\"Lamborghini\"," +
+              "\"model\":\"Miura\"," +
+              "\"firstRegistrationFrom\":1970," +
+              "\"price\":2700000," +
+              "\"mileage\":48000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":380,\"bodyType\":\"COUPE\"," +
+              "\"id\":1}" +
+
+              ",{\"make\":\"Ferrari\"," +
+              "\"model\":\"Testarossa\"," +
+              "\"firstRegistrationFrom\":1984," +
+              "\"price\":250000," +
+              "\"mileage\":51000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":380," +
+              "\"bodyType\":\"COUPE\"," +
+              "\"id\":2}," +
+
+              "{\"make\":\"Citroën\"," +
+              "\"model\":\"XM\"," +
+              "\"firstRegistrationFrom\":1992," +
+              "\"price\":13900," +
+              "\"mileage\":75500," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":194," +
+              "\"bodyType\":\"SEDAN\"," +
+              "\"id\":3}," +
+
+              "{\"make\":\"Ferrari\"," +
+               "\"model\":\"Enzo\"," +
+               "\"firstRegistrationFrom\":2003," +
+               "\"price\":4800000," +
+               "\"mileage\":32000," +
+               "\"fuelType\":\"GASOLINE\"," +
+               "\"gearBox\":\"MANUAL\"," +
+               "\"power\":650," +
+               "\"bodyType\":\"COUPE\"," +
+               "\"id\":4}," +
+
+               "{\"make\":\"Lamborghini\"," +
+               "\"model\":\"Countach\"" +
+               "\"firstRegistrationFrom\":1981," +
+               "\"price\":700000," +
+               "\"mileage\":73000," +
+               "\"fuelType\":\"GASOLINE\"," +
+               "\"gearBox\":\"MANUAL\"," +
+               "\"power\":455," +
+               "\"bodyType\":\"COUPE\"," +
+               "\"id\":5}";
+    private static final String EXPECTED_LIST_OF_CARS = EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY + "]";
+    private static final String EXPECTED_LIST_OF_CARS_AFTER_ADD = EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY +
+            ",{\"make\":\"Lamborghini\"," +
+            "\"model\":\"Urus\"," +
+            "\"firstRegistrationFrom\":0," +
+            "\"price\":368000," +
+            "\"mileage\":10," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"AUTOMATIC\"," +
+            "\"power\":799," +
+            "\"bodyType\":\"SUV\"," +
+            "\"id\":11}]";
+
+    private static final String EXPECTED_LIST_OF_CARS_AFTER_DELETE =
+            "[{\"make\":\"Ferrari\"," +
+            "\"model\":\"Testarossa\"," +
+            "\"firstRegistrationFrom\":1984," +
+            "\"price\":250000," +
+            "\"mileage\":51000," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"MANUAL\"," +
+            "\"power\":380," +
+            "\"bodyType\":\"COUPE\"," +
+            "\"id\":2}," +
+
+            "{\"make\":\"Citroën\"," +
+            "\"model\":\"XM\"," +
+            "\"firstRegistrationFrom\":1992," +
+            "\"price\":13900," +
+            "\"mileage\":75500," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"MANUAL\"," +
+            "\"power\":194," +
+            "\"bodyType\":\"SEDAN\"," +
+            "\"id\":3}," +
+
+            "{\"make\":\"Ferrari\"," +
+            "\"model\":\"Enzo\"," +
+            "\"firstRegistrationFrom\":2003," +
+            "\"price\":4800000," +
+            "\"mileage\":32000," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"MANUAL\"," +
+            "\"power\":650," +
+            "\"bodyType\":\"COUPE\"," +
+            "\"id\":4}," +
+
+            "{\"make\":\"Lamborghini\"," +
+            "\"model\":\"Countach\"" +
+            "\"firstRegistrationFrom\":1981," +
+            "\"price\":700000," +
+            "\"mileage\":73000," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"MANUAL\"," +
+            "\"power\":455," +
+            "\"bodyType\":\"COUPE\"," +
+            "\"id\":5}]";
+
     private static final CarInDto CAR_IN_DTO  = new CarInDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV);
     private static final CarInDto CAR_OUT_DTO  = new CarOutDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV, 11);
 
@@ -38,24 +148,25 @@ public class CarRestControllerTest {
     @Test
     public void addCar() {
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
-                .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
+                .isEqualTo(EXPECTED_LIST_OF_CARS);
 
         assertThat(this.restTemplate.postForEntity(getUrl(port, "/car"), new HttpEntity<>(CAR_IN_DTO),
                 CarOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(CAR_OUT_DTO);
 
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
-                .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
+                .isEqualTo(EXPECTED_LIST_OF_CARS_AFTER_ADD);
     }
 
     @Test
     public void deleteCar() {
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
-                .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
+                .isEqualTo(EXPECTED_LIST_OF_CARS);
 
         assertThat(this.restTemplate.exchange(getUrl(port, "/car/1"), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class
                 ).getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
+
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
-                .isEqualTo(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
+                .isEqualTo(EXPECTED_LIST_OF_CARS_AFTER_DELETE);
     }
 
     /*private void updatePropertyAndValidate() {
