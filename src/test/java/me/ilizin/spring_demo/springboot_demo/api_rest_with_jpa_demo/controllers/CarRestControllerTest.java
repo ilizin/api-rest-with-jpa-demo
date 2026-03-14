@@ -15,11 +15,13 @@ import org.springframework.boot.test.web.server.LocalServerPort;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatusCode;
+import org.springframework.test.context.jdbc.Sql;
 
 /* Note the use of webEnvironment=RANDOM_PORT to start the server with a random port (useful to avoid conflicts
    in test environments) and the injection of the port with @LocalServerPort. Also, note that Spring Boot has automatically
    provided a TestRestTemplate for you. */
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Sql(scripts = "/schema.sql")
 public class CarRestControllerTest {
 
     private static final String EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY =
@@ -184,6 +186,11 @@ public class CarRestControllerTest {
     public void getCar() {
         assertThat(this.restTemplate.getForObject(getUrl(port, "/car/1"), String.class))
                 .isEqualTo(EXPECTED_CAR_NUMBER_1);
+    }
+
+    @Test
+    public void updateCar() {
+
     }
 
     /*private void updatePropertyAndValidate() {

@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS vehicle;
+
 CREATE TABLE IF NOT EXISTS vehicle (
     id int NOT NULL AUTO_INCREMENT,
     vehicle_type varchar(255),
