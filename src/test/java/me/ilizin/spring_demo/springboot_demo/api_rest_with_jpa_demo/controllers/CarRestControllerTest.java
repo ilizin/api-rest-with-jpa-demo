@@ -67,7 +67,7 @@ public class CarRestControllerTest {
                "\"id\":4}," +
 
                "{\"make\":\"Lamborghini\"," +
-               "\"model\":\"Countach\"" +
+               "\"model\":\"Countach\"," +
                "\"firstRegistrationFrom\":1981," +
                "\"price\":700000," +
                "\"mileage\":73000," +
@@ -124,7 +124,7 @@ public class CarRestControllerTest {
             "\"id\":4}," +
 
             "{\"make\":\"Lamborghini\"," +
-            "\"model\":\"Countach\"" +
+            "\"model\":\"Countach\"," +
             "\"firstRegistrationFrom\":1981," +
             "\"price\":700000," +
             "\"mileage\":73000," +
@@ -133,6 +133,17 @@ public class CarRestControllerTest {
             "\"power\":455," +
             "\"bodyType\":\"COUPE\"," +
             "\"id\":5}]";
+
+    private final static String EXPECTED_CAR_NUMBER_1 =
+            "{\"make\":\"Lamborghini\"," +
+            "\"model\":\"Miura\"," +
+            "\"firstRegistrationFrom\":1970," +
+            "\"price\":2700000," +
+            "\"mileage\":48000," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"MANUAL\"," +
+            "\"power\":380,\"bodyType\":\"COUPE\"," +
+            "\"id\":1}";
 
     private static final CarInDto CAR_IN_DTO  = new CarInDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV);
     private static final CarInDto CAR_OUT_DTO  = new CarOutDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV, 11);
@@ -167,6 +178,12 @@ public class CarRestControllerTest {
 
         assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_CARS_AFTER_DELETE);
+    }
+
+    @Test
+    public void getCar() {
+        assertThat(this.restTemplate.getForObject(getUrl(port, "/car/1"), String.class))
+                .isEqualTo(EXPECTED_CAR_NUMBER_1);
     }
 
     /*private void updatePropertyAndValidate() {
