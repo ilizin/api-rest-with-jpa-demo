@@ -149,8 +149,12 @@ public class CarRestControllerTest {
 
     private static final CarInDto CAR_IN_DTO  = new CarInDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV);
     private static final CarInDto CAR_OUT_DTO  = new CarOutDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV, 11);
+    private static final CarInDto CAR_IN_DTO_WITH_DIFFERENT_PRICE = new CarInDto("Lamborghini", "Miura", 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE);
+    private static final CarInDto CAR_OUT_DTO_WITH_DIFFERENT_PRICE = new CarOutDto("Lamborghini", "Miura", 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE, 1);
 
-    private static final String URL_LAST_PART_FOR_GETTING_ALL_CARS = "/cars";
+    private static final String GET_ALL_CARS_URL = "/cars";
+    private static final String GET_CAR_NUMBER1_URL = "/car/1";
+
 
     @LocalServerPort
     private int port;
@@ -160,53 +164,42 @@ public class CarRestControllerTest {
 
     @Test
     public void addCar() {
-        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_CARS_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_CARS);
 
         assertThat(this.restTemplate.postForEntity(getUrl(port, "/car"), new HttpEntity<>(CAR_IN_DTO),
                 CarOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(CAR_OUT_DTO);
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_CARS_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_CARS_AFTER_ADD);
     }
 
     @Test
     public void deleteCar() {
-        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_CARS_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_CARS);
 
-        assertThat(this.restTemplate.exchange(getUrl(port, "/car/1"), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class
+        assertThat(this.restTemplate.exchange(getUrl(port, GET_CAR_NUMBER1_URL), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class
                 ).getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_CARS), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_CARS_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_CARS_AFTER_DELETE);
     }
 
     @Test
     public void getCar() {
-        assertThat(this.restTemplate.getForObject(getUrl(port, "/car/1"), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_CAR_NUMBER1_URL), String.class))
                 .isEqualTo(EXPECTED_CAR_NUMBER_1);
     }
 
     @Test
     public void updateCar() {
+        assertThat(this.restTemplate.exchange(getUrl(port, GET_CAR_NUMBER1_URL), HttpMethod.PUT, new HttpEntity<>(CAR_IN_DTO_WITH_DIFFERENT_PRICE),
+                CarOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(CAR_OUT_DTO_WITH_DIFFERENT_PRICE);
 
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_CAR_NUMBER1_URL), CarOutDto.class))
+                .isEqualTo(CAR_OUT_DTO_WITH_DIFFERENT_PRICE);
     }
-
-    /*private void updatePropertyAndValidate() {
-        PROPERTY_IN_DTO.setPrice(PROPERTY_IN_DTO.getPrice() - 700);
-        assertThat(this.restTemplate.exchange(getUrl(port, "/property"), HttpMethod.PUT, new HttpEntity<>(PROPERTY_IN_DTO),
-                Property.class)).isNotNull();
-        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_PROPERTY_ONE), String.class))
-                .contains(EXPECTED_ONE_ADVERTISEMENT_WITH_UPDATED_PRICE);
-    }*/
-
-    /*private void deletePropertyAndValidate() {
-        assertThat(this.restTemplate.exchange(getUrl(port, URL_LAST_PART_FOR_GETTING_PROPERTY_ONE), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class))
-                .isNotNull();
-        assertThat(this.restTemplate.getForObject(getUrl(port, URL_LAST_PART_FOR_GETTING_ALL_PROPERTIES), String.class))
-                .contains(EXPECTED_EMPTY_LIST_OF_ADVERTISEMENT);
-    }*/
 
     private String getUrl(int port, String lastUrlPart) {
         return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1" + lastUrlPart;

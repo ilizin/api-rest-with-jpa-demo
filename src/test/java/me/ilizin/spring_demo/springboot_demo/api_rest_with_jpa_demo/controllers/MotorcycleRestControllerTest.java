@@ -1,0 +1,208 @@
+package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers;
+
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.web.client.TestRestTemplate;
+import org.springframework.boot.test.web.server.LocalServerPort;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.HttpStatusCode;
+import org.springframework.test.context.jdbc.Sql;
+
+import static org.assertj.core.api.Assertions.assertThat;
+
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@Sql(scripts = "/schema.sql")
+public class MotorcycleRestControllerTest {
+
+    private static final String EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY =
+            "[{\"make\":\"Ducati\"," +
+              "\"model\":\"620 Sport\"," +
+              "\"firstRegistrationFrom\":2004," +
+              "\"price\":2700," +
+              "\"mileage\":20000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":60," +
+              "\"bodyType\":\"SUPERSPORT\"," +
+              "\"id\":6}" +
+
+              ",{\"make\":\"Ducati\"," +
+              "\"model\":\"Streetfighter\"," +
+              "\"submodel\":\"V4S\"," +
+              "\"firstRegistrationFrom\":2021," +
+              "\"price\":20000," +
+              "\"mileage\":15000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":212," +
+              "\"bodyType\":\"SUPERSPORT\"," +
+              "\"id\":7}," +
+
+              "{\"make\":\"Kawasaki\"," +
+              "\"model\":\"Ninja\"," +
+              "\"submodel\":\"500 SE\"," +
+              "\"firstRegistrationFrom\":2024," +
+              "\"price\":7000," +
+              "\"mileage\":17320," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":48," +
+              "\"bodyType\":\"SUPERSPORT\"," +
+              "\"id\":8}," +
+
+              "{\"make\":\"Honda\"," +
+              "\"model\":\"NSR 50\"," +
+              "\"firstRegistrationFrom\":1990," +
+              "\"price\":5500," +
+              "\"mileage\":22000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":14," +
+              "\"bodyType\":\"SUPERSPORT\"," +
+              "\"id\":9," +
+
+              "{\"make\":\"Yamaha\"," +
+              "\"model\":\"FJ 1200\"," +
+              "\"firstRegistrationFrom\":1989," +
+              "\"price\":4000," +
+              "\"mileage\":68000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":131," +
+              "\"bodyType\":\"SUPERSPORT\"," +
+              "\"id\":10}";
+    private static final String EXPECTED_LIST_OF_MOTORCYCLES = EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY + "]";
+    private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_ADD = EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY +
+            ",{\"make\":\"Lamborghini\"," +
+            "\"model\":\"Urus\"," +
+            "\"firstRegistrationFrom\":0," +
+            "\"price\":368000," +
+            "\"mileage\":10," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"AUTOMATIC\"," +
+            "\"power\":799," +
+            "\"bodyType\":\"SUV\"," +
+            "\"id\":11}]";
+
+    private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_DELETE =
+            "[{\"make\":\"Ferrari\"," +
+              "\"model\":\"Testarossa\"," +
+              "\"firstRegistrationFrom\":1984," +
+              "\"price\":250000," +
+              "\"mileage\":51000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":380," +
+              "\"bodyType\":\"COUPE\"," +
+              "\"id\":2}," +
+
+              "{\"make\":\"Citroën\"," +
+              "\"model\":\"XM\"," +
+              "\"firstRegistrationFrom\":1992," +
+              "\"price\":13900," +
+              "\"mileage\":75500," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":194," +
+              "\"bodyType\":\"SEDAN\"," +
+              "\"id\":3}," +
+
+              "{\"make\":\"Ferrari\"," +
+              "\"model\":\"Enzo\"," +
+              "\"firstRegistrationFrom\":2003," +
+              "\"price\":4800000," +
+              "\"mileage\":32000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":650," +
+              "\"bodyType\":\"COUPE\"," +
+              "\"id\":4}," +
+
+              "{\"make\":\"Lamborghini\"," +
+              "\"model\":\"Countach\"," +
+              "\"firstRegistrationFrom\":1981," +
+              "\"price\":700000," +
+              "\"mileage\":73000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":455," +
+              "\"bodyType\":\"COUPE\"," +
+              "\"id\":5}]";
+
+    private final static String EXPECTED_MOTORCYCLES_NUMBER_6 =
+            "{\"make\":\"Ducati\"," +
+             "\"model\":\"620 Sport\"," +
+             "\"firstRegistrationFrom\":2004," +
+             "\"price\":2700," +
+             "\"mileage\":20000," +
+             "\"fuelType\":\"GASOLINE\"," +
+             "\"gearBox\":\"MANUAL\"," +
+             "\"power\":60," +
+             "\"bodyType\":\"SUPERSPORT\"," +
+             "\"id\":6}";
+
+    private static final CarInDto MOTORCYCLE_IN_DTO  = new CarInDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV);
+    private static final CarInDto MOTORCYCLE_OUT_DTO  = new CarOutDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV, 11);
+    private static final CarInDto MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE = new CarInDto("Lamborghini", "Miura", 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE);
+    private static final CarInDto MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE = new CarOutDto("Lamborghini", "Miura", 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE, 1);
+
+    private static final String GET_ALL_MOTORCYCLES_URL = "/motorcycles";
+    private static final String GET_MOTORCYCLE_NUMBER6_URL = "/motorcycle/6";
+
+
+    @LocalServerPort
+    private int port;
+
+    @Autowired
+    private TestRestTemplate restTemplate;
+
+    @Test
+    public void addCar() {
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+                .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES);
+
+        assertThat(this.restTemplate.postForEntity(getUrl(port, "/motorcycle"), new HttpEntity<>(MOTORCYCLE_IN_DTO),
+                CarOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO);
+
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+                .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES_AFTER_ADD);
+    }
+
+    @Test
+    public void deleteCar() {
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+                .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES);
+
+        assertThat(this.restTemplate.exchange(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class
+        ).getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
+
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+                .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES_AFTER_DELETE);
+    }
+
+    @Test
+    public void getCar() {
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), String.class))
+                .isEqualTo(EXPECTED_MOTORCYCLES_NUMBER_6);
+    }
+
+    @Test
+    public void updateCar() {
+        assertThat(this.restTemplate.exchange(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), HttpMethod.PUT, new HttpEntity<>(MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE),
+                CarOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE);
+
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), CarOutDto.class))
+                .isEqualTo(MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE);
+    }
+
+    private String getUrl(int port, String lastUrlPart) {
+        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1" + lastUrlPart;
+    }
+}
