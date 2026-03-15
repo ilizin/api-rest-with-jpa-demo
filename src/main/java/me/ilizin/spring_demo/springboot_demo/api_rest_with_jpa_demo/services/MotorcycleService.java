@@ -67,6 +67,7 @@ public class MotorcycleService implements IMotorcycleService {
         MotorcycleOutDto motorcycleOutDto = new MotorcycleOutDto();
         motorcycleOutDto.setId(motorcycle.getId());
         motorcycleOutDto.setMake(motorcycle.getMake());
+        motorcycleOutDto.setSubModel(motorcycle.getSubModel());
         motorcycleOutDto.setBodyType(BodyTypeMotorcycle.valueOf(motorcycle.getBodyType()));
         motorcycleOutDto.setMileage(motorcycle.getMileage());
         motorcycleOutDto.setFuelType(FuelType.valueOf(motorcycle.getFuelType()));
@@ -82,7 +83,7 @@ public class MotorcycleService implements IMotorcycleService {
         Vehicle motorcycle = new Vehicle();
         motorcycle.setVehicleType(VehicleType.MOTORCYCLE.toString());
         motorcycle.setMake(motorcycleInDto.getMake());
-        motorcycle.setSubmodel(motorcycleInDto.getSubModel());
+        motorcycle.setSubModel(motorcycleInDto.getSubModel());
         motorcycle.setBodyType(motorcycleInDto.getBodyType().toString());
         motorcycle.setMileage(motorcycleInDto.getMileage());
         motorcycle.setFuelType(motorcycleInDto.getFuelType().toString());
