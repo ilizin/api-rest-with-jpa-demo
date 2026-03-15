@@ -14,9 +14,9 @@ public class CarInDto extends VehicleInDto {
 
     public CarInDto() {}
 
-    public CarInDto(String make, String model, int firstRegistrationFrom, int price, int mileage, FuelType fuelType,
+    public CarInDto(String make, String model, String subModel, int firstRegistrationFrom, int price, int mileage, FuelType fuelType,
                     GearBox gearBox, int power, BodyType bodyType) {
-        super(make, model, firstRegistrationFrom, price, mileage, fuelType, gearBox, power);
+        super(make, model, subModel, firstRegistrationFrom, price, mileage, fuelType, gearBox, power);
         this.bodyType = bodyType;
     }
 

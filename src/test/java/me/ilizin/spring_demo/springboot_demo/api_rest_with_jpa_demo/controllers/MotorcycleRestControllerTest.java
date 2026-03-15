@@ -148,10 +148,10 @@ public class MotorcycleRestControllerTest {
              "\"bodyType\":\"SUPERSPORT\"," +
              "\"id\":6}";
 
-    private static final CarInDto MOTORCYCLE_IN_DTO  = new CarInDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV);
-    private static final CarInDto MOTORCYCLE_OUT_DTO  = new CarOutDto("Lamborghini", "Urus", 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV, 11);
-    private static final CarInDto MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE = new CarInDto("Lamborghini", "Miura", 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE);
-    private static final CarInDto MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE = new CarOutDto("Lamborghini", "Miura", 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE, 1);
+    private static final CarInDto MOTORCYCLE_IN_DTO  = new CarInDto("Lamborghini", "Urus", null, 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV);
+    private static final CarInDto MOTORCYCLE_OUT_DTO  = new CarOutDto("Lamborghini", "Urus", null, 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV, 11);
+    private static final CarInDto MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE = new CarInDto("Lamborghini", "Miura", null, 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE);
+    private static final CarInDto MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE = new CarOutDto("Lamborghini", "Miura",  null, 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE, 1);
 
     private static final String GET_ALL_MOTORCYCLES_URL = "/motorcycles";
     private static final String GET_MOTORCYCLE_NUMBER6_URL = "/motorcycle/6";

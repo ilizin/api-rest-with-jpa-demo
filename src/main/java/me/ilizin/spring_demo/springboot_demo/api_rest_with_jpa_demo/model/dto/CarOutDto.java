@@ -16,9 +16,9 @@ public class CarOutDto extends CarInDto {
         super();
     }
 
-    public CarOutDto(String make, String model, int firstRegistrationFrom, int price, int mileage, FuelType fuelType,
+    public CarOutDto(String make, String model, String subModel, int firstRegistrationFrom, int price, int mileage, FuelType fuelType,
                      GearBox gearBox, int power, BodyType bodyType, int id) {
-        super(make, model, firstRegistrationFrom, price, mileage, fuelType, gearBox, power, bodyType);
+        super(make, model, subModel, firstRegistrationFrom, price, mileage, fuelType, gearBox, power, bodyType);
         this.id = id;
     }
 

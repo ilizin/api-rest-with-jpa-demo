@@ -82,6 +82,7 @@ public class MotorcycleService implements IMotorcycleService {
         Vehicle motorcycle = new Vehicle();
         motorcycle.setVehicleType(VehicleType.MOTORCYCLE.toString());
         motorcycle.setMake(motorcycleInDto.getMake());
+        motorcycle.setSubmodel(motorcycleInDto.getSubModel());
         motorcycle.setBodyType(motorcycleInDto.getBodyType().toString());
         motorcycle.setMileage(motorcycleInDto.getMileage());
         motorcycle.setFuelType(motorcycleInDto.getFuelType().toString());

@@ -15,6 +15,9 @@ public class VehicleInDto {
     private String model;
 
     @NotBlank
+    private String subModel;
+
+    @NotBlank
     private int firstRegistrationFrom;
 
     @NotBlank
@@ -34,10 +37,11 @@ public class VehicleInDto {
 
     public VehicleInDto() {}
     
-    public VehicleInDto(String make, String model, int firstRegistrationFrom, int price, int mileage,
+    public VehicleInDto(String make, String model, String subModel, int firstRegistrationFrom, int price, int mileage,
                         FuelType fuelType, GearBox gearBox, int power) {
         this.make = make;
         this.model = model;
+        this.subModel = subModel;
         this.firstRegistrationFrom = firstRegistrationFrom;
         this.price = price;
         this.mileage = mileage;
@@ -58,8 +62,16 @@ public class VehicleInDto {
         return model;
     }
 
-    public void setModel(String model) {
-        this.model = model;
+    public void setModel(String subModel) {
+        this.subModel = subModel;
+    }
+
+    public String getSubModel() {
+        return subModel;
+    }
+
+    public void setSubModel(String subModel) {
+        this.subModel = subModel;
     }
 
     public int getFirstRegistrationFrom() {
