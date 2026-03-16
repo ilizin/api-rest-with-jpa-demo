@@ -27,6 +27,7 @@ public class CarRestControllerTest {
     private static final String EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY =
             "[{\"make\":\"Lamborghini\"," +
               "\"model\":\"Miura\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":1970," +
               "\"price\":2700000," +
               "\"mileage\":48000," +
@@ -37,6 +38,7 @@ public class CarRestControllerTest {
 
               ",{\"make\":\"Ferrari\"," +
               "\"model\":\"Testarossa\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":1984," +
               "\"price\":250000," +
               "\"mileage\":51000," +
@@ -48,6 +50,7 @@ public class CarRestControllerTest {
 
               "{\"make\":\"Citroën\"," +
               "\"model\":\"XM\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":1992," +
               "\"price\":13900," +
               "\"mileage\":75500," +
@@ -59,6 +62,7 @@ public class CarRestControllerTest {
 
               "{\"make\":\"Ferrari\"," +
                "\"model\":\"Enzo\"," +
+               "\"subModel\":null," +
                "\"firstRegistrationFrom\":2003," +
                "\"price\":4800000," +
                "\"mileage\":32000," +
@@ -70,6 +74,7 @@ public class CarRestControllerTest {
 
                "{\"make\":\"Lamborghini\"," +
                "\"model\":\"Countach\"," +
+               "\"subModel\":null," +
                "\"firstRegistrationFrom\":1981," +
                "\"price\":700000," +
                "\"mileage\":73000," +
@@ -82,6 +87,7 @@ public class CarRestControllerTest {
     private static final String EXPECTED_LIST_OF_CARS_AFTER_ADD = EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY +
             ",{\"make\":\"Lamborghini\"," +
             "\"model\":\"Urus\"," +
+            "\"subModel\":null," +
             "\"firstRegistrationFrom\":0," +
             "\"price\":368000," +
             "\"mileage\":10," +
@@ -94,6 +100,7 @@ public class CarRestControllerTest {
     private static final String EXPECTED_LIST_OF_CARS_AFTER_DELETE =
             "[{\"make\":\"Ferrari\"," +
             "\"model\":\"Testarossa\"," +
+            "\"subModel\":null," +
             "\"firstRegistrationFrom\":1984," +
             "\"price\":250000," +
             "\"mileage\":51000," +
@@ -105,6 +112,7 @@ public class CarRestControllerTest {
 
             "{\"make\":\"Citroën\"," +
             "\"model\":\"XM\"," +
+            "\"subModel\":null," +
             "\"firstRegistrationFrom\":1992," +
             "\"price\":13900," +
             "\"mileage\":75500," +
@@ -116,6 +124,7 @@ public class CarRestControllerTest {
 
             "{\"make\":\"Ferrari\"," +
             "\"model\":\"Enzo\"," +
+            "\"subModel\":null," +
             "\"firstRegistrationFrom\":2003," +
             "\"price\":4800000," +
             "\"mileage\":32000," +
@@ -127,6 +136,7 @@ public class CarRestControllerTest {
 
             "{\"make\":\"Lamborghini\"," +
             "\"model\":\"Countach\"," +
+            "\"subModel\":null," +
             "\"firstRegistrationFrom\":1981," +
             "\"price\":700000," +
             "\"mileage\":73000," +
@@ -139,6 +149,7 @@ public class CarRestControllerTest {
     private final static String EXPECTED_CAR_NUMBER_1 =
             "{\"make\":\"Lamborghini\"," +
             "\"model\":\"Miura\"," +
+            "\"subModel\":null," +
             "\"firstRegistrationFrom\":1970," +
             "\"price\":2700000," +
             "\"mileage\":48000," +

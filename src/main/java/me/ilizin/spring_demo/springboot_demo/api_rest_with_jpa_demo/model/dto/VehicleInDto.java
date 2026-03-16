@@ -62,8 +62,8 @@ public class VehicleInDto {
         return model;
     }
 
-    public void setModel(String subModel) {
-        this.subModel = subModel;
+    public void setModel(String model) {
+        this.model = model;
     }
 
     public String getSubModel() {
