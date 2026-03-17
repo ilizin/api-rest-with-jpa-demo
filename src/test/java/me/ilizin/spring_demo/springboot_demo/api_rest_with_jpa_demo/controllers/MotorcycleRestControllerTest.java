@@ -24,6 +24,7 @@ public class MotorcycleRestControllerTest {
     private static final String EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY =
             "[{\"make\":\"Ducati\"," +
               "\"model\":\"620 Sport\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":2004," +
               "\"price\":2700," +
               "\"mileage\":20000," +
@@ -59,6 +60,7 @@ public class MotorcycleRestControllerTest {
 
               "{\"make\":\"Honda\"," +
               "\"model\":\"NSR 50\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":1990," +
               "\"price\":5500," +
               "\"mileage\":22000," +
@@ -66,10 +68,11 @@ public class MotorcycleRestControllerTest {
               "\"gearBox\":\"MANUAL\"," +
               "\"power\":14," +
               "\"bodyType\":\"SUPERSPORT\"," +
-              "\"id\":9," +
+              "\"id\":9}," +
 
               "{\"make\":\"Yamaha\"," +
               "\"model\":\"FJ 1200\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":1989," +
               "\"price\":4000," +
               "\"mileage\":68000," +
@@ -82,6 +85,7 @@ public class MotorcycleRestControllerTest {
     private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_ADD = EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY +
             ",{\"make\":\"Lamborghini\"," +
             "\"model\":\"Urus\"," +
+            "\"subModel\":null," +
             "\"firstRegistrationFrom\":0," +
             "\"price\":368000," +
             "\"mileage\":10," +
@@ -94,6 +98,7 @@ public class MotorcycleRestControllerTest {
     private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_DELETE =
             "[{\"make\":\"Ferrari\"," +
               "\"model\":\"Testarossa\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":1984," +
               "\"price\":250000," +
               "\"mileage\":51000," +
@@ -105,6 +110,7 @@ public class MotorcycleRestControllerTest {
 
               "{\"make\":\"Citroën\"," +
               "\"model\":\"XM\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":1992," +
               "\"price\":13900," +
               "\"mileage\":75500," +
@@ -116,6 +122,7 @@ public class MotorcycleRestControllerTest {
 
               "{\"make\":\"Ferrari\"," +
               "\"model\":\"Enzo\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":2003," +
               "\"price\":4800000," +
               "\"mileage\":32000," +
@@ -127,6 +134,7 @@ public class MotorcycleRestControllerTest {
 
               "{\"make\":\"Lamborghini\"," +
               "\"model\":\"Countach\"," +
+              "\"subModel\":null," +
               "\"firstRegistrationFrom\":1981," +
               "\"price\":700000," +
               "\"mileage\":73000," +
@@ -139,6 +147,7 @@ public class MotorcycleRestControllerTest {
     private final static String EXPECTED_MOTORCYCLES_NUMBER_6 =
             "{\"make\":\"Ducati\"," +
              "\"model\":\"620 Sport\"," +
+             "\"subModel\":null," +
              "\"firstRegistrationFrom\":2004," +
              "\"price\":2700," +
              "\"mileage\":20000," +
@@ -164,7 +173,7 @@ public class MotorcycleRestControllerTest {
     private TestRestTemplate restTemplate;
 
     @Test
-    public void addCar() {
+    public void addMotorcycle() {
         assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES);
 
@@ -176,7 +185,7 @@ public class MotorcycleRestControllerTest {
     }
 
     @Test
-    public void deleteCar() {
+    public void deleteMotorcycle() {
         assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES);
 
@@ -188,13 +197,13 @@ public class MotorcycleRestControllerTest {
     }
 
     @Test
-    public void getCar() {
+    public void getMotorcycle() {
         assertThat(this.restTemplate.getForObject(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), String.class))
                 .isEqualTo(EXPECTED_MOTORCYCLES_NUMBER_6);
     }
 
     @Test
-    public void updateCar() {
+    public void updateMotorcycle() {
         assertThat(this.restTemplate.exchange(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), HttpMethod.PUT, new HttpEntity<>(MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE),
                 CarOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE);
 
