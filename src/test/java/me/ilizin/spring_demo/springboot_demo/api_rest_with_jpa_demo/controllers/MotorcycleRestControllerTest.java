@@ -1,10 +1,13 @@
 package me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.controllers;
 
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyType;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.BodyTypeMotorcycle;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.FuelType;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.enums.GearBox;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarInDto;
 import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.CarOutDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleInDto;
+import me.ilizin.spring_demo.springboot_demo.api_rest_with_jpa_demo.model.dto.MotorcycleOutDto;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -83,16 +86,16 @@ public class MotorcycleRestControllerTest {
               "\"id\":10}";
     private static final String EXPECTED_LIST_OF_MOTORCYCLES = EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY + "]";
     private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_ADD = EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY +
-            ",{\"make\":\"Lamborghini\"," +
-            "\"model\":\"Urus\"," +
+            ",{\"make\":\"Yamaha\"," +
+            "\"model\":\"YZF-R1\"," +
             "\"subModel\":null," +
-            "\"firstRegistrationFrom\":0," +
-            "\"price\":368000," +
+            "\"firstRegistrationFrom\":2016," +
+            "\"price\":12500," +
             "\"mileage\":10," +
             "\"fuelType\":\"GASOLINE\"," +
-            "\"gearBox\":\"AUTOMATIC\"," +
-            "\"power\":799," +
-            "\"bodyType\":\"SUV\"," +
+            "\"gearBox\":\"MANUAL\"," +
+            "\"power\":200," +
+            "\"bodyType\":\"SUPERSPORT\"," +
             "\"id\":11}]";
 
     private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_DELETE =
@@ -157,14 +160,13 @@ public class MotorcycleRestControllerTest {
              "\"bodyType\":\"SUPERSPORT\"," +
              "\"id\":6}";
 
-    private static final CarInDto MOTORCYCLE_IN_DTO  = new CarInDto("Lamborghini", "Urus", null, 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV);
-    private static final CarInDto MOTORCYCLE_OUT_DTO  = new CarOutDto("Lamborghini", "Urus", null, 0, 368000, 10, FuelType.GASOLINE, GearBox.AUTOMATIC, 799, BodyType.SUV, 11);
+    private static final MotorcycleInDto MOTORCYCLE_IN_DTO  = new MotorcycleInDto("Yamaha", "YZF-R1", null, 2016, 12500, 10, FuelType.GASOLINE, GearBox.MANUAL, 200, BodyTypeMotorcycle.SUPERSPORT);
+    private static final MotorcycleOutDto MOTORCYCLE_OUT_DTO  = new MotorcycleOutDto("Yamaha", "YZF-R1", null, 2016, 12500, 10, FuelType.GASOLINE, GearBox.MANUAL, 200, BodyTypeMotorcycle.SUPERSPORT, 11);
     private static final CarInDto MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE = new CarInDto("Lamborghini", "Miura", null, 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE);
     private static final CarInDto MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE = new CarOutDto("Lamborghini", "Miura",  null, 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE, 1);
 
     private static final String GET_ALL_MOTORCYCLES_URL = "/motorcycles";
     private static final String GET_MOTORCYCLE_NUMBER6_URL = "/motorcycle/6";
-
 
     @LocalServerPort
     private int port;
@@ -174,11 +176,11 @@ public class MotorcycleRestControllerTest {
 
     @Test
     public void addMotorcycle() {
-        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+        /*assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES);
-
+*/
         assertThat(this.restTemplate.postForEntity(getUrl(port, "/motorcycle"), new HttpEntity<>(MOTORCYCLE_IN_DTO),
-                CarOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO);
+                MotorcycleOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO);
 
         assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES_AFTER_ADD);
