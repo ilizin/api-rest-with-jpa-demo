@@ -11,6 +11,13 @@ public class MotorcycleOutDto extends MotorcycleInDto {
     private int id;
 
     public MotorcycleOutDto() {}
+
+    public MotorcycleOutDto(MotorcycleInDto motorcycleInDto, int id) {
+
+        this(motorcycleInDto.getMake(), motorcycleInDto.getModel(), motorcycleInDto.getSubModel(), motorcycleInDto.getFirstRegistrationFrom(),
+                motorcycleInDto.getPrice(), motorcycleInDto.getMileage(), motorcycleInDto.getFuelType(), motorcycleInDto.getGearBox(),
+                motorcycleInDto.getPower(), motorcycleInDto.getBodyType(), id);
+    }
     public MotorcycleOutDto(String make, String model, String subModel, int firstRegistrationFrom, int price,
                             int mileage, FuelType fuelType, GearBox gearBox, int power, BodyTypeMotorcycle bodyType, int id) {
         super(make, model, subModel, firstRegistrationFrom, price, mileage, fuelType, gearBox, power, bodyType);

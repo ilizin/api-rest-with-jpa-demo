@@ -16,6 +16,13 @@ public class CarOutDto extends CarInDto {
         super();
     }
 
+    public CarOutDto(CarInDto carInDto, int id) {
+
+        this(carInDto.getMake(), carInDto.getModel(), carInDto.getSubModel(), carInDto.getFirstRegistrationFrom(),
+                carInDto.getPrice(), carInDto.getMileage(), carInDto.getFuelType(), carInDto.getGearBox(),
+                carInDto.getPower(), carInDto.getBodyType(), id);
+    }
+
     public CarOutDto(String make, String model, String subModel, int firstRegistrationFrom, int price, int mileage, FuelType fuelType,
                      GearBox gearBox, int power, BodyType bodyType, int id) {
         super(make, model, subModel, firstRegistrationFrom, price, mileage, fuelType, gearBox, power, bodyType);

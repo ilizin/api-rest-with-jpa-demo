@@ -161,9 +161,9 @@ public class MotorcycleRestControllerTest {
              "\"id\":6}";
 
     private static final MotorcycleInDto MOTORCYCLE_IN_DTO  = new MotorcycleInDto("Yamaha", "YZF-R1", null, 2016, 12500, 10, FuelType.GASOLINE, GearBox.MANUAL, 200, BodyTypeMotorcycle.SUPERSPORT);
-    private static final MotorcycleOutDto MOTORCYCLE_OUT_DTO  = new MotorcycleOutDto("Yamaha", "YZF-R1", null, 2016, 12500, 10, FuelType.GASOLINE, GearBox.MANUAL, 200, BodyTypeMotorcycle.SUPERSPORT, 11);
+    private static final MotorcycleOutDto MOTORCYCLE_OUT_DTO  = new MotorcycleOutDto(MOTORCYCLE_IN_DTO, 11);
     private static final MotorcycleInDto MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE = new MotorcycleInDto("Ducati", "620 Sport", null, 2004, 2500, 20000, FuelType.GASOLINE, GearBox.MANUAL, 60, BodyTypeMotorcycle.SUPERSPORT);
-    private static final MotorcycleOutDto MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE = new MotorcycleOutDto("Ducati", "620 Sport",  null, 2004, 2500, 20000, FuelType.GASOLINE, GearBox.MANUAL, 60, BodyTypeMotorcycle.SUPERSPORT, 6);
+    private static final MotorcycleOutDto MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE = new MotorcycleOutDto(MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE, 6);
 
     private static final String GET_ALL_MOTORCYCLES_URL = "/motorcycles";
     private static final String GET_MOTORCYCLE_NUMBER6_URL = "/motorcycle/6";
