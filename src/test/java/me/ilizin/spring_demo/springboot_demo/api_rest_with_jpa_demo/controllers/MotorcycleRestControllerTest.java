@@ -162,8 +162,8 @@ public class MotorcycleRestControllerTest {
 
     private static final MotorcycleInDto MOTORCYCLE_IN_DTO  = new MotorcycleInDto("Yamaha", "YZF-R1", null, 2016, 12500, 10, FuelType.GASOLINE, GearBox.MANUAL, 200, BodyTypeMotorcycle.SUPERSPORT);
     private static final MotorcycleOutDto MOTORCYCLE_OUT_DTO  = new MotorcycleOutDto("Yamaha", "YZF-R1", null, 2016, 12500, 10, FuelType.GASOLINE, GearBox.MANUAL, 200, BodyTypeMotorcycle.SUPERSPORT, 11);
-    private static final CarInDto MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE = new CarInDto("Lamborghini", "Miura", null, 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE);
-    private static final CarInDto MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE = new CarOutDto("Lamborghini", "Miura",  null, 1970, 2000000, 48000, FuelType.GASOLINE, GearBox.MANUAL, 380, BodyType.COUPE, 1);
+    private static final MotorcycleInDto MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE = new MotorcycleInDto("Ducati", "620 Sport", null, 2004, 2500, 20000, FuelType.GASOLINE, GearBox.MANUAL, 60, BodyTypeMotorcycle.SUPERSPORT);
+    private static final MotorcycleOutDto MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE = new MotorcycleOutDto("Ducati", "620 Sport",  null, 2004, 2500, 20000, FuelType.GASOLINE, GearBox.MANUAL, 60, BodyTypeMotorcycle.SUPERSPORT, 6);
 
     private static final String GET_ALL_MOTORCYCLES_URL = "/motorcycles";
     private static final String GET_MOTORCYCLE_NUMBER6_URL = "/motorcycle/6";
@@ -207,9 +207,9 @@ public class MotorcycleRestControllerTest {
     @Test
     public void updateMotorcycle() {
         assertThat(this.restTemplate.exchange(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), HttpMethod.PUT, new HttpEntity<>(MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE),
-                CarOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE);
+                MotorcycleOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE);
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), CarOutDto.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), MotorcycleOutDto.class))
                 .isEqualTo(MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE);
     }
 
