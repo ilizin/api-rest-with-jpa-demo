@@ -39,7 +39,7 @@ public class MotorcycleRestControllerTest {
 
               ",{\"make\":\"Ducati\"," +
               "\"model\":\"Streetfighter\"," +
-              "\"submodel\":\"V4S\"," +
+              "\"subModel\":\"V4S\"," +
               "\"firstRegistrationFrom\":2021," +
               "\"price\":20000," +
               "\"mileage\":15000," +
@@ -51,7 +51,7 @@ public class MotorcycleRestControllerTest {
 
               "{\"make\":\"Kawasaki\"," +
               "\"model\":\"Ninja\"," +
-              "\"submodel\":\"500 SE\"," +
+              "\"subModel\":\"500 SE\"," +
               "\"firstRegistrationFrom\":2024," +
               "\"price\":7000," +
               "\"mileage\":17320," +
@@ -99,53 +99,53 @@ public class MotorcycleRestControllerTest {
             "\"id\":11}]";
 
     private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_DELETE =
-            "[{\"make\":\"Ferrari\"," +
-              "\"model\":\"Testarossa\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":1984," +
-              "\"price\":250000," +
-              "\"mileage\":51000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":380," +
-              "\"bodyType\":\"COUPE\"," +
-              "\"id\":2}," +
+            "[{\"make\":\"Ducati\"," +
+                    "\"model\":\"Streetfighter\"," +
+                    "\"subModel\":\"V4S\"," +
+                    "\"firstRegistrationFrom\":2021," +
+                    "\"price\":20000," +
+                    "\"mileage\":15000," +
+                    "\"fuelType\":\"GASOLINE\"," +
+                    "\"gearBox\":\"MANUAL\"," +
+                    "\"power\":212," +
+                    "\"bodyType\":\"SUPERSPORT\"," +
+                    "\"id\":7}," +
 
-              "{\"make\":\"Citroën\"," +
-              "\"model\":\"XM\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":1992," +
-              "\"price\":13900," +
-              "\"mileage\":75500," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":194," +
-              "\"bodyType\":\"SEDAN\"," +
-              "\"id\":3}," +
+                    "{\"make\":\"Kawasaki\"," +
+                    "\"model\":\"Ninja\"," +
+                    "\"subModel\":\"500 SE\"," +
+                    "\"firstRegistrationFrom\":2024," +
+                    "\"price\":7000," +
+                    "\"mileage\":17320," +
+                    "\"fuelType\":\"GASOLINE\"," +
+                    "\"gearBox\":\"MANUAL\"," +
+                    "\"power\":48," +
+                    "\"bodyType\":\"SUPERSPORT\"," +
+                    "\"id\":8}," +
 
-              "{\"make\":\"Ferrari\"," +
-              "\"model\":\"Enzo\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":2003," +
-              "\"price\":4800000," +
-              "\"mileage\":32000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":650," +
-              "\"bodyType\":\"COUPE\"," +
-              "\"id\":4}," +
+                    "{\"make\":\"Honda\"," +
+                    "\"model\":\"NSR 50\"," +
+                    "\"subModel\":null," +
+                    "\"firstRegistrationFrom\":1990," +
+                    "\"price\":5500," +
+                    "\"mileage\":22000," +
+                    "\"fuelType\":\"GASOLINE\"," +
+                    "\"gearBox\":\"MANUAL\"," +
+                    "\"power\":14," +
+                    "\"bodyType\":\"SUPERSPORT\"," +
+                    "\"id\":9}," +
 
-              "{\"make\":\"Lamborghini\"," +
-              "\"model\":\"Countach\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":1981," +
-              "\"price\":700000," +
-              "\"mileage\":73000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":455," +
-              "\"bodyType\":\"COUPE\"," +
-              "\"id\":5}]";
+                    "{\"make\":\"Yamaha\"," +
+                    "\"model\":\"FJ 1200\"," +
+                    "\"subModel\":null," +
+                    "\"firstRegistrationFrom\":1989," +
+                    "\"price\":4000," +
+                    "\"mileage\":68000," +
+                    "\"fuelType\":\"GASOLINE\"," +
+                    "\"gearBox\":\"MANUAL\"," +
+                    "\"power\":131," +
+                    "\"bodyType\":\"SUPERSPORT\"," +
+                    "\"id\":10}]";
 
     private final static String EXPECTED_MOTORCYCLES_NUMBER_6 =
             "{\"make\":\"Ducati\"," +
@@ -176,9 +176,9 @@ public class MotorcycleRestControllerTest {
 
     @Test
     public void addMotorcycle() {
-        /*assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES);
-*/
+
         assertThat(this.restTemplate.postForEntity(getUrl(port, "/motorcycle"), new HttpEntity<>(MOTORCYCLE_IN_DTO),
                 MotorcycleOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO);
 
