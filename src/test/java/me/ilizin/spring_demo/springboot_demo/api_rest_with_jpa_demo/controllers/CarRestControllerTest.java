@@ -24,79 +24,6 @@ import org.springframework.test.context.jdbc.Sql;
 @Sql(scripts = "/schema.sql")
 public class CarRestControllerTest {
 
-    private static final String EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY =
-            "[{\"make\":\"Lamborghini\"," +
-              "\"model\":\"Miura\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":1970," +
-              "\"price\":2700000," +
-              "\"mileage\":48000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":380,\"bodyType\":\"COUPE\"," +
-              "\"id\":1}" +
-
-              ",{\"make\":\"Ferrari\"," +
-              "\"model\":\"Testarossa\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":1984," +
-              "\"price\":250000," +
-              "\"mileage\":51000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":380," +
-              "\"bodyType\":\"COUPE\"," +
-              "\"id\":2}," +
-
-              "{\"make\":\"Citroën\"," +
-              "\"model\":\"XM\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":1992," +
-              "\"price\":13900," +
-              "\"mileage\":75500," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":194," +
-              "\"bodyType\":\"SEDAN\"," +
-              "\"id\":3}," +
-
-              "{\"make\":\"Ferrari\"," +
-               "\"model\":\"Enzo\"," +
-               "\"subModel\":null," +
-               "\"firstRegistrationFrom\":2003," +
-               "\"price\":4800000," +
-               "\"mileage\":32000," +
-               "\"fuelType\":\"GASOLINE\"," +
-               "\"gearBox\":\"MANUAL\"," +
-               "\"power\":650," +
-               "\"bodyType\":\"COUPE\"," +
-               "\"id\":4}," +
-
-               "{\"make\":\"Lamborghini\"," +
-               "\"model\":\"Countach\"," +
-               "\"subModel\":null," +
-               "\"firstRegistrationFrom\":1981," +
-               "\"price\":700000," +
-               "\"mileage\":73000," +
-               "\"fuelType\":\"GASOLINE\"," +
-               "\"gearBox\":\"MANUAL\"," +
-               "\"power\":455," +
-               "\"bodyType\":\"COUPE\"," +
-               "\"id\":5}";
-    private static final String EXPECTED_LIST_OF_CARS = EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY + "]";
-    private static final String EXPECTED_LIST_OF_CARS_AFTER_ADD = EXPECTED_LIST_OF_CARS_NO_CLOSING_ARRAY +
-            ",{\"make\":\"Lamborghini\"," +
-            "\"model\":\"Urus\"," +
-            "\"subModel\":null," +
-            "\"firstRegistrationFrom\":0," +
-            "\"price\":368000," +
-            "\"mileage\":10," +
-            "\"fuelType\":\"GASOLINE\"," +
-            "\"gearBox\":\"AUTOMATIC\"," +
-            "\"power\":799," +
-            "\"bodyType\":\"SUV\"," +
-            "\"id\":11}]";
-
     private static final String EXPECTED_LIST_OF_CARS_AFTER_DELETE =
             "[{\"make\":\"Ferrari\"," +
             "\"model\":\"Testarossa\"," +
@@ -146,6 +73,31 @@ public class CarRestControllerTest {
             "\"bodyType\":\"COUPE\"," +
             "\"id\":5}]";
 
+    private static final String EXPECTED_LIST_OF_CARS =
+            "[{\"make\":\"Lamborghini\"," +
+                    "\"model\":\"Miura\"," +
+                    "\"subModel\":null," +
+                    "\"firstRegistrationFrom\":1970," +
+                    "\"price\":2700000," +
+                    "\"mileage\":48000," +
+                    "\"fuelType\":\"GASOLINE\"," +
+                    "\"gearBox\":\"MANUAL\"," +
+                    "\"power\":380,\"bodyType\":\"COUPE\"," +
+                    "\"id\":1}" + "," + EXPECTED_LIST_OF_CARS_AFTER_DELETE.replace("[", "");
+
+    private static final String EXPECTED_LIST_OF_CARS_AFTER_ADD = EXPECTED_LIST_OF_CARS.replace("]", "") +
+            ",{\"make\":\"Lamborghini\"," +
+            "\"model\":\"Urus\"," +
+            "\"subModel\":null," +
+            "\"firstRegistrationFrom\":0," +
+            "\"price\":368000," +
+            "\"mileage\":10," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"AUTOMATIC\"," +
+            "\"power\":799," +
+            "\"bodyType\":\"SUV\"," +
+            "\"id\":11}]";
+
     private final static String EXPECTED_CAR_NUMBER_1 =
             "{\"make\":\"Lamborghini\"," +
             "\"model\":\"Miura\"," +
@@ -165,7 +117,6 @@ public class CarRestControllerTest {
 
     private static final String GET_ALL_CARS_URL = "/cars";
     private static final String GET_CAR_NUMBER1_URL = "/car/1";
-
 
     @LocalServerPort
     private int port;
