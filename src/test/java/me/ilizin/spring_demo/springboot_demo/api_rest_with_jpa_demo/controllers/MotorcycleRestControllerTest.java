@@ -22,80 +22,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Sql(scripts = "/schema.sql")
 public class MotorcycleRestControllerTest {
 
-    private static final String EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY =
-            "[{\"make\":\"Ducati\"," +
-              "\"model\":\"620 Sport\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":2004," +
-              "\"price\":2700," +
-              "\"mileage\":20000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":60," +
-              "\"bodyType\":\"SUPERSPORT\"," +
-              "\"id\":6}" +
-
-              ",{\"make\":\"Ducati\"," +
-              "\"model\":\"Streetfighter\"," +
-              "\"subModel\":\"V4S\"," +
-              "\"firstRegistrationFrom\":2021," +
-              "\"price\":20000," +
-              "\"mileage\":15000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":212," +
-              "\"bodyType\":\"SUPERSPORT\"," +
-              "\"id\":7}," +
-
-              "{\"make\":\"Kawasaki\"," +
-              "\"model\":\"Ninja\"," +
-              "\"subModel\":\"500 SE\"," +
-              "\"firstRegistrationFrom\":2024," +
-              "\"price\":7000," +
-              "\"mileage\":17320," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":48," +
-              "\"bodyType\":\"SUPERSPORT\"," +
-              "\"id\":8}," +
-
-              "{\"make\":\"Honda\"," +
-              "\"model\":\"NSR 50\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":1990," +
-              "\"price\":5500," +
-              "\"mileage\":22000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":14," +
-              "\"bodyType\":\"SUPERSPORT\"," +
-              "\"id\":9}," +
-
-              "{\"make\":\"Yamaha\"," +
-              "\"model\":\"FJ 1200\"," +
-              "\"subModel\":null," +
-              "\"firstRegistrationFrom\":1989," +
-              "\"price\":4000," +
-              "\"mileage\":68000," +
-              "\"fuelType\":\"GASOLINE\"," +
-              "\"gearBox\":\"MANUAL\"," +
-              "\"power\":131," +
-              "\"bodyType\":\"SUPERSPORT\"," +
-              "\"id\":10}";
-    private static final String EXPECTED_LIST_OF_MOTORCYCLES = EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY + "]";
-    private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_ADD = EXPECTED_LIST_OF_MOTORCYCLES_NO_CLOSING_ARRAY +
-            ",{\"make\":\"Yamaha\"," +
-            "\"model\":\"YZF-R1\"," +
-            "\"subModel\":null," +
-            "\"firstRegistrationFrom\":2016," +
-            "\"price\":12500," +
-            "\"mileage\":10," +
-            "\"fuelType\":\"GASOLINE\"," +
-            "\"gearBox\":\"MANUAL\"," +
-            "\"power\":200," +
-            "\"bodyType\":\"SUPERSPORT\"," +
-            "\"id\":11}]";
-
     private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_DELETE =
             "[{\"make\":\"Ducati\"," +
                     "\"model\":\"Streetfighter\"," +
@@ -145,6 +71,32 @@ public class MotorcycleRestControllerTest {
                     "\"bodyType\":\"SUPERSPORT\"," +
                     "\"id\":10}]";
 
+    private static final String EXPECTED_LIST_OF_MOTORCYCLES =
+            "[{\"make\":\"Ducati\"," +
+              "\"model\":\"620 Sport\"," +
+              "\"subModel\":null," +
+              "\"firstRegistrationFrom\":2004," +
+              "\"price\":2700," +
+              "\"mileage\":20000," +
+              "\"fuelType\":\"GASOLINE\"," +
+              "\"gearBox\":\"MANUAL\"," +
+              "\"power\":60," +
+              "\"bodyType\":\"SUPERSPORT\"," +
+              "\"id\":6}" + "," + EXPECTED_LIST_OF_MOTORCYCLES_AFTER_DELETE.replace("[", "");
+
+    private static final String EXPECTED_LIST_OF_MOTORCYCLES_AFTER_ADD = EXPECTED_LIST_OF_MOTORCYCLES.replace("]", "") +
+            ",{\"make\":\"Yamaha\"," +
+            "\"model\":\"YZF-R1\"," +
+            "\"subModel\":null," +
+            "\"firstRegistrationFrom\":2016," +
+            "\"price\":12500," +
+            "\"mileage\":10," +
+            "\"fuelType\":\"GASOLINE\"," +
+            "\"gearBox\":\"MANUAL\"," +
+            "\"power\":200," +
+            "\"bodyType\":\"SUPERSPORT\"," +
+            "\"id\":11}]";
+    
     private final static String EXPECTED_MOTORCYCLES_NUMBER_6 =
             "{\"make\":\"Ducati\"," +
              "\"model\":\"620 Sport\"," +
