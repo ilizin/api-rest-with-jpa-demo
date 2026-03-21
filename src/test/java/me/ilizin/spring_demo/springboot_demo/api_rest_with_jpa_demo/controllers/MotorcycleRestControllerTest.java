@@ -126,44 +126,40 @@ public class MotorcycleRestControllerTest {
 
     @Test
     public void addMotorcycle() {
-        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+        assertThat(this.restTemplate.getForObject(CarRestControllerTest.getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES);
 
-        assertThat(this.restTemplate.postForEntity(getUrl(port, "/motorcycle"), new HttpEntity<>(MOTORCYCLE_IN_DTO),
+        assertThat(this.restTemplate.postForEntity(CarRestControllerTest.getUrl(port, "/motorcycle"), new HttpEntity<>(MOTORCYCLE_IN_DTO),
                 MotorcycleOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO);
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+        assertThat(this.restTemplate.getForObject(CarRestControllerTest.getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES_AFTER_ADD);
     }
 
     @Test
     public void deleteMotorcycle() {
-        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+        assertThat(this.restTemplate.getForObject(CarRestControllerTest.getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES);
 
-        assertThat(this.restTemplate.exchange(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class
+        assertThat(this.restTemplate.exchange(CarRestControllerTest.getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), HttpMethod.DELETE, HttpEntity.EMPTY, Void.class
         ).getStatusCode()).isEqualTo(HttpStatusCode.valueOf(200));
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
+        assertThat(this.restTemplate.getForObject(CarRestControllerTest.getUrl(port, GET_ALL_MOTORCYCLES_URL), String.class))
                 .isEqualTo(EXPECTED_LIST_OF_MOTORCYCLES_AFTER_DELETE);
     }
 
     @Test
     public void getMotorcycle() {
-        assertThat(this.restTemplate.getForObject(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), String.class))
+        assertThat(this.restTemplate.getForObject(CarRestControllerTest.getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), String.class))
                 .isEqualTo(EXPECTED_MOTORCYCLES_NUMBER_6);
     }
 
     @Test
     public void updateMotorcycle() {
-        assertThat(this.restTemplate.exchange(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), HttpMethod.PUT, new HttpEntity<>(MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE),
+        assertThat(this.restTemplate.exchange(CarRestControllerTest.getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), HttpMethod.PUT, new HttpEntity<>(MOTORCYCLE_IN_DTO_WITH_DIFFERENT_PRICE),
                 MotorcycleOutDto.class).getBody()).usingRecursiveComparison().isEqualTo(MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE);
 
-        assertThat(this.restTemplate.getForObject(getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), MotorcycleOutDto.class))
+        assertThat(this.restTemplate.getForObject(CarRestControllerTest.getUrl(port, GET_MOTORCYCLE_NUMBER6_URL), MotorcycleOutDto.class))
                 .isEqualTo(MOTORCYCLE_OUT_DTO_WITH_DIFFERENT_PRICE);
-    }
-
-    private String getUrl(int port, String lastUrlPart) {
-        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1" + lastUrlPart;
     }
 }

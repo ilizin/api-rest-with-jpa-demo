@@ -118,6 +118,10 @@ public class CarRestControllerTest {
     private static final String GET_ALL_CARS_URL = "/cars";
     private static final String GET_CAR_NUMBER1_URL = "/car/1";
 
+    public static String getUrl(int port, String lastUrlPart) {
+        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1" + lastUrlPart;
+    }
+
     @LocalServerPort
     private int port;
 
@@ -161,9 +165,5 @@ public class CarRestControllerTest {
 
         assertThat(this.restTemplate.getForObject(getUrl(port, GET_CAR_NUMBER1_URL), CarOutDto.class))
                 .isEqualTo(CAR_OUT_DTO_WITH_DIFFERENT_PRICE);
-    }
-
-    private String getUrl(int port, String lastUrlPart) {
-        return "http://localhost:" + port + "/api-rest-with-jpa-demo/api/v1" + lastUrlPart;
     }
 }
